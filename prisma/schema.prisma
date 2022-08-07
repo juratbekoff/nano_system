@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ceoLogin {
+    id          Int @id @default(autoincrement())
+    login       String
+    password    String
+}
+
+model newsPublish {
+    id          Int @id @default(autoincrement())
+    image       String
+    title       String
+    date        String
+    clock       String
+    message     String
+}
+
+model setProfile {
+    id                Int @id @default(autoincrement())
+    name              String
+    surname           String
+    schoolPosition    String
+    phoneNumber       String
+    Email             String
+}
+
+
+model suggestion {
+    id                Int @id @default(autoincrement())
+    Name              String
+    suggestName       String
+    message           String
+}
+
+model userLogin {
+    id                Int @id @default(autoincrement())
+    login             String
+    password          String
+}
+
+model userUsername {
+    id                Int @id @default(autoincrement())
+    username          String
+}
+
+model contacts {
+    id                  Int  @id @default(autoincrement())
+    contact             String
+    location            String
+    email               String
+    appsAppStrore       String
+    appsGooglePlay      String
+} 
+
+model contacts_smm {
+    id      Int @id @default(autoincrement())
+    name    String
+    img     String
+    url     String
+}
+
+model attendanceDate {
+    id              Int @id @default(autoincrement())
+    date            String
+}
+
+model attendancePupil {
+    id              Int @id @default(autoincrement())
+    yes             String
+    no              String
+}
+
+model grade  {
+    id              Int @id @default(autoincrement())
+    name            String
+}
+
+
+
+model application {
+    id                Int @id @default(autoincrement())
+    appname           String
+    system            String
+    message           String
+}
+
+model teachersApplication {
+    id                Int @id @default(autoincrement())
+    appname           String
+    message           String
+    system            String
+}
+
