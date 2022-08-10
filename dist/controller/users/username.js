@@ -35,38 +35,58 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var client_1 = require("@prisma/client");
-var client = new client_1.PrismaClient();
-var Userlogin = /** @class */ (function () {
-    function Userlogin() {
+var username_1 = __importDefault(require("../../services/users/username"));
+var usernameService = new username_1["default"]();
+var UsernameController = /** @class */ (function () {
+    function UsernameController() {
     }
-    Userlogin.prototype.userLogin = function (login) {
+    UsernameController.prototype.username = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var username, oldUsername, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.create({
-                            data: {
-                                login: login.login,
-                                password: login.password
-                            }
-                        })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        username = {
+                            id: 0,
+                            username: req.body.username
+                        };
+                        if (!username.username) {
+                            return [2 /*return*/, res.status(400).send({ message: "Error from request's body!" })];
+                        }
+                        return [4 /*yield*/, usernameService.findUsername(req.body.username)];
+                    case 1:
+                        oldUsername = _a.sent();
+                        if (oldUsername) {
+                            return [2 /*return*/, res.status(400).send({ message: 'Sorry this username is already exicted!' })];
+                        }
+                        if (username === undefined) {
+                            return [2 /*return*/, res.status(400).send({ message: 'Sorry! Plase fill in!' })];
+                        }
+                        if (username === null) {
+                            return [2 /*return*/, res.status(400).send({ message: 'Sorry! Plase fill out!' })];
+                        }
+                        if (username.username.length < 6) {
+                            return [2 /*return*/, res.status(400).send({ message: 'Username must be at least 6 charachter!' })];
+                        }
+                        usernameService.username(username);
+                        res.status(200).send({ message: 'Username created!' });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        res.status(500).send({ message: error_1 });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    Userlogin.prototype.deleteUserLogin = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.deleteMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return Userlogin;
+    return UsernameController;
 }());
-exports["default"] = Userlogin;
-//# sourceMappingURL=userlogin.js.map
+exports["default"] = UsernameController;
+//# sourceMappingURL=username.js.map

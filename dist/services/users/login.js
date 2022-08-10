@@ -41,26 +41,15 @@ var client = new client_1.PrismaClient();
 var Userlogin = /** @class */ (function () {
     function Userlogin() {
     }
-    Userlogin.prototype.userLogin = function (login) {
+    Userlogin.prototype.findUserLogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.create({
-                            data: {
-                                login: login.login,
-                                password: login.password
+                    case 0: return [4 /*yield*/, client.userLogin.findFirst({
+                            where: {
+                                login: login
                             }
                         })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Userlogin.prototype.deleteUserLogin = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.deleteMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -69,4 +58,4 @@ var Userlogin = /** @class */ (function () {
     return Userlogin;
 }());
 exports["default"] = Userlogin;
-//# sourceMappingURL=userlogin.js.map
+//# sourceMappingURL=login.js.map

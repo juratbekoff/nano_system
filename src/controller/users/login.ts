@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
-import Userlogin from "../../services/ceo/userlogin"
+import Userlogin from "../../services/users/login"
 
 const userlogin = new Userlogin()
 

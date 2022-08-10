@@ -38,35 +38,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var Userlogin = /** @class */ (function () {
-    function Userlogin() {
+var Username = /** @class */ (function () {
+    function Username() {
     }
-    Userlogin.prototype.userLogin = function (login) {
+    Username.prototype.username = function (setUsername) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.create({
-                            data: {
-                                login: login.login,
-                                password: login.password
-                            }
-                        })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
+                return [2 /*return*/, client.userUsername.create({
+                        data: {
+                            username: setUsername.username
+                        }
+                    })];
             });
         });
     };
-    Userlogin.prototype.deleteUserLogin = function () {
+    Username.prototype.findUsername = function (username) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.deleteMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
+                return [2 /*return*/, client.userUsername.findFirst({
+                        where: {
+                            username: username
+                        }
+                    })];
             });
         });
     };
-    return Userlogin;
+    return Username;
 }());
-exports["default"] = Userlogin;
-//# sourceMappingURL=userlogin.js.map
+exports["default"] = Username;
+//# sourceMappingURL=username.js.map

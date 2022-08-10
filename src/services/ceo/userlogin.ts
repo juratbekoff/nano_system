@@ -15,15 +15,6 @@ class Userlogin {
         })
     }
     
-    
-    async findUserLogin(login:string){
-            return await client.userLogin.findFirst({
-            where: {
-                login: login,
-            }
-        })
-    }
-    
     async deleteUserLogin () {
         return await client.userLogin.deleteMany()
     }

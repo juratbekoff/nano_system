@@ -35,38 +35,63 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var client_1 = require("@prisma/client");
-var client = new client_1.PrismaClient();
-var Userlogin = /** @class */ (function () {
-    function Userlogin() {
+var bcrypt_1 = __importDefault(require("bcrypt"));
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var login_1 = __importDefault(require("../../services/users/login"));
+var userlogin = new login_1["default"]();
+var UserLoginController = /** @class */ (function () {
+    function UserLoginController() {
     }
-    Userlogin.prototype.userLogin = function (login) {
+    UserLoginController.prototype.login = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.create({
-                            data: {
-                                login: login.login,
-                                password: login.password
-                            }
-                        })];
-                    case 1: return [2 /*return*/, _a.sent()];
+            var _a, login, password, user, result, jsontoken, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        _a = req.body, login = _a.login, password = _a.password;
+                        return [4 /*yield*/, userlogin.findUserLogin(login)];
+                    case 1:
+                        user = _b.sent();
+                        console.log(user);
+                        if (!user) {
+                            return [2 /*return*/, res.json({
+                                    success: 0,
+                                    data: "Invalid email or password! 404!"
+                                })];
+                        }
+                        result = bcrypt_1["default"].compareSync(password, user.password);
+                        if (result) {
+                            jsontoken = jsonwebtoken_1["default"].sign({ result: user }, 'qwert1', {
+                                expiresIn: "1y"
+                            });
+                            return [2 /*return*/, res.json({
+                                    success: 1,
+                                    message: "login successfully!",
+                                    token: jsontoken
+                                })];
+                        }
+                        else {
+                            return [2 /*return*/, res.json({
+                                    success: 0,
+                                    data: "Invalid email or password! 404!"
+                                })];
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _b.sent();
+                        console.log(error_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    Userlogin.prototype.deleteUserLogin = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.deleteMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return Userlogin;
+    return UserLoginController;
 }());
-exports["default"] = Userlogin;
-//# sourceMappingURL=userlogin.js.map
+exports["default"] = UserLoginController;
+//# sourceMappingURL=login.js.map

@@ -1,4 +1,3 @@
-import { application } from "@prisma/client";
 import { Request, Response } from "express";
 import AppService from "../../services/users/application";
 
