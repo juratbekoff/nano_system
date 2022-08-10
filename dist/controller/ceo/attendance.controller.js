@@ -39,8 +39,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var attendance_service_1 = __importDefault(require("../../services/ceo/attendance.service"));
-var attendanceService = new attendance_service_1["default"]();
+var attendance_1 = __importDefault(require("../../services/ceo/attendance"));
+var attendanceService = new attendance_1["default"]();
 var AttendanceCeoController = /** @class */ (function () {
     function AttendanceCeoController() {
     }

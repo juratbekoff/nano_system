@@ -6,8 +6,8 @@ exports.__esModule = true;
 var multer_1 = __importDefault(require("multer"));
 var uuid_1 = require("uuid");
 var express_1 = require("express");
-var contacts_controller_1 = __importDefault(require("../../../controller/ceo/contacts.controller"));
-var contacstsController = new contacts_controller_1["default"]();
+var contacts_1 = __importDefault(require("../../../controller/ceo/contacts"));
+var contacstsController = new contacts_1["default"]();
 var router = (0, express_1.Router)();
 //uploading function for routes
 var storage = multer_1["default"].diskStorage({

@@ -39,8 +39,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var contacts_service_1 = __importDefault(require("../../services/ceo/contacts.service"));
-var contacts = new contacts_service_1["default"]();
+var contacts_1 = __importDefault(require("../../services/ceo/contacts."));
+var contacts = new contacts_1["default"]();
 var ContacstsController = /** @class */ (function () {
     function ContacstsController() {
     }

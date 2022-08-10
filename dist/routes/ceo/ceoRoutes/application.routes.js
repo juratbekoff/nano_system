@@ -5,13 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 // import section
 var express_1 = require("express");
-var application_controller_1 = __importDefault(require("../../../controller/ceo/application.controller"));
-var appCeoController = new application_controller_1["default"]();
+var application_1 = __importDefault(require("../../../controller/ceo/application"));
+var appCeoController = new application_1["default"]();
 var router = (0, express_1.Router)();
-// System
 // Method: GET     Descr: Get Application which is for system
 router.get('/system', appCeoController.applicationSystem);
-// Teachers     
 // Method: GET     Descr: Get Application which is for teachers
 router.get('/teachers', appCeoController.applicationTeachers);
 exports["default"] = router;

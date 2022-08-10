@@ -39,8 +39,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var application_service_1 = __importDefault(require("../../services/ceo/application.service"));
-var appCeoService = new application_service_1["default"]();
+var application_1 = __importDefault(require("./../../services/ceo/application"));
+var appCeoService = new application_1["default"]();
 var AppCeoController = /** @class */ (function () {
     function AppCeoController() {
     }

@@ -64,8 +64,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var bcrypt_1 = __importStar(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var userlogin_service_1 = __importDefault(require("../../services/ceo/userlogin.service"));
-var userlogin = new userlogin_service_1["default"]();
+var userlogin_1 = __importDefault(require("../../services/ceo/userlogin"));
+var userlogin = new userlogin_1["default"]();
 var UserLoginController = /** @class */ (function () {
     function UserLoginController() {
     }
@@ -81,11 +81,8 @@ var UserLoginController = /** @class */ (function () {
                     };
                     salt = bcrypt_1["default"].genSaltSync(10);
                     userLogin.password = (0, bcrypt_1.hashSync)(userLogin.password, salt);
-                    if (userLogin.login.length < 6) {
-                        return [2 /*return*/, res.status(400).send({ message: "Login must be at least 6 letters! " })];
-                    }
-                    if (userLogin.password.length < 6) {
-                        return [2 /*return*/, res.status(400).send({ message: " Password must be at least 6 letters! " })];
+                    if (userLogin.login.length < 5) {
+                        return [2 /*return*/, res.status(400).send({ message: "Login must be at least 5 letters! " })];
                     }
                     userlogin.deleteUserLogin();
                     userlogin.userLogin(userLogin);
@@ -122,7 +119,7 @@ var UserLoginController = /** @class */ (function () {
                         result = bcrypt_1["default"].compareSync(password, user.password);
                         if (result) {
                             jsontoken = jsonwebtoken_1["default"].sign({ result: user }, 'qwert1', {
-                                expiresIn: "1024h"
+                                expiresIn: "1y"
                             });
                             return [2 /*return*/, res.json({
                                     success: 1,

@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 // import section
 var express_1 = require("express");
-var attendance_controller_1 = __importDefault(require("../../../controller/ceo/attendance.controller"));
-var attendanceCeoController = new attendance_controller_1["default"]();
+var attendance_1 = __importDefault(require("../../../controller/ceo/attendance"));
+var attendanceCeoController = new attendance_1["default"]();
 var router = (0, express_1.Router)();
 // Method:POST;   Descr: Create date for attendance (by hand)
 router.post('/date', attendanceCeoController.attendanceDate);

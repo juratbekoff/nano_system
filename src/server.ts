@@ -1,9 +1,7 @@
 import express from "express";
 import cors from 'cors'
-import mainRoute from "./routes/mainRoute";
-
+import router from "./routes/router";
 import tokenValidation from "./auth/token_validation";
-
 
 const app = express()
 
@@ -12,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded( { extended: true }))
 
 // Route
-app.use('/api/v1', mainRoute)
+app.use('/api/v1', router)
 
 app.listen(process.env.PORT || 8085, () => {
     console.log('Server is running ...')
@@ -20,4 +18,3 @@ app.listen(process.env.PORT || 8085, () => {
 
 
 
-// localhost:8085/backend/ceo/application/system
