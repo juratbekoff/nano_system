@@ -44,26 +44,20 @@ var AppService = /** @class */ (function () {
     AppService.prototype.applicationSystem = function (application) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.application.create({
-                        data: {
-                            appname: application.appname,
-                            message: application.message,
-                            system: application.system
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.application.create({ data: { appname: application.appname, message: application.message, system: application.system } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     AppService.prototype.applicationTeachers = function (application) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.teachersApplication.create({
-                        data: {
-                            appname: application.appname,
-                            message: application.message,
-                            system: application.system
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teachersApplication.create({ data: { appname: application.appname, message: application.message, system: application.system } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

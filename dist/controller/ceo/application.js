@@ -44,31 +44,98 @@ var appCeoService = new application_1["default"]();
 var AppCeoController = /** @class */ (function () {
     function AppCeoController() {
     }
-    AppCeoController.prototype.applicationSystem = function (req, res) {
+    // System
+    AppCeoController.prototype.getAppSystem = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var error_1;
             return __generator(this, function (_a) {
-                try {
-                    appCeoService.getSystemApplication()
-                        .then(function (application) { return res.send({ message: 'Get all system ceo applications!', application: application }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, appCeoService.getSystemApplication()
+                                .then(function (application) { return res.send({ message: 'Get all system ceo applications!', application: application }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };
+    AppCeoController.prototype.deleteAppSystemByID = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var oldID, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, appCeoService.getSystemAppById(+req.params.id)];
+                    case 1:
+                        oldID = _a.sent();
+                        if (!(oldID === null || oldID === void 0 ? void 0 : oldID.id))
+                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = ".concat(+req.params.id, "! This ID is already deleted from the database!") })];
+                        return [4 /*yield*/, appCeoService.deleteSystemAppById(+req.params.id)];
+                    case 2:
+                        _a.sent();
+                        res.status(200).send({ message: "ID ".concat(+req.params.id, " - deleted  from the database!") });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_2 = _a.sent();
+                        res.status(500).send({ message: 'Internal Server Error', error: error_2 });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Teachers
     AppCeoController.prototype.applicationTeachers = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var error_3;
             return __generator(this, function (_a) {
-                try {
-                    appCeoService.getTeachersApplication()
-                        .then(function (application) { return res.send({ message: 'Get all teachers applications!', application: application }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, appCeoService.getTeachersApplication()
+                                .then(function (application) { return res.send({ message: 'All teachers application!', application: application }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        res.status(500).send({ message: 'Internal Server Error', error: error_3 });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
+            });
+        });
+    };
+    AppCeoController.prototype.deleteAppTeachersById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var oldTeacherID, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, appCeoService.getTeachersAppById(+req.params.id)];
+                    case 1:
+                        oldTeacherID = _a.sent();
+                        if (!(oldTeacherID === null || oldTeacherID === void 0 ? void 0 : oldTeacherID.id))
+                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = ".concat(+req.params.id, "! This ID is already deleted from the database!") })];
+                        return [4 /*yield*/, appCeoService.deleteTeachersAppById(+req.params.id)];
+                    case 2:
+                        _a.sent();
+                        res.status(200).send({ message: "ID ".concat(+req.params.id, " - deleted  from the database!") });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_4 = _a.sent();
+                        res.status(500).send({ message: 'Internal Server Error', error: error_4 });
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
-                return [2 /*return*/];
             });
         });
     };

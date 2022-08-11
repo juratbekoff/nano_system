@@ -50,17 +50,14 @@ var UsernameController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        username = {
-                            id: 0,
-                            username: req.body.username
-                        };
-                        if (!username.username) {
-                            return [2 /*return*/, res.status(400).send({ message: "Error from request's body!" })];
-                        }
+                        _a.trys.push([0, 3, , 4]);
+                        username = { id: 0, username: req.body.username };
                         return [4 /*yield*/, usernameService.findUsername(req.body.username)];
                     case 1:
                         oldUsername = _a.sent();
+                        if (!username.username) {
+                            return [2 /*return*/, res.status(400).send({ message: "Error from request's body!" })];
+                        }
                         if (oldUsername) {
                             return [2 /*return*/, res.status(400).send({ message: 'Sorry this username is already exicted!' })];
                         }
@@ -73,15 +70,15 @@ var UsernameController = /** @class */ (function () {
                         if (username.username.length < 6) {
                             return [2 /*return*/, res.status(400).send({ message: 'Username must be at least 6 charachter!' })];
                         }
-                        usernameService.username(username);
-                        res.status(200).send({ message: 'Username created!' });
-                        return [3 /*break*/, 3];
+                        return [4 /*yield*/, usernameService.username(username)];
                     case 2:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: 'Username created!' })];
+                    case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
-                        res.status(500).send({ message: error_1 });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

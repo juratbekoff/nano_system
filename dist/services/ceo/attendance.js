@@ -44,23 +44,20 @@ var AttendanceService = /** @class */ (function () {
     AttendanceService.prototype.attendanceDate = function (attendanceDate) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.attendanceDate.create({
-                        data: {
-                            date: attendanceDate.date
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.attendanceDate.create({ data: { date: attendanceDate.date } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     AttendanceService.prototype.attendancePupil = function (attendancePupil) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.attendancePupil.create({
-                        data: {
-                            yes: attendancePupil.yes,
-                            no: attendancePupil.no
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.attendancePupil.create({ data: { yes: attendancePupil.yes, no: attendancePupil.no } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

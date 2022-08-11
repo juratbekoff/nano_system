@@ -51,33 +51,24 @@ var AppController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        application = {
-                            id: 0,
-                            appname: req.body.appname,
-                            message: req.body.message,
-                            system: req.body.system
-                        };
+                        _a.trys.push([0, 5, , 6]);
+                        application = { id: 0, appname: req.body.appname, message: req.body.message, system: req.body.system };
                         if (!(application.system.valueOf() === 'Ustozlar')) return [3 /*break*/, 2];
                         return [4 /*yield*/, appService.applicationSystem(application)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).json({
-                                message: 'Success! Ustozlar'
-                            })];
+                        return [2 /*return*/, res.status(200).json({ message: 'Success! Your message has been sent to Ustozlar section! ' })];
                     case 2:
-                        if (application.system.valueOf() === 'Tizim') {
-                            appService.applicationTeachers(application);
-                            return [2 /*return*/, res.status(200).json({
-                                    message: 'Success! System'
-                                })];
-                        }
-                        return [3 /*break*/, 4];
+                        if (!(application.system.valueOf() === 'Maktab tizimi')) return [3 /*break*/, 4];
+                        return [4 /*yield*/, appService.applicationTeachers(application)];
                     case 3:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: 'Success! Your message has been sent to System section!' })];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
                         error_1 = _a.sent();
-                        console.log(error_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

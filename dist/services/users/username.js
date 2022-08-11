@@ -44,22 +44,20 @@ var Username = /** @class */ (function () {
     Username.prototype.username = function (setUsername) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.userUsername.create({
-                        data: {
-                            username: setUsername.username
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.userUsername.create({ data: { username: setUsername.username } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Username.prototype.findUsername = function (username) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.userUsername.findFirst({
-                        where: {
-                            username: username
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.userUsername.findFirst({ where: { username: username } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

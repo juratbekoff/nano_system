@@ -70,29 +70,29 @@ var UserLoginController = /** @class */ (function () {
     }
     UserLoginController.prototype.setUserLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var userLogin, salt;
+            var userLogin, salt, error_1;
             return __generator(this, function (_a) {
-                try {
-                    userLogin = {
-                        id: 0,
-                        login: req.body.login,
-                        password: req.body.password
-                    };
-                    salt = bcrypt_1["default"].genSaltSync(10);
-                    userLogin.password = (0, bcrypt_1.hashSync)(userLogin.password, salt);
-                    if (userLogin.login.length < 5) {
-                        return [2 /*return*/, res.status(400).send({ message: "Login must be at least 5 letters! " })];
-                    }
-                    userlogin.deleteUserLogin();
-                    userlogin.userLogin(userLogin);
-                    res.status(200).send({
-                        message: 'Successfully code setted!'
-                    });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        userLogin = { id: 0, login: req.body.login, password: req.body.password };
+                        salt = bcrypt_1["default"].genSaltSync(10);
+                        userLogin.password = (0, bcrypt_1.hashSync)(userLogin.password, salt);
+                        if (userLogin.login.length < 5) {
+                            return [2 /*return*/, res.status(400).send({ message: "Login must be at least 5 letters! " })];
+                        }
+                        return [4 /*yield*/, userlogin.deleteUserLogin()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, userlogin.userLogin(userLogin)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: 'Successfully code setted!' })];
+                    case 3:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 4: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };

@@ -41,17 +41,65 @@ var client = new client_1.PrismaClient();
 var AppCeoService = /** @class */ (function () {
     function AppCeoService() {
     }
+    // System
     AppCeoService.prototype.getSystemApplication = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.application.findMany({})];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.application.findMany({})];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
+    AppCeoService.prototype.deleteSystemAppById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.application["delete"]({ where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    AppCeoService.prototype.getSystemAppById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.application.findUnique({ where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // Teachers
     AppCeoService.prototype.getTeachersApplication = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.teachersApplication.findMany()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teachersApplication.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    AppCeoService.prototype.deleteTeachersAppById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teachersApplication["delete"]({ where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    AppCeoService.prototype.getTeachersAppById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teachersApplication.findUnique({ where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

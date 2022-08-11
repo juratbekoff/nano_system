@@ -46,41 +46,44 @@ var AttendanceCeoController = /** @class */ (function () {
     }
     AttendanceCeoController.prototype.attendanceDate = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var attendanceDate;
+            var attendanceDate, error_1;
             return __generator(this, function (_a) {
-                try {
-                    attendanceDate = {
-                        id: req.body.id,
-                        date: req.body.date
-                    };
-                    attendanceService.attendanceDate(attendanceDate)
-                        .then(function (attendanceDate) { return res.send({ message: 'The Attendance Date created!', attendanceDate: attendanceDate }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        attendanceDate = { id: req.body.id, date: req.body.date };
+                        return [4 /*yield*/, attendanceService.attendanceDate(attendanceDate)
+                                .then(function (attendanceDate) { return res.send({ message: 'The Attendance Date created!', attendanceDate: attendanceDate }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };
     ;
     AttendanceCeoController.prototype.attendancePupil = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var attendancePupil;
+            var attendancePupil, error_2;
             return __generator(this, function (_a) {
-                try {
-                    attendancePupil = {
-                        id: req.body.id,
-                        yes: req.body.yes,
-                        no: req.body.no
-                    };
-                    attendanceService.attendancePupil(attendancePupil)
-                        .then(function (attendancePupil) { return res.send({ message: 'The Attendance Pupil created!', attendancePupil: attendancePupil }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        attendancePupil = { id: req.body.id, yes: req.body.yes, no: req.body.no };
+                        return [4 /*yield*/, attendanceService.attendancePupil(attendancePupil)
+                                .then(function (attendancePupil) { return res.send({ message: 'The Attendance Pupil created!', attendancePupil: attendancePupil }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_2 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };

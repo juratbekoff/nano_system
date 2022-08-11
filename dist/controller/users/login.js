@@ -57,35 +57,21 @@ var UserLoginController = /** @class */ (function () {
                         return [4 /*yield*/, userlogin.findUserLogin(login)];
                     case 1:
                         user = _b.sent();
-                        console.log(user);
                         if (!user) {
-                            return [2 /*return*/, res.json({
-                                    success: 0,
-                                    data: "Invalid email or password! 404!"
-                                })];
+                            return [2 /*return*/, res.json({ success: 0, data: "Invalid email or password! 404!" })];
                         }
                         result = bcrypt_1["default"].compareSync(password, user.password);
                         if (result) {
-                            jsontoken = jsonwebtoken_1["default"].sign({ result: user }, 'qwert1', {
-                                expiresIn: "1y"
-                            });
-                            return [2 /*return*/, res.json({
-                                    success: 1,
-                                    message: "login successfully!",
-                                    token: jsontoken
-                                })];
+                            jsontoken = jsonwebtoken_1["default"].sign({ result: user }, 'qwert1', { expiresIn: "1y" });
+                            return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken })];
                         }
                         else {
-                            return [2 /*return*/, res.json({
-                                    success: 0,
-                                    data: "Invalid email or password! 404!"
-                                })];
+                            return [2 /*return*/, res.json({ success: 0, data: "Invalid email or password! 404!" })];
                         }
                         return [3 /*break*/, 3];
                     case 2:
                         error_1 = _b.sent();
-                        console.log(error_1);
-                        return [3 /*break*/, 3];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
                     case 3: return [2 /*return*/];
                 }
             });

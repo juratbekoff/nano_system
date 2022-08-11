@@ -4,21 +4,16 @@ import { v4 as uuid} from "uuid"
 import { application, attendance, setuserlogin, contacts} from "../controller/ceo";
 
 const router = Router()
-
-//uploading function for routes
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './src/uploads/contacts_smm')
-    },
-    filename: (req,file, cb) => {
-        cb(null, uuid() + '.png')
-    }
-})
+const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/contacts_smm')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
 const upload = multer({storage})
 
-// application routes
-router.get('/application/system', application.applicationSystem)
+// application system routes
+router.get('/application/system', application.getAppSystem)
+router.delete('/application/system/:id', application.deleteAppSystemByID)
+
+// application teachers routes
 router.get('/application/teachers', application.applicationTeachers)
+router.delete('/application/teachers/:id', application.deleteAppTeachersById)
 
 // attendance routes
 router.post('/attendance/date', attendance.attendanceDate)
@@ -29,7 +24,6 @@ router.post('/set/user/login', setuserlogin.setUserLogin)
 
 // contacts routes
 router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
-
 
 export default router
 

@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from "express";
 
-
-    async function checkToken(req: Request,res: Response, next: NextFunction) {
+async function checkToken(req: Request,res: Response, next: NextFunction) {
         try {
             let token = req.get("authorization");
             if (token) {
@@ -23,7 +22,7 @@ import { NextFunction, Request, Response } from "express";
         } catch (error) {
             console.log(error)
         }    
-    }
+}
     
 
 

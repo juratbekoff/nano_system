@@ -9,37 +9,21 @@ class AppController {
       
     async application(req: Request,res: Response) {
         try {
-          let application = {
-              id:0,
-              appname: req.body.appname,
-              message: req.body.message,
-              system: req.body.system
-          }
-      
-          if(application.system.valueOf() === 'Ustozlar') {
-
-            await appService.applicationSystem(application)
-             
-            return res.status(200).json({
-                  message: 'Success! Ustozlar'
-                })
-          }
-          
-          if(application.system.valueOf() === 'Tizim') {
+            let application = { id:0, appname: req.body.appname,message: req.body.message, system: req.body.system }            
             
-              appService.applicationTeachers(application)
-      
-              return res.status(200).json({
-                  message: 'Success! System'
-              })
-              
-          }
-
-          
+            if(application.system.valueOf() === 'Ustozlar') {
+                await appService.applicationSystem(application)
+                  return res.status(200).json({message: 'Success! Your message has been sent to Ustozlar section! '})
+            }
+            
+            if(application.system.valueOf() === 'Maktab tizimi') {
+                await appService.applicationTeachers(application)
+                  return res.status(200).json({message: 'Success! Your message has been sent to System section!'}) 
+            }
         } catch (error) {
-          console.log(error)
+            return res.status(500).send({  message: "Internal Server Error!", error})
         }  
-  }
+    }
 }
 
 export default AppController

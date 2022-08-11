@@ -39,100 +39,94 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.storageUpload = void 0;
 var contacts_1 = __importDefault(require("../../services/ceo/contacts."));
-var multer_1 = __importDefault(require("multer"));
-var uuid_1 = require("uuid");
 var contacts = new contacts_1["default"]();
-//uploading function for routes
-exports.storageUpload = multer_1["default"].diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './src/uploads/contacts_smm');
-    },
-    filename: function (req, file, cb) {
-        cb(null, (0, uuid_1.v4)() + '.png');
-    }
-});
 var ContacstsController = /** @class */ (function () {
     function ContacstsController() {
     }
-    // Create ContactsMain Controller
     ContacstsController.prototype.contactsMain = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var contact;
+            var contact, error_1;
             return __generator(this, function (_a) {
-                try {
-                    contact = {
-                        id: 0,
-                        contact: req.body.contact,
-                        email: req.body.email,
-                        location: req.body.location,
-                        appsAppStrore: req.body.appsAppStrore,
-                        appsGooglePlay: req.body.appsGooglePlay
-                    };
-                    contacts.contact(contact)
-                        .then(function (contact) { return res.send({ message: 'Contact section has been saved  !', contact: contact }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        contact = { id: 0, contact: req.body.contact, email: req.body.email, location: req.body.location, appsAppStrore: req.body.appsAppStrore, appsGooglePlay: req.body.appsGooglePlay };
+                        return [4 /*yield*/, contacts.contact(contact)
+                                .then(function (contact) { return res.send({ message: 'Contact section has been saved  !', contact: contact }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };
     ;
-    // Update ContactsMain Controller by ID
     ContacstsController.prototype.updateContactsMain = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var error_2;
             return __generator(this, function (_a) {
-                try {
-                    contacts.updateContacts(req.body, +req.params.id)
-                        .then(function (updatedContactsMain) { return res.send({ message: 'ContactsMain updated!', updatedContactsMain: updatedContactsMain }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, contacts.updateContacts(req.body, +req.params.id)
+                                .then(function (updatedContactsMain) { return res.send({ message: 'ContactsMain updated!', updatedContactsMain: updatedContactsMain }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_2 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };
     ;
-    // Create ContactsSMM Controller
     ContacstsController.prototype.contactsSMM = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var file, contacts_smm;
+            var file, contacts_smm, error_3;
             return __generator(this, function (_a) {
-                try {
-                    file = req.file;
-                    contacts_smm = {
-                        id: 0,
-                        img: file.filename,
-                        name: req.body.name,
-                        url: req.body.url
-                    };
-                    contacts.contacts_smm(contacts_smm)
-                        .then(function (contacts_smm) { return res.send({ message: 'Link setted!', contacts_smm: contacts_smm }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        file = req.file;
+                        contacts_smm = { id: 0, img: file.filename, name: req.body.name, url: req.body.url };
+                        return [4 /*yield*/, contacts.contacts_smm(contacts_smm)
+                                .then(function (contacts_smm) { return res.send({ message: 'Link setted!', contacts_smm: contacts_smm }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };
     ;
-    // Update ContactsSMM Controller by ID
     ContacstsController.prototype.updateContactsSMM = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var error_4;
             return __generator(this, function (_a) {
-                try {
-                    contacts.updateContactsSmm(req.body, +req.params.id)
-                        .then(function (updatedContactsSMM) { return res.send({ message: 'contactsSMM updated!', updatedContactsSMM: updatedContactsSMM }); });
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, contacts.updateContactsSmm(req.body, +req.params.id)
+                                .then(function (updatedContactsSMM) { return res.send({ message: 'contactsSMM updated!', updatedContactsSMM: updatedContactsSMM }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4 })];
+                    case 3: return [2 /*return*/];
                 }
-                catch (error) {
-                    console.log(error);
-                }
-                return [2 /*return*/];
             });
         });
     };

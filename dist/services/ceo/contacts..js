@@ -44,76 +44,60 @@ var Contacts = /** @class */ (function () {
     Contacts.prototype.contact = function (contact) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts.create({
-                        data: {
-                            contact: contact.contact,
-                            location: contact.location,
-                            email: contact.email,
-                            appsAppStrore: contact.appsAppStrore,
-                            appsGooglePlay: contact.appsGooglePlay
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts.create({ data: { contact: contact.contact, location: contact.location, email: contact.email, appsAppStrore: contact.appsAppStrore, appsGooglePlay: contact.appsGooglePlay } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Contacts.prototype.contacts_smm = function (contacts_smm) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts_smm.create({
-                        data: {
-                            name: contacts_smm.name,
-                            img: contacts_smm.img,
-                            url: contacts_smm.url
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts_smm.create({ data: { name: contacts_smm.name, img: contacts_smm.img, url: contacts_smm.url } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Contacts.prototype.updateContacts = function (contacts, incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts.update({
-                        data: {
-                            contact: contacts.contact,
-                            email: contacts.email,
-                            location: contacts.location,
-                            appsAppStrore: contacts.appsAppStrore,
-                            appsGooglePlay: contacts.appsGooglePlay
-                        },
-                        where: {
-                            id: incomingId
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts.update({ data: { contact: contacts.contact, email: contacts.email, location: contacts.location, appsAppStrore: contacts.appsAppStrore, appsGooglePlay: contacts.appsGooglePlay }, where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Contacts.prototype.updateContactsSmm = function (contacts_smm, incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts_smm.update({
-                        data: {
-                            name: contacts_smm.name,
-                            img: contacts_smm.img,
-                            url: contacts_smm.url
-                        },
-                        where: {
-                            id: incomingId
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts_smm.update({ data: { name: contacts_smm.name, img: contacts_smm.img, url: contacts_smm.url }, where: { id: incomingId } })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Contacts.prototype.getAllContacts = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts.findMany()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
     Contacts.prototype.getAllContactSMM = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.contacts_smm.findMany()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.contacts_smm.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
