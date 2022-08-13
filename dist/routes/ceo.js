@@ -20,8 +20,11 @@ router["delete"]('/application/teachers/:id', ceo_1.application.deleteAppTeacher
 router.post('/attendance/date', ceo_1.attendance.attendanceDate);
 router.post('/attendance/pupil', ceo_1.attendance.attendancePupil);
 // setuserlogin routes
-router.post('/set/user/login', ceo_1.setuserlogin.setUserLogin);
+router.post('/set/user/login', ceo_1.userlogin.setUserLogin);
 // contacts routes
 router.post('/contacts-smm', upload.single('img'), ceo_1.contacts.contactsSMM);
+// login routes
+router.post('/set/login', ceo_1.ceologin.setCeoLogin);
+router.post('/login', ceo_1.ceologin.loginCeo);
 exports["default"] = router;
 //# sourceMappingURL=ceo.js.map

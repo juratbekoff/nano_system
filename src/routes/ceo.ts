@@ -1,7 +1,7 @@
 import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
-import { application, attendance, setuserlogin, contacts} from "../controller/ceo";
+import { application, attendance, userlogin, ceologin, contacts} from "../controller/ceo";
 
 const router = Router()
 const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/contacts_smm')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
@@ -20,10 +20,16 @@ router.post('/attendance/date', attendance.attendanceDate)
 router.post('/attendance/pupil', attendance.attendancePupil)
 
 // setuserlogin routes
-router.post('/set/user/login', setuserlogin.setUserLogin)
+router.post('/set/user/login', userlogin.setUserLogin)
 
 // contacts routes
 router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
+
+// login routes
+router.post('/set/login', ceologin.setCeoLogin)
+router.post('/login', ceologin.loginCeo)
+
+
 
 export default router
 

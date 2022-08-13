@@ -11,7 +11,8 @@ class UserLoginController {
     async login(req:Request, res: Response) {
         try {
             let { login, password } = req.body 
-                let user = await userlogin.findUserLogin(login)
+            
+            let user = await userlogin.findUserLogin(login)
 
             if (!user) {
                 return res.json({success: 0,data: "Invalid email or password! 404!"})

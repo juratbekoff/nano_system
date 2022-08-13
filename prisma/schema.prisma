@@ -85,8 +85,6 @@ model grade  {
     name            String
 }
 
-
-
 model application {
     id                Int @id @default(autoincrement())
     appname           String
@@ -101,3 +99,19 @@ model teachersApplication {
     system            String
 }
 
+model ceologin {
+    id              Int @id @default(autoincrement())
+    login           String
+    password        String
+    role            String
+}
+
+model adminrole {
+    id              Int @id @default(autoincrement())
+    role            String
+}
+
+model userrole {
+    id              Int @id @default(autoincrement())
+    role            String
+}
