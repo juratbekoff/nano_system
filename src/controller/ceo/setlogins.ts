@@ -52,7 +52,7 @@ export class CeoLoginController {
                 let {login, password, role} = req.body                
                     let logsin = await ceologin.findCeoLogin(login)
                 if (!logsin) {
-                    return res.json({success: 0, data: "Incorrect login!"})}
+                    return res.status(404).send({success: 0, data: "Incorrect login!"})}
                         const logsinPassword = bcrypt.compareSync(password, logsin.password)  
                 if(!logsinPassword) {
                     return res.status(404).json({message: 'Incorrect password!'})} 

@@ -151,7 +151,7 @@ var CeoLoginController = /** @class */ (function () {
                     case 1:
                         logsin = _b.sent();
                         if (!logsin) {
-                            return [2 /*return*/, res.json({ success: 0, data: "Incorrect login!" })];
+                            return [2 /*return*/, res.status(404).send({ success: 0, data: "Incorrect login!" })];
                         }
                         logsinPassword = bcrypt_1["default"].compareSync(password, logsin.password);
                         if (!logsinPassword) {
