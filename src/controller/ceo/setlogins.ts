@@ -59,7 +59,7 @@ export class CeoLoginController {
                 if(logsin.role !== role) {
                     return res.status(401).json({success: 0, data: "You don't have permittion to enter CEO panel! "})}
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})
-                        return res.json({ success: 1, message: "login successfully!", token: jsontoken});
+                        return res.status(200).send({ message: "login successfully!", token: jsontoken});
             } catch (error) {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})

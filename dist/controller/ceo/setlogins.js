@@ -161,7 +161,7 @@ var CeoLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(401).json({ success: 0, data: "You don't have permittion to enter CEO panel! " })];
                         }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
-                        return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken })];
+                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken })];
                     case 2:
                         error_3 = _b.sent();
                         console.log(error_3);
