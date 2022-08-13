@@ -55,7 +55,7 @@ export class CeoLoginController {
                     return res.json({success: 0, data: "Incorrect login!"})}
                         const logsinPassword = bcrypt.compareSync(password, logsin.password)  
                 if(!logsinPassword) {
-                    return res.status(400).json({message: 'Incorrect password!'})} 
+                    return res.status(404).json({message: 'Incorrect password!'})} 
                 if(logsin.role !== role) {
                     return res.status(401).json({success: 0, data: "You don't have permittion to enter CEO panel! "})}
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})

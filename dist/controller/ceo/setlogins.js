@@ -155,7 +155,7 @@ var CeoLoginController = /** @class */ (function () {
                         }
                         logsinPassword = bcrypt_1["default"].compareSync(password, logsin.password);
                         if (!logsinPassword) {
-                            return [2 /*return*/, res.status(400).json({ message: 'Incorrect password!' })];
+                            return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
                         if (logsin.role !== role) {
                             return [2 /*return*/, res.status(401).json({ success: 0, data: "You don't have permittion to enter CEO panel! " })];
