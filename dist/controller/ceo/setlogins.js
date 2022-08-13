@@ -131,7 +131,9 @@ var CeoLoginController = /** @class */ (function () {
                         return [2 /*return*/, res.status(200).send({ message: 'Successfully CEO code setted!' })];
                     case 3:
                         error_2 = _a.sent();
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_2 })];
+                        console.log(error_2);
+                        res.status(500).json({ message: "Internal Server Error!" });
+                        return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
             });
@@ -162,7 +164,8 @@ var CeoLoginController = /** @class */ (function () {
                         return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken })];
                     case 2:
                         error_3 = _b.sent();
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3 })];
+                        console.log(error_3);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }
             });
