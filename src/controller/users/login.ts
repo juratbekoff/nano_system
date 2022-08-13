@@ -22,7 +22,7 @@ class UserLoginController {
                 const jsontoken = jwt.sign({ result: user}, 'qwert1', {expiresIn: "1y"});
                     return res.json({ success: 1, message: "login successfully!", token: jsontoken});
             } else {
-                return res.status(404).json({success: 0, data: "Invalid email or password! 404!"})
+                return res.status(404).send({message: "Invalid email or password! 404!"})
             }
         } catch (error) {
             return res.status(500).send({ message: "Internal Server Error!", error})
