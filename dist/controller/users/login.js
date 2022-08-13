@@ -66,7 +66,7 @@ var UserLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken })];
                         }
                         else {
-                            return [2 /*return*/, res.json({ success: 0, data: "Invalid email or password! 404!" })];
+                            return [2 /*return*/, res.status(404).json({ success: 0, data: "Invalid email or password! 404!" })];
                         }
                         return [3 /*break*/, 3];
                     case 2:

@@ -4,7 +4,7 @@ const client = new PrismaClient()
   
 class Contacts {
     constructor() {}
-
+    
     async contact(contact:contacts): Promise<contacts> {
         return await client.contacts.create({data: {contact: contact.contact, location: contact.location, email: contact.email, appsAppStrore: contact.appsAppStrore,appsGooglePlay: contact.appsGooglePlay}})}
     
