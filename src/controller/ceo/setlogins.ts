@@ -43,7 +43,7 @@ export class CeoLoginController {
                     await ceologin.ceoLogin(ceologs)
                 return res.status(200).send({message: 'Successfully CEO code setted!'})
             } catch (error) {
-                return res.status(500).send({ message: "Internal Server Error!", error})}
+                return res.status(500).send({ message: "Internal Server Error!", error: error})}
             }
 
         async loginCeo(req: Request, res: Response) {
@@ -60,7 +60,7 @@ export class CeoLoginController {
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})
                         return res.json({ success: 1, message: "login successfully!", token: jsontoken});
             } catch (error) {
-                return res.status(500).send({ message: "Internal Server Error!", error})
+                return res.status(500).send({ message: "Internal Server Error!", error:error})
             }            
         }        
 
