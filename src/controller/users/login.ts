@@ -15,7 +15,7 @@ class UserLoginController {
             let user = await userlogin.findUserLogin(login)
 
             if (!user) {
-                return res.json({success: 0,data: "Invalid email or password! 404!"})
+                return res.status(404).send({message: "Invalid email or password! 404!"})
             } const result = bcrypt.compareSync(password, user.password)
 
             if(result) {

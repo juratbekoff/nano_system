@@ -58,7 +58,7 @@ var UserLoginController = /** @class */ (function () {
                     case 1:
                         user = _b.sent();
                         if (!user) {
-                            return [2 /*return*/, res.json({ success: 0, data: "Invalid email or password! 404!" })];
+                            return [2 /*return*/, res.status(404).send({ message: "Invalid email or password! 404!" })];
                         }
                         result = bcrypt_1["default"].compareSync(password, user.password);
                         if (result) {
