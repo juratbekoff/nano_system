@@ -36,39 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.Ceologin = exports.Userlogin = void 0;
+exports.loginServices = void 0;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var Userlogin = /** @class */ (function () {
-    function Userlogin() {
+var loginServices = /** @class */ (function () {
+    function loginServices() {
     }
-    Userlogin.prototype.userLogin = function (login) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.create({ data: { login: login.login, password: login.password } })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Userlogin.prototype.deleteUserLogin = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.userLogin.deleteMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return Userlogin;
-}());
-exports.Userlogin = Userlogin;
-var Ceologin = /** @class */ (function () {
-    function Ceologin() {
-    }
-    Ceologin.prototype.ceoLogin = function (login) {
+    loginServices.prototype.login = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -78,7 +52,7 @@ var Ceologin = /** @class */ (function () {
             });
         });
     };
-    Ceologin.prototype.deleteCeoLogin = function () {
+    loginServices.prototype.deleteLogin = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -88,7 +62,7 @@ var Ceologin = /** @class */ (function () {
             });
         });
     };
-    Ceologin.prototype.findCeoLogin = function (login) {
+    loginServices.prototype.findLogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -98,7 +72,7 @@ var Ceologin = /** @class */ (function () {
             });
         });
     };
-    return Ceologin;
+    return loginServices;
 }());
-exports.Ceologin = Ceologin;
+exports.loginServices = loginServices;
 //# sourceMappingURL=setlogins.js.map

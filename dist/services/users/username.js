@@ -38,10 +38,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var Username = /** @class */ (function () {
-    function Username() {
+var UsernameAndPassowrd = /** @class */ (function () {
+    function UsernameAndPassowrd() {
     }
-    Username.prototype.username = function (setUsername) {
+    // username
+    UsernameAndPassowrd.prototype.username = function (setUsername) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -51,7 +52,7 @@ var Username = /** @class */ (function () {
             });
         });
     };
-    Username.prototype.findUsername = function (username) {
+    UsernameAndPassowrd.prototype.findUsername = function (username) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -61,7 +62,7 @@ var Username = /** @class */ (function () {
             });
         });
     };
-    return Username;
+    return UsernameAndPassowrd;
 }());
-exports["default"] = Username;
+exports["default"] = UsernameAndPassowrd;
 //# sourceMappingURL=username.js.map

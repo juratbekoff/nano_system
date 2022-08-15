@@ -62,76 +62,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.CeoLoginController = exports.UserLoginController = void 0;
+exports.LoginController = void 0;
 var bcrypt_1 = __importStar(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var setlogins_1 = require("../../services/ceo/setlogins");
-var userlogin = new setlogins_1.Userlogin();
-var ceologin = new setlogins_1.Ceologin();
-var UserLoginController = /** @class */ (function () {
-    function UserLoginController() {
+var ceologin = new setlogins_1.loginServices();
+var LoginController = /** @class */ (function () {
+    function LoginController() {
     }
-    UserLoginController.prototype.setUserLogin = function (req, res) {
+    LoginController.prototype.setLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var userLogin, salt, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        userLogin = { id: 0, login: req.body.login, password: req.body.password };
-                        salt = bcrypt_1["default"].genSaltSync(10);
-                        userLogin.password = (0, bcrypt_1.hashSync)(userLogin.password, salt);
-                        if (userLogin.login.length < 5) {
-                            return [2 /*return*/, res.status(400).send({ message: "Login must be at least 5 letters! " })];
-                        }
-                        return [4 /*yield*/, userlogin.deleteUserLogin()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, userlogin.userLogin(userLogin)];
-                    case 2:
-                        _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'Successfully code setted!' })];
-                    case 3:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ;
-    return UserLoginController;
-}());
-exports.UserLoginController = UserLoginController;
-var CeoLoginController = /** @class */ (function () {
-    function CeoLoginController() {
-    }
-    CeoLoginController.prototype.setCeoLogin = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ceologs, salt, error_2;
+            var ceologs, findCeoLogin, salt, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         ceologs = { id: 0, login: req.body.login, password: req.body.password, role: req.body.role };
+                        return [4 /*yield*/, ceologin.findLogin(ceologs.login)];
+                    case 1:
+                        findCeoLogin = _a.sent();
                         if (ceologs.login.length < 5) {
                             return [2 /*return*/, res.status(400).send({ message: 'login must be at least 5 symbols!' })];
                         }
                         if (ceologs.password.length < 5) {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
+                        if (findCeoLogin) {
+                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                        }
                         salt = bcrypt_1["default"].genSaltSync(10);
                         ceologs.password = (0, bcrypt_1.hashSync)(ceologs.password, salt);
-                        return [4 /*yield*/, ceologin.deleteCeoLogin()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, ceologin.ceoLogin(ceologs)];
+                        return [4 /*yield*/, ceologin.login(ceologs)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: 'Successfully CEO code setted!' })];
                     case 3:
-                        error_2 = _a.sent();
-                        console.log(error_2);
+                        error_1 = _a.sent();
+                        console.log(error_1);
                         res.status(500).json({ message: "Internal Server Error!" });
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
@@ -139,15 +106,15 @@ var CeoLoginController = /** @class */ (function () {
             });
         });
     };
-    CeoLoginController.prototype.loginCeo = function (req, res) {
+    LoginController.prototype.login = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, login, password, role, logsin, logsinPassword, jsontoken, error_3;
+            var _a, login, password, logsin, logsinPassword, jsontoken, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
-                        _a = req.body, login = _a.login, password = _a.password, role = _a.role;
-                        return [4 /*yield*/, ceologin.findCeoLogin(login)];
+                        _a = req.body, login = _a.login, password = _a.password;
+                        return [4 /*yield*/, ceologin.findLogin(login)];
                     case 1:
                         logsin = _b.sent();
                         if (!logsin) {
@@ -157,21 +124,18 @@ var CeoLoginController = /** @class */ (function () {
                         if (!logsinPassword) {
                             return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
-                        if (logsin.role !== role) {
-                            return [2 /*return*/, res.status(401).json({ success: 0, data: "You don't have permittion to enter CEO panel! " })];
-                        }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
-                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken })];
+                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken, role: logsin.role })];
                     case 2:
-                        error_3 = _b.sent();
-                        console.log(error_3);
+                        error_2 = _b.sent();
+                        console.log(error_2);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    return CeoLoginController;
+    return LoginController;
 }());
-exports.CeoLoginController = CeoLoginController;
+exports.LoginController = LoginController;
 //# sourceMappingURL=setlogins.js.map

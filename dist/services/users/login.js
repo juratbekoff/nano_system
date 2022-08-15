@@ -38,10 +38,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var Userlogin = /** @class */ (function () {
-    function Userlogin() {
+var SchoolLogin = /** @class */ (function () {
+    function SchoolLogin() {
     }
-    Userlogin.prototype.findUserLogin = function (login) {
+    SchoolLogin.prototype.findUserLogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -51,7 +51,7 @@ var Userlogin = /** @class */ (function () {
             });
         });
     };
-    return Userlogin;
+    return SchoolLogin;
 }());
-exports["default"] = Userlogin;
+exports["default"] = SchoolLogin;
 //# sourceMappingURL=login.js.map

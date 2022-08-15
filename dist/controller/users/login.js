@@ -63,7 +63,7 @@ var UserLoginController = /** @class */ (function () {
                         result = bcrypt_1["default"].compareSync(password, user.password);
                         if (result) {
                             jsontoken = jsonwebtoken_1["default"].sign({ result: user }, 'qwert1', { expiresIn: "1y" });
-                            return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken })];
+                            return [2 /*return*/, res.json({ success: 1, message: "login successfully!", token: jsontoken, role: user.role })];
                         }
                         else {
                             return [2 /*return*/, res.status(404).send({ message: "Invalid email or password! 404!" })];
@@ -74,6 +74,13 @@ var UserLoginController = /** @class */ (function () {
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
                     case 3: return [2 /*return*/];
                 }
+            });
+        });
+    };
+    UserLoginController.prototype.userRegister = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };
