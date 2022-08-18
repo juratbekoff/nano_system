@@ -1,7 +1,7 @@
 import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
-import { application, attendance, ceologin, contacts} from "../controller/ceo";
+import { application, attendance, ceologin, contacts, ceoSuggest} from "../controller/ceo";
 
 const router = Router()
 const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/contacts_smm')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
@@ -14,6 +14,10 @@ router.delete('/application/system/:id', application.deleteAppSystemByID)
 // application teachers routes
 router.get('/application/teachers', application.applicationTeachers)
 router.delete('/application/teachers/:id', application.deleteAppTeachersById)
+
+// suggestion routes
+router.get('/suggestions', ceoSuggest.suggestion)
+router.get('/suggestion/:id', ceoSuggest.getSuggestById)
 
 // attendance routes
 router.post('/attendance/date', attendance.attendanceDate)

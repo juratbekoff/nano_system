@@ -92,6 +92,7 @@ var LoginController = /** @class */ (function () {
                         }
                         salt = bcrypt_1["default"].genSaltSync(10);
                         ceologs.password = (0, bcrypt_1.hashSync)(ceologs.password, salt);
+                        ceologs.role = (0, bcrypt_1.hashSync)(ceologs.role, salt);
                         return [4 /*yield*/, ceologin.login(ceologs)];
                     case 2:
                         _a.sent();
