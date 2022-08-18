@@ -92,9 +92,10 @@ var LoginController = /** @class */ (function () {
                         }
                         salt = bcrypt_1["default"].genSaltSync(10);
                         ceologs.password = (0, bcrypt_1.hashSync)(ceologs.password, salt);
-                        ceologs.role = (0, bcrypt_1.hashSync)(ceologs.role, salt);
+                        // ceologs.role = hashSync(ceologs.role, salt)
                         return [4 /*yield*/, ceologin.login(ceologs)];
                     case 2:
+                        // ceologs.role = hashSync(ceologs.role, salt)
                         _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: 'Successfully CEO code setted!' })];
                     case 3:

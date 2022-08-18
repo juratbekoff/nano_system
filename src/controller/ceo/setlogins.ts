@@ -21,7 +21,7 @@ export class LoginController {
                     return res.status(403).send({message: `Sorry! This '${ceologs.login}' login is already exicted! Please! Change login's value!`})}    
                 let salt = bcrypt.genSaltSync(10)    
                         ceologs.password = hashSync(ceologs.password, salt)
-                            ceologs.role = hashSync(ceologs.role, salt)
+                            // ceologs.role = hashSync(ceologs.role, salt)
                 await ceologin.login(ceologs)
                 return res.status(200).send({message: 'Successfully CEO code setted!'})
             } catch (error) {
