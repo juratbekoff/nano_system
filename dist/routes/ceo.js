@@ -27,5 +27,6 @@ router.post('/contacts-smm', upload.single('img'), ceo_1.contacts.contactsSMM);
 // login routes
 router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);
+router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
 exports["default"] = router;
 //# sourceMappingURL=ceo.js.map

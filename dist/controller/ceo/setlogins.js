@@ -81,10 +81,10 @@ var LoginController = /** @class */ (function () {
                         return [4 /*yield*/, ceologin.findLogin(ceologs.login)];
                     case 1:
                         findCeoLogin = _a.sent();
-                        if (ceologs.login.length < 5) {
+                        if (ceologs.login.length < 3) {
                             return [2 /*return*/, res.status(400).send({ message: 'login must be at least 5 symbols!' })];
                         }
-                        if (ceologs.password.length < 5) {
+                        if (ceologs.password.length < 3) {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
@@ -93,11 +93,12 @@ var LoginController = /** @class */ (function () {
                         salt = bcrypt_1["default"].genSaltSync(10);
                         ceologs.password = (0, bcrypt_1.hashSync)(ceologs.password, salt);
                         // ceologs.role = hashSync(ceologs.role, salt)
-                        return [4 /*yield*/, ceologin.login(ceologs)];
+                        return [4 /*yield*/, ceologin.login(ceologs)
+                                .then(function (login) { return res.send({ message: 'Successfully setted!', login: login }); })];
                     case 2:
                         // ceologs.role = hashSync(ceologs.role, salt)
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'Successfully CEO code setted!' })];
+                        return [3 /*break*/, 4];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
@@ -131,6 +132,26 @@ var LoginController = /** @class */ (function () {
                     case 2:
                         error_2 = _b.sent();
                         console.log(error_2);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginController.prototype.deleteAllLogins = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, ceologin.deleteLogin()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: "All records deleted!" })];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }

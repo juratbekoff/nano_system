@@ -13,17 +13,17 @@ export class LoginController {
             try {
                 let ceologs: ceologin = {id: 0, login: req.body.login, password: req.body.password,role: req.body.role}
                     let findCeoLogin = await ceologin.findLogin(ceologs.login)
-                if(ceologs.login.length < 5) {
+                if(ceologs.login.length < 3) {
                     return res.status(400).send({message: 'login must be at least 5 symbols!'})} 
-                if(ceologs.password.length <5) {
+                if(ceologs.password.length <3) {
                     return res.status(400).send({message: 'password must be at least 5 symbols!'})}
                 if(findCeoLogin) {
                     return res.status(403).send({message: `Sorry! This '${ceologs.login}' login is already exicted! Please! Change login's value!`})}    
                 let salt = bcrypt.genSaltSync(10)    
                         ceologs.password = hashSync(ceologs.password, salt)
                             // ceologs.role = hashSync(ceologs.role, salt)
-                await ceologin.login(ceologs)
-                return res.status(200).send({message: 'Successfully CEO code setted!'})
+                 await ceologin.login(ceologs)
+                    .then(login => res.send( { message: 'Successfully setted!', login}))
             } catch (error) {
                 console.log(error);
                 res.status(500).json({message: "Internal Server Error!"})
@@ -45,7 +45,17 @@ export class LoginController {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})
             }            
-        }        
+        }
+        
+        async deleteAllLogins(req: Request, res: Response) {
+            try {
+                await ceologin.deleteLogin()
+                    return res.status(200).json({ message: "All records deleted!"})
+            } catch (error) {
+                console.log(error);
+                return res.status(500).send({ message: "Internal Server Error!"})
+            }
+        }
 
 }
 

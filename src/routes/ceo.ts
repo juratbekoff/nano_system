@@ -29,6 +29,7 @@ router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
 // login routes
 router.post('/set/login', ceologin.setLogin)
 router.post('/login', ceologin.login)
+router.delete('/logins', ceologin.deleteAllLogins)
 
 export default router
 
