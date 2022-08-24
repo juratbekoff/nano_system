@@ -1,11 +1,13 @@
 import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
-import { application, attendance, ceologin, contacts, ceoSuggest} from "../controller/ceo";
+import { application, attendance, ceologin, contacts, ceoSuggest, publish} from "../controller/ceo";
 
 const router = Router()
-const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/contacts_smm')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
-const upload = multer({storage})
+
+// image uploaders
+const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
+    const upload = multer({storage})
 
 // application system routes
 router.get('/application/system', application.getAppSystem)
@@ -26,7 +28,7 @@ router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
 router.post('/attendance/date', attendance.attendanceDate)
 router.post('/attendance/pupil', attendance.attendancePupil)
 
-// contacts routes
+// contacts
 router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
 
 // login routes
@@ -34,8 +36,12 @@ router.post('/set/login', ceologin.setLogin)
 router.post('/login', ceologin.login)
 router.delete('/logins', ceologin.deleteAllLogins)
 
+// news pubils
+router.post('/news',upload.single("image"),  publish.createPublish)
+router.get('/news', publish.getAllPublished),
+router.get('/news/:id', publish.getPublishedById)
+
 export default router
-    
 
 
 

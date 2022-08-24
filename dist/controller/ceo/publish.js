@@ -39,39 +39,83 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var suggestion_1 = __importDefault(require("../../services/users/suggestion"));
-var suggest = new suggestion_1["default"]();
-var SuggestController = /** @class */ (function () {
-    function SuggestController() {
+var publish_1 = __importDefault(require("../../services/ceo/publish"));
+var publishing = new publish_1["default"]();
+var NewsPublishController = /** @class */ (function () {
+    function NewsPublishController() {
     }
-    SuggestController.prototype.suggestion = function (req, res) {
+    NewsPublishController.prototype.createPublish = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var suggestion, error_1;
+            var file, publish, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        suggestion = {
+                        file = req.file;
+                        publish = {
                             id: 0,
-                            Name: req.body.Name,
-                            suggestName: req.body.suggestName,
+                            image: file.filename,
+                            title: req.body.title,
                             message: req.body.message,
-                            sent_date: new Date().toLocaleString()
+                            date: new Date().toLocaleString()
                         };
-                        return [4 /*yield*/, suggest.createSuggestion(suggestion)
-                                .then(function (suggest) { return res.send({ message: 'Suggestion has been sent', suggest: suggest }); })];
+                        return [4 /*yield*/, publishing.createPublish(publish)
+                                .then(function (publish) { return res.send({ message: 'News successfully uploaded!', publish: publish }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
+                        console.log(error_1);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    return SuggestController;
+    NewsPublishController.prototype.getAllPublished = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, publishing.getAllPublished()
+                                .then(function (publish) { return res.send({ message: 'All publishes!', publish: publish }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        console.log(error_2);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    NewsPublishController.prototype.getPublishedById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, publishing.getPublishedById(+req.params.id)
+                                .then(function (publish) { return res.send({ message: "This ".concat(+req.params.id, " deleted from newsPublish table!"), publish: publish }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return NewsPublishController;
 }());
-exports["default"] = SuggestController;
-//# sourceMappingURL=suggestion.js.map
+exports["default"] = NewsPublishController;
+//# sourceMappingURL=publish.js.map

@@ -35,43 +35,75 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 exports.__esModule = true;
-var suggestion_1 = __importDefault(require("../../services/users/suggestion"));
-var suggest = new suggestion_1["default"]();
-var SuggestController = /** @class */ (function () {
-    function SuggestController() {
+var client_1 = require("@prisma/client");
+var client = new client_1.PrismaClient();
+var NewsPublish = /** @class */ (function () {
+    function NewsPublish() {
     }
-    SuggestController.prototype.suggestion = function (req, res) {
+    NewsPublish.prototype.createPublish = function (publish) {
         return __awaiter(this, void 0, void 0, function () {
-            var suggestion, error_1;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.newsPublish.create({
+                        data: {
+                            image: publish.image,
+                            title: publish.title,
+                            message: publish.message,
+                            date: publish.date
+                        }
+                    })];
+            });
+        });
+    };
+    NewsPublish.prototype.getAllPublished = function () {
+        return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        suggestion = {
-                            id: 0,
-                            Name: req.body.Name,
-                            suggestName: req.body.suggestName,
-                            message: req.body.message,
-                            sent_date: new Date().toLocaleString()
-                        };
-                        return [4 /*yield*/, suggest.createSuggestion(suggestion)
-                                .then(function (suggest) { return res.send({ message: 'Suggestion has been sent', suggest: suggest }); })];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
-                    case 3: return [2 /*return*/];
+                    case 0: return [4 /*yield*/, client.newsPublish.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    return SuggestController;
+    NewsPublish.prototype.getPublishedById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.newsPublish.findUnique({
+                            where: {
+                                id: incomingId
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    NewsPublish.prototype.deleteAllPublished = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.newsPublish.deleteMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    NewsPublish.prototype.deletePublishedById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.newsPublish["delete"]({
+                            where: {
+                                id: incomingId
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return NewsPublish;
 }());
-exports["default"] = SuggestController;
-//# sourceMappingURL=suggestion.js.map
+exports["default"] = NewsPublish;
+//# sourceMappingURL=publish.js.map

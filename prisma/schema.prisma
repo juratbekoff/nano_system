@@ -19,7 +19,6 @@ model newsPublish {
   image   String
   title   String
   date    String
-  clock   String
   message String
 }
 
@@ -119,3 +118,4 @@ model suggestion {
 model testuchun {
   id Int @id @default(autoincrement())
 }
+

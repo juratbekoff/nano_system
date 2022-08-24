@@ -8,7 +8,8 @@ var multer_1 = __importDefault(require("multer"));
 var uuid_1 = require("uuid");
 var ceo_1 = require("../controller/ceo");
 var router = (0, express_1.Router)();
-var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads/contacts_smm'); }, filename: function (req, file, cb) { cb(null, (0, uuid_1.v4)() + '.png'); } });
+// image uploaders
+var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads'); }, filename: function (req, file, cb) { cb(null, (0, uuid_1.v4)() + '.png'); } });
 var upload = (0, multer_1["default"])({ storage: storage });
 // application system routes
 router.get('/application/system', ceo_1.application.getAppSystem);
@@ -25,11 +26,15 @@ router["delete"]('/suggestions', ceo_1.ceoSuggest.deleteAllSuggest);
 // attendance routes
 router.post('/attendance/date', ceo_1.attendance.attendanceDate);
 router.post('/attendance/pupil', ceo_1.attendance.attendancePupil);
-// contacts routes
+// contacts
 router.post('/contacts-smm', upload.single('img'), ceo_1.contacts.contactsSMM);
 // login routes
 router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);
 router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
+// news pubils
+router.post('/news', upload.single("image"), ceo_1.publish.createPublish);
+router.get('/news', ceo_1.publish.getAllPublished),
+    router.get('/news/:id', ceo_1.publish.getPublishedById);
 exports["default"] = router;
 //# sourceMappingURL=ceo.js.map

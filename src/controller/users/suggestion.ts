@@ -20,7 +20,7 @@ class SuggestController {
                         
             await suggest.createSuggestion(suggestion)
 
-            .then(suggest => res.send( { message: 'Suggestion has been sent@', suggest}))
+            .then(suggest => res.send( { message: 'Suggestion has been sent', suggest}))
 
         } catch (error) {
             return res.status(500).send({  message: "Internal Server Error!", error})
