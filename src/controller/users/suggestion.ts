@@ -15,7 +15,7 @@ class SuggestController {
                 Name: req.body.Name,
                 suggestName: req.body.suggestName,
                 message: req.body.message,
-                sent_date: new Date().toString()
+                sent_date: new Date().toLocaleString()
             }
                         
             await suggest.createSuggestion(suggestion)
