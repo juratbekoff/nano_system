@@ -22,17 +22,6 @@ CREATE TABLE "setProfile" (
     CONSTRAINT "setProfile_pkey" PRIMARY KEY ("id")
 );
 
-
--- CreateTable
-CREATE TABLE "suggestion" (
-    "id" SERIAL NOT NULL,
-    "Name" TEXT NOT NULL,
-    "suggestName" TEXT NOT NULL,
-    "message" TEXT NOT NULL,
-
-    CONSTRAINT "suggestion_pkey" PRIMARY KEY ("id")
-);
-
 -- CreateTable
 CREATE TABLE "userLogin" (
     "id" SERIAL NOT NULL,

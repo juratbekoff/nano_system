@@ -17,7 +17,10 @@ router.delete('/application/teachers/:id', application.deleteAppTeachersById)
 
 // suggestion routes
 router.get('/suggestions', ceoSuggest.suggestion)
+router.get('/suggestion', ceoSuggest.searchSuggest)
 router.get('/suggestion/:id', ceoSuggest.getSuggestById)
+router.delete('/suggestion/:id', ceoSuggest.deleteSuggestById)
+router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
 
 // attendance routes
 router.post('/attendance/date', attendance.attendanceDate)
@@ -32,8 +35,7 @@ router.post('/login', ceologin.login)
 router.delete('/logins', ceologin.deleteAllLogins)
 
 export default router
-
-
+    
 
 
 

@@ -10,7 +10,8 @@ class Suggestion {
             data: {
                 Name: suggestion.Name,
                 suggestName: suggestion.suggestName,
-                message: suggestion.message
+                message: suggestion.message,
+                sent_date: suggestion.sent_date
             }
         })
     }

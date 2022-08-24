@@ -1,4 +1,5 @@
 import { suggestion } from "@prisma/client";
+import { time } from "console";
 import { Request, Response } from "express";
 import Suggestion from "../../services/users/suggestion";
 
@@ -9,14 +10,14 @@ class SuggestController {
 
     async suggestion(req: Request,res: Response) {
         try {
-            
             let suggestion: suggestion = {
                 id: 0,
                 Name: req.body.Name,
                 suggestName: req.body.suggestName,
-                message: req.body.message
+                message: req.body.message,
+                sent_date: new Date().toLocaleString()
             }
-            
+                        
             await suggest.createSuggestion(suggestion)
 
             return res.status(200).json({ message: "Suggestion has been sent!", suggestion })
@@ -25,7 +26,6 @@ class SuggestController {
             return res.status(500).send({  message: "Internal Server Error!", error})
         }  
     }
-    
 }
 
 export default SuggestController

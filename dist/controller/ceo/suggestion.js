@@ -84,6 +84,72 @@ var CeoSuggestController = /** @class */ (function () {
             });
         });
     };
+    CeoSuggestController.prototype.deleteSuggestById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, suggest.deleteSuggestById(+req.params.id)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: "ID ".concat(+req.params.id, " deleted from suggestion table!") })];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3.error })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CeoSuggestController.prototype.deleteAllSuggest = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, suggest.deleteAllSuggests()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: 'All suggestions deleted!' })];
+                    case 2:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4.error })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CeoSuggestController.prototype.searchSuggest = function (req, res) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var query_1, error_5;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _c.trys.push([0, 2, , 3]);
+                        query_1 = {
+                            ownName: (_a = req.query.name) === null || _a === void 0 ? void 0 : _a.toString(),
+                            suggestName: (_b = req.query.suggest) === null || _b === void 0 ? void 0 : _b.toString()
+                        };
+                        return [4 /*yield*/, suggest.searchSuggest(query_1)
+                                .then(function (suggests) { return res.send({ message: 'This suggest!', suggests: suggests }); })];
+                    case 1:
+                        _c.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_5 = _c.sent();
+                        console.log(error_5);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_5 })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return CeoSuggestController;
 }());
 exports["default"] = CeoSuggestController;

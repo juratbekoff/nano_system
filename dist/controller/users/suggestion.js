@@ -55,7 +55,8 @@ var SuggestController = /** @class */ (function () {
                             id: 0,
                             Name: req.body.Name,
                             suggestName: req.body.suggestName,
-                            message: req.body.message
+                            message: req.body.message,
+                            sent_date: new Date().toLocaleString()
                         };
                         return [4 /*yield*/, suggest.createSuggestion(suggestion)];
                     case 1:

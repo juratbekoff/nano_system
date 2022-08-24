@@ -6,7 +6,7 @@ export class loginServices {
     constructor(){}
 
     async login(login: ceologin): Promise<ceologin> {
-        return await client.ceologin.create({data:{login: login.login, password: login.password, role: login.role}})}      
+        return await client.ceologin.create({data:{login: login.login, fullname: login.fullname, password: login.password, role: login.role}})}      
 
     async deleteLogin(){
         return await client.ceologin.deleteMany()}    

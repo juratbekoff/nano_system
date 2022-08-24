@@ -11,7 +11,7 @@ export class LoginController {
 
         async setLogin(req: Request, res: Response) {
             try {
-                let ceologs: ceologin = {id: 0, login: req.body.login, password: req.body.password,role: req.body.role}
+                let ceologs: ceologin = {id: 0, fullname: req.body.fullname, login: req.body.login, password: req.body.password,role: req.body.role}
                     let findCeoLogin = await ceologin.findLogin(ceologs.login)
                 if(ceologs.login.length < 3) {
                     return res.status(400).send({message: 'login must be at least 5 symbols!'})} 

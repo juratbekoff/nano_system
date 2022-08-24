@@ -65,6 +65,53 @@ var Suggestion = /** @class */ (function () {
             });
         });
     };
+    Suggestion.prototype.deleteSuggestById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.suggestion["delete"]({
+                            where: {
+                                id: incomingId
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    Suggestion.prototype.deleteAllSuggests = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.suggestion.deleteMany()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Suggestion.prototype.searchSuggest = function (query) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.suggestion.findMany({
+                            where: {
+                                Name: query.ownName ? {
+                                    contains: query.ownName,
+                                    mode: "insensitive"
+                                } : undefined,
+                                suggestName: query.suggestName ? {
+                                    contains: query.suggestName,
+                                    mode: "insensitive"
+                                } : undefined
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     return Suggestion;
 }());
 exports["default"] = Suggestion;

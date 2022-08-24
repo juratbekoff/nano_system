@@ -77,7 +77,7 @@ var LoginController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        ceologs = { id: 0, login: req.body.login, password: req.body.password, role: req.body.role };
+                        ceologs = { id: 0, fullname: req.body.fullname, login: req.body.login, password: req.body.password, role: req.body.role };
                         return [4 /*yield*/, ceologin.findLogin(ceologs.login)];
                     case 1:
                         findCeoLogin = _a.sent();

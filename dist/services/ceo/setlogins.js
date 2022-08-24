@@ -46,7 +46,7 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.create({ data: { login: login.login, password: login.password, role: login.role } })];
+                    case 0: return [4 /*yield*/, client.ceologin.create({ data: { login: login.login, fullname: login.fullname, password: login.password, role: login.role } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

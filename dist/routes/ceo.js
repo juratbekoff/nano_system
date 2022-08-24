@@ -18,7 +18,10 @@ router.get('/application/teachers', ceo_1.application.applicationTeachers);
 router["delete"]('/application/teachers/:id', ceo_1.application.deleteAppTeachersById);
 // suggestion routes
 router.get('/suggestions', ceo_1.ceoSuggest.suggestion);
+router.get('/suggestion', ceo_1.ceoSuggest.searchSuggest);
 router.get('/suggestion/:id', ceo_1.ceoSuggest.getSuggestById);
+router["delete"]('/suggestion/:id', ceo_1.ceoSuggest.deleteSuggestById);
+router["delete"]('/suggestions', ceo_1.ceoSuggest.deleteAllSuggest);
 // attendance routes
 router.post('/attendance/date', ceo_1.attendance.attendanceDate);
 router.post('/attendance/pupil', ceo_1.attendance.attendancePupil);
