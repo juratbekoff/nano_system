@@ -17,7 +17,7 @@ router.delete('/application/teachers/:id', application.deleteAppTeachersById)
 
 // suggestion routes
 router.get('/suggestions', ceoSuggest.suggestion)
-router.get('/suggestion', ceoSuggest.searchSuggest)
+router.get('/suggestions/?suggestName&name', ceoSuggest.searchSuggest)
 router.get('/suggestion/:id', ceoSuggest.getSuggestById)
 router.delete('/suggestion/:id', ceoSuggest.deleteSuggestById)
 router.delete('/suggestions', ceoSuggest.deleteAllSuggest)

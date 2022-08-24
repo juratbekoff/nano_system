@@ -98,7 +98,7 @@ var CeoSuggestController = /** @class */ (function () {
                     case 2:
                         error_3 = _a.sent();
                         console.log(error_3);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3.error })];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3 })];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -118,7 +118,7 @@ var CeoSuggestController = /** @class */ (function () {
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4.error })];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4 })];
                     case 3: return [2 /*return*/];
                 }
             });

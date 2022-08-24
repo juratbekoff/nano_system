@@ -34,7 +34,7 @@ class CeoSuggestController {
                 return res.status(200).send({ message: `ID ${+req.params.id} deleted from suggestion table!`})
         } catch (error) {
             console.log(error);
-            return res.status(500).send({  message: "Internal Server Error!", error: error.error})
+            return res.status(500).send({  message: "Internal Server Error!", error: error})
         }
     }
 
@@ -44,7 +44,7 @@ class CeoSuggestController {
                 return res.status(200).send({ message: 'All suggestions deleted!'})       
         } catch (error) {
             console.log(error);
-            return res.status(500).send({  message: "Internal Server Error!", error: error.error})
+            return res.status(500).send({  message: "Internal Server Error!", error: error})
         }
     }
 

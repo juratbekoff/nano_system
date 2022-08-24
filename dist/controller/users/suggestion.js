@@ -58,10 +58,11 @@ var SuggestController = /** @class */ (function () {
                             message: req.body.message,
                             sent_date: new Date().toLocaleString()
                         };
-                        return [4 /*yield*/, suggest.createSuggestion(suggestion)];
+                        return [4 /*yield*/, suggest.createSuggestion(suggestion)
+                                .then(function (suggest) { return res.send({ message: 'Suggestion has been sent@', suggest: suggest }); })];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).json({ message: "Suggestion has been sent!", suggestion: suggestion })];
+                        return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_1 })];
