@@ -86,20 +86,25 @@ var CeoSuggestController = /** @class */ (function () {
     };
     CeoSuggestController.prototype.deleteSuggestById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var error_3;
+            var oldSuggest, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, suggest.deleteSuggestById(+req.params.id)];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, suggest.getSuggestById(+req.params.id)];
                     case 1:
+                        oldSuggest = _a.sent();
+                        if (!(oldSuggest === null || oldSuggest === void 0 ? void 0 : oldSuggest.id))
+                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = ".concat(+req.params.id, "! This ID is already deleted from the database!") })];
+                        return [4 /*yield*/, suggest.deleteSuggestById(+req.params.id)];
+                    case 2:
                         _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: "ID ".concat(+req.params.id, " deleted from suggestion table!") })];
-                    case 2:
+                    case 3:
                         error_3 = _a.sent();
                         console.log(error_3);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_3 })];
-                    case 3: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

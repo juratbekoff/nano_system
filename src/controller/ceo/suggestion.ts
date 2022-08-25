@@ -30,8 +30,10 @@ class CeoSuggestController {
 
     async deleteSuggestById(req: Request, res: Response) {
         try {
-            await suggest.deleteSuggestById(+req.params.id)
-                return res.status(200).send({ message: `ID ${+req.params.id} deleted from suggestion table!`})
+                let oldSuggest = await suggest.getSuggestById(+req.params.id)
+                    if(!oldSuggest?.id) return res.status(404).send({message: `Sorry! We cannot find id = ${+req.params.id}! This ID is already deleted from the database!` })
+                        await suggest.deleteSuggestById(+req.params.id)
+                    return res.status(200).send({ message: `ID ${+req.params.id} deleted from suggestion table!`})
         } catch (error) {
             console.log(error);
             return res.status(500).send({  message: "Internal Server Error!", error: error})
