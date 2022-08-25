@@ -39,12 +39,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
+var client_1 = require("@prisma/client");
 var publish_1 = __importDefault(require("../../services/ceo/publish"));
 var publishing = new publish_1["default"]();
-var NewsPublishController = /** @class */ (function () {
-    function NewsPublishController() {
+var client = new client_1.PrismaClient();
+var NewsPublish2 = /** @class */ (function () {
+    function NewsPublish2() {
     }
-    NewsPublishController.prototype.createPublish = function (req, res) {
+    NewsPublish2.prototype.createPublish2 = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var publish, error_1;
             return __generator(this, function (_a) {
@@ -72,49 +74,7 @@ var NewsPublishController = /** @class */ (function () {
             });
         });
     };
-    NewsPublishController.prototype.getAllPublished = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var error_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, publishing.getAllPublished()
-                                .then(function (publish) { return res.send({ message: 'All publishes!', publish: publish }); })];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_2 = _a.sent();
-                        console.log(error_2);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    NewsPublishController.prototype.getPublishedById = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var error_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, publishing.getPublishedById(+req.params.id)
-                                .then(function (publish) { return res.send({ message: "This ".concat(+req.params.id, " deleted from newsPublish table!"), publish: publish }); })];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_3 = _a.sent();
-                        console.log(error_3);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return NewsPublishController;
+    return NewsPublish2;
 }());
-exports["default"] = NewsPublishController;
-//# sourceMappingURL=publish.js.map
+exports["default"] = NewsPublish2;
+//# sourceMappingURL=publish2.js.map

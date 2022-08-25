@@ -33,7 +33,7 @@ router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);
 router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
 // news pubils
-router.post('/news', upload.single("image"), ceo_1.publish.createPublish);
+router.post('/news', ceo_1.publish.createPublish);
 router.get('/news', ceo_1.publish.getAllPublished),
     router.get('/news/:id', ceo_1.publish.getPublishedById);
 exports["default"] = router;

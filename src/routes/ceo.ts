@@ -1,7 +1,7 @@
 import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
-import { application, attendance, ceologin, contacts, ceoSuggest, publish} from "../controller/ceo";
+import { application, attendance, ceologin, contacts, ceoSuggest, publish, publish2} from "../controller/ceo";
 
 const router = Router()
 
@@ -37,7 +37,7 @@ router.post('/login', ceologin.login)
 router.delete('/logins', ceologin.deleteAllLogins)
 
 // news pubils
-router.post('/news',upload.single("image"),  publish.createPublish)
+router.post('/news', publish.createPublish)
 router.get('/news', publish.getAllPublished),
 router.get('/news/:id', publish.getPublishedById)
 
