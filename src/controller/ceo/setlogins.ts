@@ -35,8 +35,8 @@ export class LoginController {
                     let logsin = await ceologin.findLogin(login)
                 if (!logsin) {
                     return res.status(404).send({success: 0, data: "Incorrect login!"})}
-                        const logsinPassword = bcrypt.compareSync(password, logsin.password)  
-                if(!logsinPassword) {
+                        // const logsinPassword = bcrypt.compareSync(password, logsin.password)  
+                if(logsin.password !== password) {
                     return res.status(404).json({message: 'Incorrect password!'})} 
         
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})

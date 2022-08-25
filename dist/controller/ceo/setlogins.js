@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 exports.LoginController = void 0;
-var bcrypt_1 = __importDefault(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var setlogins_1 = require("../../services/ceo/setlogins");
 var ceologin = new setlogins_1.loginServices();
@@ -90,7 +89,7 @@ var LoginController = /** @class */ (function () {
     };
     LoginController.prototype.login = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, login, password, logsin, logsinPassword, jsontoken, error_2;
+            var _a, login, password, logsin, jsontoken, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -102,8 +101,8 @@ var LoginController = /** @class */ (function () {
                         if (!logsin) {
                             return [2 /*return*/, res.status(404).send({ success: 0, data: "Incorrect login!" })];
                         }
-                        logsinPassword = bcrypt_1["default"].compareSync(password, logsin.password);
-                        if (!logsinPassword) {
+                        // const logsinPassword = bcrypt.compareSync(password, logsin.password)  
+                        if (logsin.password !== password) {
                             return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
