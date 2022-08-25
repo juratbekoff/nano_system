@@ -11,11 +11,9 @@ class NewsPublishController {
 
     async createPublish (req: Request, res: Response) {
         try {
-            let file = req.file!
-            
             let publish: newsPublish = {
                 id: 0,
-                image: file.filename,
+                image: req.body.image,
                 title: req.body.title,
                 message: req.body.message,
                 date: new Date().toLocaleString()
