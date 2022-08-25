@@ -1,5 +1,5 @@
 import { ceologin, userLogin } from "@prisma/client"
-import { NextFunction, Request, Response } from "express"
+import e, { NextFunction, Request, Response } from "express"
 import bcrypt, { hashSync } from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { loginServices } from "../../services/ceo/setlogins"
@@ -19,9 +19,9 @@ export class LoginController {
                     return res.status(400).send({message: 'password must be at least 5 symbols!'})}
                 if(findCeoLogin) {
                     return res.status(403).send({message: `Sorry! This '${ceologs.login}' login is already exicted! Please! Change login's value!`})}    
-                let salt = bcrypt.genSaltSync(10)    
-                        ceologs.password = hashSync(ceologs.password, salt)
-                            // ceologs.role = hashSync(ceologs.role, salt)
+                // let salt = bcrypt.genSaltSync(10)    
+                //         ceologs.password = hashSync(ceologs.password, salt)
+                //             ceologs.role = hashSync(ceologs.role, salt)
                  await ceologin.login(ceologs)
                     .then(login => res.send( { message: 'Successfully setted!', login}))
             } catch (error) {
@@ -46,11 +46,31 @@ export class LoginController {
                 return res.status(500).send({ message: "Internal Server Error!"})
             }            
         }
+
+        async findAllLogins (req: Request, res: Response) {
+            try {
+                await ceologin.findAllLogin()
+                    .then(logins => res.status(200).send( { message: 'All Logins get from the database!', logins}))
+            } catch (error) {
+                console.log(error);
+                return res.status(500).send(error)
+            }
+        }
+        
+        async deleteLoginById (req:Request, res: Response) {
+            try {
+                await ceologin.deleteLoginById(+req.params.id)
+                  return res.status(200).send( { message: `This ${+req.params.id} successfully deleted from the ceologin's table`})
+            } catch (error) {
+                console.log(error);
+                  return res.status(500).send(error)
+            }
+        }
         
         async deleteAllLogins(req: Request, res: Response) {
             try {
                 await ceologin.deleteLogin()
-                    return res.status(200).json({ message: "All records deleted!"})
+                    return res.status(200).json({ message: "All logins deleted!"})
             } catch (error) {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})

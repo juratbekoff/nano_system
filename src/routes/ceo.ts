@@ -34,7 +34,10 @@ router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
 // login routes
 router.post('/set/login', ceologin.setLogin)
 router.post('/login', ceologin.login)
+router.get('/logins', ceologin.findAllLogins)
+router.delete('/login/:id', ceologin.deleteLoginById)
 router.delete('/logins', ceologin.deleteAllLogins)
+
 
 // news pubils
 router.post('/news', publish.createPublish)

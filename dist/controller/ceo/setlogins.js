@@ -1,27 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -63,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 exports.LoginController = void 0;
-var bcrypt_1 = __importStar(require("bcrypt"));
+var bcrypt_1 = __importDefault(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var setlogins_1 = require("../../services/ceo/setlogins");
 var ceologin = new setlogins_1.loginServices();
@@ -72,7 +49,7 @@ var LoginController = /** @class */ (function () {
     }
     LoginController.prototype.setLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ceologs, findCeoLogin, salt, error_1;
+            var ceologs, findCeoLogin, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -90,13 +67,15 @@ var LoginController = /** @class */ (function () {
                         if (findCeoLogin) {
                             return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
                         }
-                        salt = bcrypt_1["default"].genSaltSync(10);
-                        ceologs.password = (0, bcrypt_1.hashSync)(ceologs.password, salt);
-                        // ceologs.role = hashSync(ceologs.role, salt)
+                        // let salt = bcrypt.genSaltSync(10)    
+                        //         ceologs.password = hashSync(ceologs.password, salt)
+                        //             ceologs.role = hashSync(ceologs.role, salt)
                         return [4 /*yield*/, ceologin.login(ceologs)
                                 .then(function (login) { return res.send({ message: 'Successfully setted!', login: login }); })];
                     case 2:
-                        // ceologs.role = hashSync(ceologs.role, salt)
+                        // let salt = bcrypt.genSaltSync(10)    
+                        //         ceologs.password = hashSync(ceologs.password, salt)
+                        //             ceologs.role = hashSync(ceologs.role, salt)
                         _a.sent();
                         return [3 /*break*/, 4];
                     case 3:
@@ -138,9 +117,50 @@ var LoginController = /** @class */ (function () {
             });
         });
     };
-    LoginController.prototype.deleteAllLogins = function (req, res) {
+    LoginController.prototype.findAllLogins = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, ceologin.findAllLogin()
+                                .then(function (logins) { return res.status(200).send({ message: 'All Logins get from the database!', logins: logins }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        return [2 /*return*/, res.status(500).send(error_3)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginController.prototype.deleteLoginById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, ceologin.deleteLoginById(+req.params.id)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
+                    case 2:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        return [2 /*return*/, res.status(500).send(error_4)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginController.prototype.deleteAllLogins = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -148,10 +168,10 @@ var LoginController = /** @class */ (function () {
                         return [4 /*yield*/, ceologin.deleteLogin()];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).json({ message: "All records deleted!" })];
+                        return [2 /*return*/, res.status(200).json({ message: "All logins deleted!" })];
                     case 2:
-                        error_3 = _a.sent();
-                        console.log(error_3);
+                        error_5 = _a.sent();
+                        console.log(error_5);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }

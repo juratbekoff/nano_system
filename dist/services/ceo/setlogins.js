@@ -52,11 +52,11 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    loginServices.prototype.deleteLogin = function () {
+    loginServices.prototype.findAllLogin = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.deleteMany()];
+                    case 0: return [4 /*yield*/, client.ceologin.findMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -69,6 +69,23 @@ var loginServices = /** @class */ (function () {
                     case 0: return [4 /*yield*/, client.ceologin.findFirst({ where: { login: login } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
+            });
+        });
+    };
+    loginServices.prototype.deleteLogin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.ceologin.deleteMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    loginServices.prototype.deleteLoginById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.ceologin["delete"]({ where: { id: incomingId } })];
             });
         });
     };

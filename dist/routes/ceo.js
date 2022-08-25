@@ -31,6 +31,8 @@ router.post('/contacts-smm', upload.single('img'), ceo_1.contacts.contactsSMM);
 // login routes
 router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);
+router.get('/logins', ceo_1.ceologin.findAllLogins);
+router["delete"]('/login/:id', ceo_1.ceologin.deleteLoginById);
 router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
 // news pubils
 router.post('/news', ceo_1.publish.createPublish);
