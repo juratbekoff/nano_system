@@ -19,7 +19,7 @@ router.delete('/application/teachers/:id', application.deleteAppTeachersById)
 
 // suggestion routes
 router.get('/suggestions', ceoSuggest.suggestion)
-router.get('/suggestions/?suggestName&name', ceoSuggest.searchSuggest)
+router.get('/suggest', ceoSuggest.searchSuggest)
 router.get('/suggestion/:id', ceoSuggest.getSuggestById)
 router.delete('/suggestion/:id', ceoSuggest.deleteSuggestById)
 router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
@@ -38,8 +38,7 @@ router.get('/logins', ceologin.findAllLogins)
 router.delete('/login/:id', ceologin.deleteLoginById)
 router.delete('/logins', ceologin.deleteAllLogins)
 
-
-// news pubils
+// news pubilsh
 router.post('/news', publish.createPublish)
 router.get('/news', publish.getAllPublished),
 router.get('/news/:id', publish.getPublishedById)

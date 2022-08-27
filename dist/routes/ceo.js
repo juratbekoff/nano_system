@@ -19,7 +19,7 @@ router.get('/application/teachers', ceo_1.application.applicationTeachers);
 router["delete"]('/application/teachers/:id', ceo_1.application.deleteAppTeachersById);
 // suggestion routes
 router.get('/suggestions', ceo_1.ceoSuggest.suggestion);
-router.get('/suggestions/?suggestName&name', ceo_1.ceoSuggest.searchSuggest);
+router.get('/suggest', ceo_1.ceoSuggest.searchSuggest);
 router.get('/suggestion/:id', ceo_1.ceoSuggest.getSuggestById);
 router["delete"]('/suggestion/:id', ceo_1.ceoSuggest.deleteSuggestById);
 router["delete"]('/suggestions', ceo_1.ceoSuggest.deleteAllSuggest);
@@ -34,7 +34,7 @@ router.post('/login', ceo_1.ceologin.login);
 router.get('/logins', ceo_1.ceologin.findAllLogins);
 router["delete"]('/login/:id', ceo_1.ceologin.deleteLoginById);
 router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
-// news pubils
+// news pubilsh
 router.post('/news', ceo_1.publish.createPublish);
 router.get('/news', ceo_1.publish.getAllPublished),
     router.get('/news/:id', ceo_1.publish.getPublishedById);
