@@ -2,9 +2,7 @@ import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
 import { application, attendance, ceologin, contacts, ceoSuggest, publish, publish2} from "../controller/ceo";
-
 const router = Router()
-
 // image uploaders
 const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
     const upload = multer({storage})
@@ -28,8 +26,17 @@ router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
 router.post('/attendance/date', attendance.attendanceDate)
 router.post('/attendance/pupil', attendance.attendancePupil)
 
-// contacts
-router.post('/contacts-smm', upload.single('img'), contacts.contactsSMM)
+// contacts-smm
+router.post('/contacts-smm', contacts.contactsSMM)
+router.get('/contacts-smm', contacts.getAllContactsSMM)
+router.put('/contacts-smm/:id', contacts.updateContactsSMM)
+router.delete('/contacts-smm/:id', contacts.deleteCSMMById)
+
+// contacts-main
+router.post('/contact', contacts.contactsMain)
+router.get('/contact', contacts.getAllContacts)
+router.put('/contact/:id', contacts.updateContactsMain)
+router.delete('/contact/:id', contacts.deleteCMById)
 
 // login routes
 router.post('/set/login', ceologin.setLogin)

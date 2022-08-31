@@ -26,8 +26,16 @@ router["delete"]('/suggestions', ceo_1.ceoSuggest.deleteAllSuggest);
 // attendance routes
 router.post('/attendance/date', ceo_1.attendance.attendanceDate);
 router.post('/attendance/pupil', ceo_1.attendance.attendancePupil);
-// contacts
-router.post('/contacts-smm', upload.single('img'), ceo_1.contacts.contactsSMM);
+// contacts-smm
+router.post('/contacts-smm', ceo_1.contacts.contactsSMM);
+router.get('/contacts-smm', ceo_1.contacts.getAllContactsSMM);
+router.put('/contacts-smm/:id', ceo_1.contacts.updateContactsSMM);
+router["delete"]('/contacts-smm/:id', ceo_1.contacts.deleteCSMMById);
+// contacts-main
+router.post('/contact', ceo_1.contacts.contactsMain);
+router.get('/contact', ceo_1.contacts.getAllContacts);
+router.put('/contact/:id', ceo_1.contacts.updateContactsMain);
+router["delete"]('/contact/:id', ceo_1.contacts.deleteCMById);
 // login routes
 router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);

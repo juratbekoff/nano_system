@@ -1,5 +1,4 @@
 import { suggestion } from "@prisma/client";
-import { time } from "console";
 import { Request, Response } from "express";
 import Suggestion from "../../services/users/suggestion";
 

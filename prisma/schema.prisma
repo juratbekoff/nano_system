@@ -45,7 +45,7 @@ model userUsername {
 
 model contacts {
   id             Int    @id @default(autoincrement())
-  contact        String
+  contact        Int
   location       String
   email          String
   appsAppStrore  String
