@@ -54,7 +54,8 @@ var loginServices = /** @class */ (function () {
                                 role: login.role
                             },
                             include: {
-                                applications: true
+                                applications: true,
+                                suggestions: true
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];

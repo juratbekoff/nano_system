@@ -44,7 +44,7 @@ var AppService = /** @class */ (function () {
     AppService.prototype.application = function (application) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.applciation.create({
+                return [2 /*return*/, client.application.create({
                         data: {
                             appname: application.appname,
                             message: application.message,

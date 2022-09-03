@@ -1,4 +1,4 @@
-import { Applciation } from "@prisma/client";
+import { application } from "@prisma/client";
 import { Request, Response } from "express";
 import AppService from "../../services/users/application";
 
@@ -10,7 +10,7 @@ class AppController {
 
     async application(req: Request, res: Response) {
         try {
-            let application: Applciation = {
+            let application: application = {
                 id: 0,
                 appname: req.body.appname,
                 message: req.body.message,

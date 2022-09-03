@@ -1,11 +1,9 @@
-
 -- CreateTable
 CREATE TABLE "newsPublish" (
     "id" SERIAL NOT NULL,
     "image" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "date" TEXT NOT NULL,
-    "clock" TEXT NOT NULL,
     "message" TEXT NOT NULL,
 
     CONSTRAINT "newsPublish_pkey" PRIMARY KEY ("id")
@@ -19,6 +17,7 @@ CREATE TABLE "setProfile" (
     "schoolPosition" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "Email" TEXT NOT NULL,
+
     CONSTRAINT "setProfile_pkey" PRIMARY KEY ("id")
 );
 
@@ -27,6 +26,7 @@ CREATE TABLE "userLogin" (
     "id" SERIAL NOT NULL,
     "login" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
 
     CONSTRAINT "userLogin_pkey" PRIMARY KEY ("id")
 );
@@ -42,7 +42,7 @@ CREATE TABLE "userUsername" (
 -- CreateTable
 CREATE TABLE "contacts" (
     "id" SERIAL NOT NULL,
-    "contact" TEXT NOT NULL,
+    "contact" INTEGER NOT NULL,
     "location" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "appsAppStrore" TEXT NOT NULL,
@@ -85,3 +85,59 @@ CREATE TABLE "grade" (
 
     CONSTRAINT "grade_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateTable
+CREATE TABLE "adminrole" (
+    "id" SERIAL NOT NULL,
+    "role" TEXT NOT NULL,
+
+    CONSTRAINT "adminrole_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "userrole" (
+    "id" SERIAL NOT NULL,
+    "role" TEXT NOT NULL,
+
+    CONSTRAINT "userrole_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "application" (
+    "id" SERIAL NOT NULL,
+    "appname" TEXT NOT NULL,
+    "message" TEXT NOT NULL,
+    "system" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "application_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "suggestion" (
+    "id" SERIAL NOT NULL,
+    "Name" TEXT NOT NULL,
+    "suggestName" TEXT NOT NULL,
+    "message" TEXT NOT NULL,
+    "sent_date" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "suggestion_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "user" (
+    "id" SERIAL NOT NULL,
+    "fullname" TEXT NOT NULL,
+    "login" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+
+    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "application" ADD CONSTRAINT "application_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "suggestion" ADD CONSTRAINT "suggestion_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

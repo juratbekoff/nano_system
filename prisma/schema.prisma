@@ -79,42 +79,33 @@ model userrole {
   role String
 }
 
-model application {
-  id        Int    @id @default(autoincrement())
-  appname   String
-  message   String
-  system    String
-}
-
 // relations
 
-model Applciation {
-  id          Int      @id @default(autoincrement())
-  appname     String   
-  message     String  
-  system      String
-  user        User     @relation(fields: [userId], references: [id])
-  userId      Int 
+model application {
+  id      Int    @id @default(autoincrement())
+  appname String
+  message String
+  system  String
+  user    user   @relation(fields: [userId], references: [id])
+  userId  Int 
 }
 
-
 model suggestion {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   Name        String
   suggestName String
   message     String
   sent_date   String
-  user        User     @relation(fields: [userId], references: [id])
+  user        user   @relation(fields: [userId], references: [id])
   userId      Int 
 }
 
-model User {
-  id                    Int @id @default(autoincrement())
-  fullname              String
-  login                 String   
-  password              String 
-  role                  String
-  applications   Applciation[]
-  suggestions    suggestion[]
+model user {
+  id           Int           @id @default(autoincrement())
+  fullname     String
+  login        String
+  password     String
+  role         String
+  applications application[]
+  suggestions  suggestion[]
 }
-

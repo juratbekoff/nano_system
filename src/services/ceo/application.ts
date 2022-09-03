@@ -1,4 +1,4 @@
-import { PrismaClient, application, Applciation } from "@prisma/client";
+import { PrismaClient, application } from "@prisma/client";
 
 const client = new PrismaClient()
 
@@ -6,24 +6,24 @@ class AppCeoService {
     constructor() { }
 
     // System
-    async getApplications(): Promise<Applciation[] | null> {
-        return await client.applciation.findMany()
+    async getApplications(): Promise<application[] | null> {
+        return await client.application.findMany()
     }
 
-    async deleteAppById(incomingId: number): Promise<Applciation> {
-        return await client.applciation.delete({ where: { id: incomingId } })
+    async deleteAppById(incomingId: number): Promise<application> {
+        return await client.application.delete({ where: { id: incomingId } })
     }
 
     async deleteAllApps() {
-        await client.applciation.deleteMany()
+        await client.application.deleteMany()
     }
 
-    async getAppById(incomingId: number): Promise<Applciation | null> {
-        return await client.applciation.findUnique({ where: { id: incomingId } })
+    async getAppById(incomingId: number): Promise<application | null> {
+        return await client.application.findUnique({ where: { id: incomingId } })
     }
 
-    async applicationById(incomingId: number): Promise<Applciation | null> {
-        return client.applciation.findUnique({
+    async applicationById(incomingId: number): Promise<application | null> {
+        return client.application.findUnique({
             where: {
                 id: incomingId
             },

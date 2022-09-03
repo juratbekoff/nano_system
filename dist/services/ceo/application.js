@@ -46,7 +46,7 @@ var AppCeoService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.applciation.findMany()];
+                    case 0: return [4 /*yield*/, client.application.findMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -56,7 +56,7 @@ var AppCeoService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.applciation["delete"]({ where: { id: incomingId } })];
+                    case 0: return [4 /*yield*/, client.application["delete"]({ where: { id: incomingId } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -66,7 +66,7 @@ var AppCeoService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.applciation.deleteMany()];
+                    case 0: return [4 /*yield*/, client.application.deleteMany()];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -78,7 +78,7 @@ var AppCeoService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.applciation.findUnique({ where: { id: incomingId } })];
+                    case 0: return [4 /*yield*/, client.application.findUnique({ where: { id: incomingId } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -87,7 +87,7 @@ var AppCeoService = /** @class */ (function () {
     AppCeoService.prototype.applicationById = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.applciation.findUnique({
+                return [2 /*return*/, client.application.findUnique({
                         where: {
                             id: incomingId
                         },
