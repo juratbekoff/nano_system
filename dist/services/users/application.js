@@ -50,9 +50,6 @@ var AppService = /** @class */ (function () {
                             message: application.message,
                             system: application.system,
                             userId: application.userId
-                        },
-                        include: {
-                            user: true
                         }
                     })];
             });

@@ -11,9 +11,6 @@ class AppService {
                 message: application.message, 
                 system: application.system, 
                 userId: application.userId
-            },
-            include: {
-                user: true
             }
         }
       )

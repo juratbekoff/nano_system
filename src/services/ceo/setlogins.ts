@@ -1,4 +1,4 @@
-import { PrismaClient, userLogin,  user } from "@prisma/client";
+import { PrismaClient, user } from "@prisma/client";
 
 const client = new PrismaClient()
 
@@ -26,9 +26,9 @@ export class loginServices {
     async findLogin(login:string): Promise<user | null> {
         return await client.user.findFirst({where: {login: login}})}
     
-    async deleteLogin() {
+   async deleteAllLogins()  {
         await client.user.deleteMany()
-    }        
+   }
 
     async deleteLoginById (incomingId: number): Promise<user | null> {
         return client.user.delete({where: {id: incomingId}})}

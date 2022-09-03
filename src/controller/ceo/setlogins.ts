@@ -1,5 +1,5 @@
-import { user, userLogin } from "@prisma/client"
-import e, { NextFunction, Request, Response } from "express"
+import { user} from "@prisma/client"
+import {  Request, Response } from "express"
 import bcrypt, { hashSync } from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import { loginServices } from "../../services/ceo/setlogins"
@@ -69,7 +69,7 @@ export class LoginController {
         
         async deleteAllLogins(req: Request, res: Response) {
             try {
-                await ceologins.deleteLogin()
+                await ceologins.deleteAllLogins()
                     return res.status(200).json({ message: "All logins deleted!"})
             } catch (error) {
                 console.log(error);
@@ -82,7 +82,7 @@ export class LoginController {
                let user = await ceologins.findByUserId(+req.params.id)
                 console.log(user);
                 
-               return res.status(200).json({ message: `User applications related to ID number ${+req.params.id}`, user})
+               return res.status(200).json({ message: `User infrorm related to ID number ${+req.params.id}`, user})
             } catch (error) {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})

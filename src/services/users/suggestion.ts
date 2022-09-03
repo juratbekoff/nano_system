@@ -13,9 +13,6 @@ class Suggestion {
                 message: suggestion.message,
                 sent_date: suggestion.sent_date,
                 userId: suggestion.userId
-            },
-            include: {
-                user: true
             }
         })
     }

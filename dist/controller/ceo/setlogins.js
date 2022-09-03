@@ -158,7 +158,7 @@ var LoginController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologins.deleteLogin()];
+                        return [4 /*yield*/, ceologins.deleteAllLogins()];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, res.status(200).json({ message: "All logins deleted!" })];
@@ -182,7 +182,7 @@ var LoginController = /** @class */ (function () {
                     case 1:
                         user = _a.sent();
                         console.log(user);
-                        return [2 /*return*/, res.status(200).json({ message: "User applications related to ID number ".concat(+req.params.id), user: user })];
+                        return [2 /*return*/, res.status(200).json({ message: "User infrorm related to ID number ".concat(+req.params.id), user: user })];
                     case 2:
                         error_6 = _a.sent();
                         console.log(error_6);

@@ -83,7 +83,7 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    loginServices.prototype.deleteLogin = function () {
+    loginServices.prototype.deleteAllLogins = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
