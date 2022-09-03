@@ -90,9 +90,6 @@ var AppCeoService = /** @class */ (function () {
                 return [2 /*return*/, client.application.findUnique({
                         where: {
                             id: incomingId
-                        },
-                        include: {
-                            user: true
                         }
                     })];
             });

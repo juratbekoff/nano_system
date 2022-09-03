@@ -26,9 +26,6 @@ class AppCeoService {
         return client.application.findUnique({
             where: {
                 id: incomingId
-            },
-            include: {
-                user: true
             }
         })
     }
