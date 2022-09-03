@@ -56,7 +56,8 @@ var SuggestController = /** @class */ (function () {
                             Name: req.body.Name,
                             suggestName: req.body.suggestName,
                             message: req.body.message,
-                            sent_date: new Date().toLocaleString()
+                            sent_date: new Date().toLocaleString(),
+                            userId: req.body.userId
                         };
                         return [4 /*yield*/, suggest.createSuggestion(suggestion)
                                 .then(function (suggest) { return res.send({ message: 'Suggestion has been sent', suggest: suggest }); })];

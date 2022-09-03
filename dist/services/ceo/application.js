@@ -42,64 +42,59 @@ var AppCeoService = /** @class */ (function () {
     function AppCeoService() {
     }
     // System
-    AppCeoService.prototype.getSystemApplication = function () {
+    AppCeoService.prototype.getApplications = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.findMany({})];
+                    case 0: return [4 /*yield*/, client.applciation.findMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    AppCeoService.prototype.deleteSystemAppById = function (incomingId) {
+    AppCeoService.prototype.deleteAppById = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application["delete"]({ where: { id: incomingId } })];
+                    case 0: return [4 /*yield*/, client.applciation["delete"]({ where: { id: incomingId } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    AppCeoService.prototype.getSystemAppById = function (incomingId) {
+    AppCeoService.prototype.deleteAllApps = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.findUnique({ where: { id: incomingId } })];
+                    case 0: return [4 /*yield*/, client.applciation.deleteMany()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AppCeoService.prototype.getAppById = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.applciation.findUnique({ where: { id: incomingId } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    // Teachers
-    AppCeoService.prototype.getTeachersApplication = function () {
+    AppCeoService.prototype.applicationById = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.teachersApplication.findMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    AppCeoService.prototype.deleteTeachersAppById = function (incomingId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.teachersApplication["delete"]({ where: { id: incomingId } })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    AppCeoService.prototype.getTeachersAppById = function (incomingId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.teachersApplication.findUnique({ where: { id: incomingId } })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
+                return [2 /*return*/, client.applciation.findUnique({
+                        where: {
+                            id: incomingId
+                        },
+                        include: {
+                            user: true
+                        }
+                    })];
             });
         });
     };

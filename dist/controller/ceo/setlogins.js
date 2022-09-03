@@ -40,21 +40,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 exports.LoginController = void 0;
+var bcrypt_1 = __importDefault(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var setlogins_1 = require("../../services/ceo/setlogins");
-var ceologin = new setlogins_1.loginServices();
+var ceologins = new setlogins_1.loginServices();
 var LoginController = /** @class */ (function () {
     function LoginController() {
     }
     LoginController.prototype.setLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var ceologs, findCeoLogin, error_1;
+            var ceologs, findCeoLogin, login, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         ceologs = { id: 0, fullname: req.body.fullname, login: req.body.login, password: req.body.password, role: req.body.role };
-                        return [4 /*yield*/, ceologin.findLogin(ceologs.login)];
+                        return [4 /*yield*/, ceologins.findLogin(ceologs.login)];
                     case 1:
                         findCeoLogin = _a.sent();
                         if (ceologs.login.length < 3) {
@@ -66,17 +67,10 @@ var LoginController = /** @class */ (function () {
                         if (findCeoLogin) {
                             return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
                         }
-                        // let salt = bcrypt.genSaltSync(10)    
-                        //         ceologs.password = hashSync(ceologs.password, salt)
-                        //             ceologs.role = hashSync(ceologs.role, salt)
-                        return [4 /*yield*/, ceologin.login(ceologs)
-                                .then(function (login) { return res.send({ message: 'Successfully setted!', login: login }); })];
+                        return [4 /*yield*/, ceologins.login(ceologs)];
                     case 2:
-                        // let salt = bcrypt.genSaltSync(10)    
-                        //         ceologs.password = hashSync(ceologs.password, salt)
-                        //             ceologs.role = hashSync(ceologs.role, salt)
-                        _a.sent();
-                        return [3 /*break*/, 4];
+                        login = _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', login: login })];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
@@ -89,19 +83,19 @@ var LoginController = /** @class */ (function () {
     };
     LoginController.prototype.login = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, login, password, logsin, jsontoken, error_2;
+            var _a, login, password, logsin, logsinPassword, jsontoken, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
                         _a = req.body, login = _a.login, password = _a.password;
-                        return [4 /*yield*/, ceologin.findLogin(login)];
+                        return [4 /*yield*/, ceologins.findLogin(login)];
                     case 1:
                         logsin = _b.sent();
                         if (!logsin) {
                             return [2 /*return*/, res.status(404).send({ success: 0, data: "Incorrect login!" })];
                         }
-                        // const logsinPassword = bcrypt.compareSync(password, logsin.password)  
+                        logsinPassword = bcrypt_1["default"].compareSync(password, logsin.password);
                         if (logsin.password !== password) {
                             return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
@@ -123,7 +117,7 @@ var LoginController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologin.findAllLogin()
+                        return [4 /*yield*/, ceologins.findAllLogin()
                                 .then(function (logins) { return res.status(200).send({ message: 'All Logins get from the database!', logins: logins }); })];
                     case 1:
                         _a.sent();
@@ -144,7 +138,7 @@ var LoginController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologin.deleteLoginById(+req.params.id)];
+                        return [4 /*yield*/, ceologins.deleteLoginById(+req.params.id)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
@@ -164,13 +158,34 @@ var LoginController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologin.deleteLogin()];
+                        return [4 /*yield*/, ceologins.deleteLogin()];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, res.status(200).json({ message: "All logins deleted!" })];
                     case 2:
                         error_5 = _a.sent();
                         console.log(error_5);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginController.prototype.findByUserId = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, error_6;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, ceologins.findByUserId(+req.params.id)];
+                    case 1:
+                        user = _a.sent();
+                        console.log(user);
+                        return [2 /*return*/, res.status(200).json({ message: "User applications related to ID number ".concat(+req.params.id), user: user })];
+                    case 2:
+                        error_6 = _a.sent();
+                        console.log(error_6);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
                 }

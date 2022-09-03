@@ -1,29 +1,37 @@
-import { PrismaClient, application, teachersApplication } from "@prisma/client";
+import { PrismaClient, application, Applciation } from "@prisma/client";
 
 const client = new PrismaClient()
 
 class AppCeoService {
-    constructor() {}
-    
+    constructor() { }
+
     // System
-    async getSystemApplication() : Promise<application[]> {
-        return await client.application.findMany({})}  
+    async getApplications(): Promise<Applciation[] | null> {
+        return await client.applciation.findMany()
+    }
 
-    async deleteSystemAppById(incomingId: number): Promise<application> {
-        return await client.application.delete({where: {id: incomingId}})}
+    async deleteAppById(incomingId: number): Promise<Applciation> {
+        return await client.applciation.delete({ where: { id: incomingId } })
+    }
 
-    async getSystemAppById(incomingId: number): Promise<application | null> {
-        return await client.application.findUnique({where: {id: incomingId}})}
-    
-    // Teachers
-    async getTeachersApplication(): Promise<teachersApplication[]> {
-        return await client.teachersApplication.findMany()}
-    
-    async deleteTeachersAppById(incomingId: number): Promise<teachersApplication> {
-        return await client.teachersApplication.delete({where: {id:incomingId}})}
-    
-    async getTeachersAppById(incomingId: number): Promise<teachersApplication | null> {
-        return await client.teachersApplication.findUnique({where: {id: incomingId}})}    
+    async deleteAllApps() {
+        await client.applciation.deleteMany()
+    }
+
+    async getAppById(incomingId: number): Promise<Applciation | null> {
+        return await client.applciation.findUnique({ where: { id: incomingId } })
+    }
+
+    async applicationById(incomingId: number): Promise<Applciation | null> {
+        return client.applciation.findUnique({
+            where: {
+                id: incomingId
+            },
+            include: {
+                user: true
+            }
+        })
+    }
 }
 
 export default AppCeoService

@@ -38,28 +38,88 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var Suggestion = /** @class */ (function () {
-    function Suggestion() {
-    }
-    Suggestion.prototype.createSuggestion = function (suggestion) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, client.suggestion.create({
-                        data: {
-                            Name: suggestion.Name,
-                            suggestName: suggestion.suggestName,
-                            message: suggestion.message,
-                            sent_date: suggestion.sent_date,
-                            userId: suggestion.userId
-                        },
-                        include: {
-                            user: true
-                        }
-                    })];
-            });
+function createUser(user) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, client.user.create({
+                    data: {
+                        fullname: user.fullname,
+                        login: user.login,
+                        password: user.password,
+                        role: user.role
+                    },
+                    include: {
+                        applications: true
+                    }
+                })];
         });
-    };
-    return Suggestion;
-}());
-exports["default"] = Suggestion;
-//# sourceMappingURL=suggestion.js.map
+    });
+}
+function applciation(app) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, client.applciation.create({
+                    data: {
+                        appname: app.appname,
+                        message: app.message,
+                        system: app.system,
+                        userId: app.userId
+                    },
+                    include: {
+                        user: true
+                    }
+                })];
+        });
+    });
+}
+// async application(application:Applciation): Promise<Applciation> {
+//     return client.applciation.create({
+//         data: {
+//             appname: application.appname, 
+//             message: application.message, 
+//             system: application.system, 
+//             userId: application.userId
+//         },
+//         include: {
+//             user: true
+//         }
+//     }
+//   )
+// }
+function findAllApps() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, client.applciation.findMany({
+                    include: {
+                        user: true
+                    }
+                })];
+        });
+    });
+}
+function userId(incomingId) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, client.user.findMany({
+                    include: {
+                        _count: {
+                            select: {
+                                applications: true
+                            }
+                        },
+                        applications: true
+                    },
+                    where: {
+                        id: incomingId
+                    }
+                })];
+        });
+    });
+}
+exports["default"] = {
+    createUser: createUser,
+    applciation: applciation,
+    findAllApps: findAllApps,
+    userId: userId
+};
+//# sourceMappingURL=testService.js.map

@@ -5,7 +5,7 @@ import ContacstsController from './contacts'
 import { LoginController  } from './setlogins'
 import CeoSuggestController from './suggestion'
 import NewsPublishController from './publish'
-import NewsPublish2 from './publish2'
+import AppController from '../users/application'
 
 // Exports
 export const application = new AppCeoController()
@@ -14,5 +14,4 @@ export const contacts = new ContacstsController()
 export const ceologin = new LoginController()
 export const ceoSuggest = new CeoSuggestController()
 export const publish = new NewsPublishController()
-export const publish2 = new NewsPublish2()
 

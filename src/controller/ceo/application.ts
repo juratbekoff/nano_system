@@ -5,46 +5,45 @@ const appCeoService = new AppCeoService()
 
 class AppCeoController {
 
-    // System
-    async getAppSystem(req: Request,res: Response) {
+    async getApplication(req: Request,res: Response) {
         try {
-            await appCeoService.getSystemApplication()
-                .then(application => res.send( { message: 'Get all system ceo applications!', application}))
+          let applications =  await appCeoService.getApplications()
+                return res.status(200).send({ message: 'All applications retrieved!', applications: applications})
         } catch (error) {
             return res.status(500).send({ message: "Internal Server Error!", error})
         }    
     } 
     
-    async deleteAppSystemByID(req: Request, res: Response) {
+    async deleteAppByID(req: Request, res: Response) {
         try {
-            let oldID = await appCeoService.getSystemAppById(+req.params.id)
+            let oldID = await appCeoService.getAppById(+req.params.id)
                 if(!oldID?.id) return res.status(404).send({ message: `Sorry! We cannot find id = ${+req.params.id}! This ID is already deleted from the database!`})
-                    await appCeoService.deleteSystemAppById(+req.params.id)
+                    await appCeoService.deleteAppById(+req.params.id)
                         res.status(200).send({ message: `ID ${+req.params.id} - deleted  from the database!`})
         } catch (error) {
-            res.status(500).send({ message: 'Internal Server Error', error})
+            console.log(error);
+                return res.status(500).send({ message: 'Internal Server Error', error})
         }  
     }
 
-    //Teachers
-    async applicationTeachers(req: Request, res: Response) {
+    async deleteAllApps(req: Request, res: Response) {
         try {
-            await appCeoService.getTeachersApplication()
-                .then(application => res.send( { message: 'All teachers application!', application}))
+            await appCeoService.deleteAllApps()            
+                 return res.status(200).send({ message: "All applications deleted!"})
         } catch (error) {
-            res.status(500).send({ message: 'Internal Server Error', error})
-        }
+            console.log(error);
+                return res.status(500).send({ message: 'Internal Server Error', error})
+        }  
     }
 
-    async deleteAppTeachersById(req: Request, res: Response) {
+    async applicationById(req: Request,res: Response) {
         try {
-            let oldTeacherID = await appCeoService.getTeachersAppById(+req.params.id)
-                if(!oldTeacherID?.id) return res.status(404).send({message: `Sorry! We cannot find id = ${+req.params.id}! This ID is already deleted from the database!` })
-                    await appCeoService.deleteTeachersAppById(+req.params.id)
-                        res.status(200).send({ message: `ID ${+req.params.id} - deleted  from the database!`})
+            let application = await appCeoService.applicationById(+req.params.id)
+                return res.status(200).send({ message: `ID ${+req.params.id} application!`, application})
         } catch (error) {
-            res.status(500).send({ message: 'Internal Server Error', error})
-        }
+            console.log(error);
+            return res.status(500).send({  message: "Internal Server Error!", error})
+        }  
     }
 }
 

@@ -1,14 +1,23 @@
-import { PrismaClient, application } from "@prisma/client";
+import { PrismaClient, application, Applciation, User } from "@prisma/client";
 const client = new PrismaClient()
 
 class AppService {
     constructor() {}
 
-    async applicationSystem(application:application): Promise<application> {
-        return await client.application.create({data: {appname: application.appname, message: application.message, system: application.system}})}
-
-    async applicationTeachers(application:application): Promise<application> {
-        return await client.teachersApplication.create({data: {appname: application.appname, message: application.message,system: application.system}})}
+    async application(application:Applciation): Promise<Applciation> {
+        return client.applciation.create({
+            data: {
+                appname: application.appname, 
+                message: application.message, 
+                system: application.system, 
+                userId: application.userId
+            },
+            include: {
+                user: true
+            }
+        }
+      )
+    }
 }
 
 export default AppService

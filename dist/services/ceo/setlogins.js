@@ -46,7 +46,17 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.create({ data: { login: login.login, fullname: login.fullname, password: login.password, role: login.role } })];
+                    case 0: return [4 /*yield*/, client.user.create({
+                            data: {
+                                login: login.login,
+                                fullname: login.fullname,
+                                password: login.password,
+                                role: login.role
+                            },
+                            include: {
+                                applications: true
+                            }
+                        })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -56,7 +66,7 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.findMany()];
+                    case 0: return [4 /*yield*/, client.user.findMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -66,7 +76,7 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.findFirst({ where: { login: login } })];
+                    case 0: return [4 /*yield*/, client.user.findFirst({ where: { login: login } })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -76,8 +86,10 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.ceologin.deleteMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0: return [4 /*yield*/, client.user.deleteMany()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });
@@ -85,7 +97,33 @@ var loginServices = /** @class */ (function () {
     loginServices.prototype.deleteLoginById = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.ceologin["delete"]({ where: { id: incomingId } })];
+                return [2 /*return*/, client.user["delete"]({ where: { id: incomingId } })];
+            });
+        });
+    };
+    loginServices.prototype.findByUserId = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.user.findUnique({
+                        select: {
+                            id: true,
+                            fullname: true,
+                            applications: true,
+                            suggestions: true,
+                            login: false,
+                            password: false,
+                            role: false,
+                            _count: {
+                                select: {
+                                    applications: true,
+                                    suggestions: true
+                                }
+                            }
+                        },
+                        where: {
+                            id: incomingId
+                        }
+                    })];
             });
         });
     };

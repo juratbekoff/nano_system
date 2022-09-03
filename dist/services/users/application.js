@@ -41,23 +41,20 @@ var client = new client_1.PrismaClient();
 var AppService = /** @class */ (function () {
     function AppService() {
     }
-    AppService.prototype.applicationSystem = function (application) {
+    AppService.prototype.application = function (application) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.create({ data: { appname: application.appname, message: application.message, system: application.system } })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    AppService.prototype.applicationTeachers = function (application) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.teachersApplication.create({ data: { appname: application.appname, message: application.message, system: application.system } })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
+                return [2 /*return*/, client.applciation.create({
+                        data: {
+                            appname: application.appname,
+                            message: application.message,
+                            system: application.system,
+                            userId: application.userId
+                        },
+                        include: {
+                            user: true
+                        }
+                    })];
             });
         });
     };
