@@ -5,7 +5,7 @@ import { application, attendance, ceologin, ceoSuggest, publish } from "../contr
 const router = Router()
 
 // image uploaders
-const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
+const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/news')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
     const upload = multer({storage})
 
 //applciation routes
@@ -36,9 +36,12 @@ router.delete('/logins', ceologin.deleteAllLogins)
 router.get('/user/:id', ceologin.findByUserId)
 
 // news pubilsh
-router.post('/news', publish.createPublish)
+router.post('/news', upload.single('image'), publish.createPublish)
 router.get('/news', publish.getAllPublished),
 router.get('/news/:id', publish.getPublishedById)
+
+router.post('/category/news', publish.createCategory)
+router.get('/categories/news', publish.getAllCategories)
 
 export default router
 

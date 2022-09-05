@@ -14,4 +14,3 @@ export const contacts = new ContacstsController()
 export const ceologin = new LoginController()
 export const ceoSuggest = new CeoSuggestController()
 export const publish = new NewsPublishController()
-

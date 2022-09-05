@@ -44,19 +44,22 @@ var publishing = new publish_1["default"]();
 var NewsPublishController = /** @class */ (function () {
     function NewsPublishController() {
     }
+    // news
     NewsPublishController.prototype.createPublish = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var publish, error_1;
+            var file, publish, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        file = req.file;
                         publish = {
                             id: 0,
-                            image: req.body.image,
+                            image: file.filename,
                             title: req.body.title,
                             message: req.body.message,
-                            date: new Date().toLocaleString()
+                            date: new Date().toLocaleString(),
+                            category_id: req.body.category_id
                         };
                         return [4 /*yield*/, publishing.createPublish(publish)
                                 .then(function (publish) { return res.send({ message: 'News successfully uploaded!', publish: publish }); })];
@@ -110,6 +113,44 @@ var NewsPublishController = /** @class */ (function () {
                         console.log(error_3);
                         return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
                     case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //category
+    NewsPublishController.prototype.createCategory = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var category, createdCategory, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        category = {
+                            id: 0,
+                            name: req.body.name
+                        };
+                        return [4 /*yield*/, publishing.createCategory(category)];
+                    case 1:
+                        createdCategory = _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: "Category successfully added!", createdCategory: createdCategory })];
+                    case 2:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    NewsPublishController.prototype.getAllCategories = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var categories;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, publishing.getAllcats()];
+                    case 1:
+                        categories = _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: 'Retrieved all categries!', categories: categories })];
                 }
             });
         });

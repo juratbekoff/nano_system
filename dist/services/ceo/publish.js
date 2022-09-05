@@ -41,6 +41,7 @@ var client = new client_1.PrismaClient();
 var NewsPublish = /** @class */ (function () {
     function NewsPublish() {
     }
+    // news
     NewsPublish.prototype.createPublish = function (publish) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -49,7 +50,12 @@ var NewsPublish = /** @class */ (function () {
                             image: publish.image,
                             title: publish.title,
                             message: publish.message,
-                            date: publish.date
+                            date: publish.date,
+                            category: {
+                                connect: {
+                                    id: publish.category_id
+                                }
+                            }
                         }
                     })];
             });
@@ -98,6 +104,28 @@ var NewsPublish = /** @class */ (function () {
                                 id: incomingId
                             }
                         })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // category
+    NewsPublish.prototype.createCategory = function (category) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.category.create({
+                        data: {
+                            name: category.name
+                        }
+                    })];
+            });
+        });
+    };
+    NewsPublish.prototype.getAllcats = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.category.findMany()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

@@ -9,7 +9,7 @@ var uuid_1 = require("uuid");
 var ceo_1 = require("../controller/ceo");
 var router = (0, express_1.Router)();
 // image uploaders
-var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads'); }, filename: function (req, file, cb) { cb(null, (0, uuid_1.v4)() + '.png'); } });
+var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads/news'); }, filename: function (req, file, cb) { cb(null, (0, uuid_1.v4)() + '.png'); } });
 var upload = (0, multer_1["default"])({ storage: storage });
 //applciation routes
 router.get('/applications', ceo_1.application.getApplication);
@@ -34,8 +34,10 @@ router["delete"]('/logins', ceo_1.ceologin.deleteAllLogins);
 // user informs routes
 router.get('/user/:id', ceo_1.ceologin.findByUserId);
 // news pubilsh
-router.post('/news', ceo_1.publish.createPublish);
+router.post('/news', upload.single('image'), ceo_1.publish.createPublish);
 router.get('/news', ceo_1.publish.getAllPublished),
     router.get('/news/:id', ceo_1.publish.getPublishedById);
+router.post('/category/news', ceo_1.publish.createCategory);
+router.get('/categories/news', ceo_1.publish.getAllCategories);
 exports["default"] = router;
 //# sourceMappingURL=ceo.js.map
