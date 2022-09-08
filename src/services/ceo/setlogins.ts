@@ -12,13 +12,6 @@ export class loginServices {
                 fullname: login.fullname, 
                 password: login.password, 
                 role: login.role
-            },
-            select: {
-                id: true,
-                fullname: true,
-                login: true,
-                password: false,
-                role: true
             }
         }
     )}      
@@ -33,13 +26,7 @@ export class loginServices {
             },
             include: {
                 applications: true,
-                suggestions: true,
-                _count: {
-                    select: {
-                        applications: true,
-                        suggestions: true
-                    }
-                }
+                suggestions: true
             }
         }
     )}

@@ -31,16 +31,17 @@ export class LoginController {
 
         async login(req: Request, res: Response) {
             try {
-                let {login, password} = req.body                
+                let {login, password} = req.body
                     let logsin = await ceologins.findLogin(login)
                 if (!logsin) {
                     return res.status(404).send({success: 0, data: "Incorrect login!"})}
-                        const logsinPassword = bcrypt.compareSync(password, logsin.password)  
+                        const logsinPassword = bcrypt.compareSync(password, logsin.password)
                 if(logsin.password !== password) {
-                    return res.status(404).json({message: 'Incorrect password!'})} 
-                
+                    return res.status(404).json({message: 'Incorrect password!'})}
+
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})
-                        return res.status(200).send({ message: "login successfully!", token: jsontoken, user: logsin });
+                        return res.status(200).send({ message: "login successfully!", token: jsontoken, role: logsin.role, userInform: logsin });
+
             } catch (error) {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})
