@@ -59,7 +59,7 @@ var NewsPublishController = /** @class */ (function () {
                             title: req.body.title,
                             message: req.body.message,
                             date: new Date().toLocaleString(),
-                            category_id: req.body.category_id
+                            category_id: +req.body.category_id
                         };
                         return [4 /*yield*/, publishing.createPublish(publish)
                                 .then(function (publish) { return res.send({ message: 'News successfully uploaded!', publish: publish }); })];
@@ -136,7 +136,7 @@ var NewsPublishController = /** @class */ (function () {
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4 })];
                     case 3: return [2 /*return*/];
                 }
             });

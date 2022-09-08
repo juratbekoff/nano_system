@@ -23,7 +23,7 @@ export class LoginController {
                 //     ceologs.password = hashSync(ceologs.password, salt)
                                 // logsin.role = hashSync(logsin.role, salt)
                 let login =  await ceologins.login(ceologs)
-                    return res.status(200).send({ message: 'User successfuly created!', login})
+                    return res.status(200).send({ message: 'User successfuly created!', user: login})
             } catch (error) {
                 console.log(error);
                 res.status(500).json({message: "Internal Server Error!"})
@@ -40,7 +40,7 @@ export class LoginController {
                     return res.status(404).json({message: 'Incorrect password!'})} 
                 
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})
-                        return res.status(200).send({ message: "login successfully!", token: jsontoken, role: logsin.role});
+                        return res.status(200).send({ message: "login successfully!", token: jsontoken, user: logsin });
             } catch (error) {
                 console.log(error);
                 return res.status(500).send({ message: "Internal Server Error!"})

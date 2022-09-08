@@ -53,9 +53,12 @@ var loginServices = /** @class */ (function () {
                                 password: login.password,
                                 role: login.role
                             },
-                            include: {
-                                applications: true,
-                                suggestions: true
+                            select: {
+                                id: true,
+                                fullname: true,
+                                login: true,
+                                password: false,
+                                role: true
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -77,7 +80,21 @@ var loginServices = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.user.findFirst({ where: { login: login } })];
+                    case 0: return [4 /*yield*/, client.user.findFirst({
+                            where: {
+                                login: login
+                            },
+                            include: {
+                                applications: true,
+                                suggestions: true,
+                                _count: {
+                                    select: {
+                                        applications: true,
+                                        suggestions: true
+                                    }
+                                }
+                            }
+                        })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

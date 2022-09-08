@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid"
 import { category, newsPublish } from "@prisma/client";
 
 const publishing = new NewsPublish()
-
+    
 class NewsPublishController {
     constructor() { }
 
@@ -19,7 +19,7 @@ class NewsPublishController {
                 title: req.body.title,
                 message: req.body.message,
                 date: new Date().toLocaleString(),
-                category_id: req.body.category_id
+                category_id: +req.body.category_id
             }
 
             await publishing.createPublish(publish)
@@ -62,10 +62,11 @@ class NewsPublishController {
             return res.status(200).json({ message: "Category successfully added!", createdCategory })
         } catch (error) {
             console.log(error);
-            return res.status(500).send({ message: "Internal Server Error!" })
+            return res.status(500).send({ message: "Internal Server Error!", error})
         }
     }
 
+    
     async getAllCategories(req: Request, res: Response) {
         
             let categories = await publishing.getAllcats()

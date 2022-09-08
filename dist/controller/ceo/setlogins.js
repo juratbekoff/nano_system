@@ -70,7 +70,7 @@ var LoginController = /** @class */ (function () {
                         return [4 /*yield*/, ceologins.login(ceologs)];
                     case 2:
                         login = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', login: login })];
+                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', user: login })];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
@@ -100,7 +100,7 @@ var LoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
-                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken, role: logsin.role })];
+                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken, user: logsin })];
                     case 2:
                         error_2 = _b.sent();
                         console.log(error_2);

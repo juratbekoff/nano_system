@@ -5,7 +5,7 @@ const client = new PrismaClient()
 export class loginServices {
     constructor(){}
 
-    async login(login: user): Promise<user> {
+    async login(login: user){
         return await client.user.create({
             data:{
                 login: login.login, 
@@ -13,9 +13,12 @@ export class loginServices {
                 password: login.password, 
                 role: login.role
             },
-            include: {
-                applications: true,
-                suggestions: true
+            select: {
+                id: true,
+                fullname: true,
+                login: true,
+                password: false,
+                role: true
             }
         }
     )}      
@@ -24,7 +27,22 @@ export class loginServices {
         return await client.user.findMany()}
 
     async findLogin(login:string): Promise<user | null> {
-        return await client.user.findFirst({where: {login: login}})}
+        return await client.user.findFirst({
+            where: {
+                login: login
+            },
+            include: {
+                applications: true,
+                suggestions: true,
+                _count: {
+                    select: {
+                        applications: true,
+                        suggestions: true
+                    }
+                }
+            }
+        }
+    )}
     
    async deleteAllLogins()  {
         await client.user.deleteMany()

@@ -5,7 +5,6 @@ import ContacstsController from './contacts'
 import { LoginController  } from './setlogins'
 import CeoSuggestController from './suggestion'
 import NewsPublishController from './publish'
-import AppController from '../users/application'
 
 // Exports
 export const application = new AppCeoController()

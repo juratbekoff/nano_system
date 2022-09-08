@@ -57,7 +57,11 @@ class NewsPublish {
     }
 
     async getAllcats() {
-        return await client.category.findMany()
+        return await client.category.findMany({
+            include: {
+                news: true
+            }
+        })
     }
 
 }
