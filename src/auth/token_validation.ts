@@ -1,26 +1,36 @@
 import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from "express";
 
-async function checkToken(req: Request,res: Response, next: NextFunction) {
+function checkToken(req: Request,res: Response, next: NextFunction) {
         try {
-            let token = req.get("authorization");
-            if (token) {
+            let authorization = req.headers.authorization;
+            
+            if (authorization) {
                 // Remove Bearer from string
-                token = token.slice(7);
+                let token = authorization.split(' ')[1];
+
                 jwt.verify(token, 'qwert1', (err, decoded) => {
                   if (err) {
                     return res.json({
                       success: 0,
                       message: "Invalid Token..."
                     });
+
                   } else {
-                    res.locals.decoded=decoded
+                    res.locals.user = decoded
                     next();
                   }
                 });
-              }
-        } catch (error) {
+            }
+
+            return res.status(401).json({
+              message: "Tokenni yuvar to'nka"
+            })
+        } catch (error: any) {
             console.log(error)
+            return {
+              message: error.message
+            }
         }    
 }
     
