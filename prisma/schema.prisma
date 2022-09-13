@@ -1,11 +1,12 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch"]
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+
 }
 
 model setProfile {
@@ -79,7 +80,7 @@ model application {
   appname String
   message String
   system  String
-  user    user   @relation(fields: [userId], references: [id])
+  user    user   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  Int
 }
 
@@ -89,7 +90,7 @@ model suggestion {
   suggestName String
   message     String
   sent_date   String
-  user        user   @relation(fields: [userId], references: [id])
+  user        user   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
 }
 
@@ -107,7 +108,7 @@ model user {
 
 model second_auth {
   id          Int @id @default(autoincrement())
-  user        user @relation(fields: [userId], references: [id])
+  user        user @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
   password    String    
 }
