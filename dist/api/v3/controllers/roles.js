@@ -39,39 +39,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var setSecondAuth_1 = __importDefault(require("../../services/users/setSecondAuth"));
-var second_auth = new setSecondAuth_1["default"]();
-var SecondAuthController = /** @class */ (function () {
-    function SecondAuthController() {
+var roles_1 = __importDefault(require("../services/roles"));
+var mainRole = new roles_1["default"]();
+var RoleController = /** @class */ (function () {
+    function RoleController() {
     }
-    SecondAuthController.prototype.createSecondAuth = function (req, res) {
+    RoleController.prototype.createRole = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var auth, authS, error_1;
+            var role, createdRole;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        auth = {
+                        role = {
                             id: 0,
-                            password: req.body.password,
-                            userId: req.body.userId
+                            role: req.body.role,
+                            application: req.body.application,
+                            suggestion: req.body.suggestion,
+                            logins: req.body.logins
                         };
-                        if (!auth.password || !auth.userId)
-                            return [2 /*return*/, 'Please! fill in all fields!'];
-                        return [4 /*yield*/, second_auth.createAuth(auth)];
+                        return [4 /*yield*/, mainRole.createRole(role)];
                     case 1:
-                        authS = _a.sent();
-                        return [2 /*return*/, res.status(200).json({ message: 'Second Auth is setted!', inform: authS })];
-                    case 2:
-                        error_1 = _a.sent();
-                        console.log(error_1);
-                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_1 })];
-                    case 3: return [2 /*return*/];
+                        createdRole = _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: 'role created!', role: createdRole })];
                 }
             });
         });
     };
-    return SecondAuthController;
+    return RoleController;
 }());
-exports["default"] = SecondAuthController;
-//# sourceMappingURL=setSeondAuth.js.map
+exports["default"] = RoleController;
+//# sourceMappingURL=roles.js.map

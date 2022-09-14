@@ -1,6 +1,5 @@
 import { Router } from "express"
 import { application, suggestion} from "./../controller/users/"
-import tokenValidation from "./../../../auth/token_validation"
 
 const router = Router()
 

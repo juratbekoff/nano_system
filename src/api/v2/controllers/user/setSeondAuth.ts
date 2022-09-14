@@ -8,7 +8,6 @@ class SecondAuthController {
 
     async createSecondAuth (req: Request, res: Response) {
         try {
-            
             let auth: second_auth = {
                 id: 0,
                 password: req.body.password,
@@ -17,7 +16,7 @@ class SecondAuthController {
 
             if(!auth.password || !auth.userId) return 'Please! fill in all fields!'
 
-            let authS = second_auth.createAuth(auth)
+            let authS = await second_auth.createAuth(auth)
                 return res.status(200).json({ message: 'Second Auth is setted!', inform: authS })
 
         } catch (error) {

@@ -22,9 +22,6 @@ router.get('/suggest', ceo_1.ceoSuggest.searchSuggest);
 router.get('/suggestion/:id', ceo_1.ceoSuggest.getSuggestById);
 router["delete"]('/suggestion/:id', ceo_1.ceoSuggest.deleteSuggestById);
 router["delete"]('/suggestions', ceo_1.ceoSuggest.deleteAllSuggest);
-// attendance routes
-router.post('/attendance/date', ceo_1.attendance.attendanceDate);
-router.post('/attendance/pupil', ceo_1.attendance.attendancePupil);
 // login routes
 router.post('/set/login', ceo_1.ceologin.setLogin);
 router.post('/login', ceo_1.ceologin.login);

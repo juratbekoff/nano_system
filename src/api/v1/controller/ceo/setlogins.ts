@@ -35,7 +35,7 @@ export class LoginController {
                     let logsin = await ceologins.findLogin(login)
                 if (!logsin) {
                     return res.status(404).send({success: 0, data: "Incorrect login!"})}
-                        const logsinPassword = bcrypt.compareSync(password, logsin.password)
+                        // const logsinPassword = bcrypt.compareSync(password, logsin.password)
                 if(logsin.password !== password) {
                     return res.status(404).json({message: 'Incorrect password!'})}
 

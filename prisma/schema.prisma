@@ -9,72 +9,7 @@ datasource db {
 
 }
 
-model setProfile {
-  id             Int    @id @default(autoincrement())
-  name           String
-  surname        String
-  schoolPosition String
-  phoneNumber    String
-  Email          String
-}
-
-
-model userLogin {
-  id       Int    @id @default(autoincrement())
-  login    String
-  password String
-  role     String
-}
-
-model userUsername {
-  id       Int    @id @default(autoincrement())
-  username String
-}
-
-model contacts {
-  id             Int    @id @default(autoincrement())
-  contact        Int
-  location       String
-  email          String
-  appsAppStrore  String
-  appsGooglePlay String
-}
-
-model contacts_smm {
-  id   Int    @id @default(autoincrement())
-  name String
-  img  String
-  url  String
-}
-
-model attendanceDate {
-  id   Int    @id @default(autoincrement())
-  date String
-}
-
-model attendancePupil {
-  id  Int    @id @default(autoincrement())
-  yes String
-  no  String
-}
-
-model grade {
-  id   Int    @id @default(autoincrement())
-  name String
-}
-
-model adminrole {
-  id   Int    @id @default(autoincrement())
-  role String
-}
-
-model userrole {
-  id   Int    @id @default(autoincrement())
-  role String
-}
-
-// relations
-
+// application
 model application {
   id      Int    @id @default(autoincrement())
   appname String
@@ -84,6 +19,7 @@ model application {
   userId  Int
 }
 
+// suggestion
 model suggestion {
   id          Int    @id @default(autoincrement())
   Name        String
@@ -94,6 +30,8 @@ model suggestion {
   userId      Int
 }
 
+
+// user section
 model user {
   id           Int           @id @default(autoincrement())
   fullname     String
@@ -113,6 +51,8 @@ model second_auth {
   password    String    
 }
 
+
+// news section
 model newsPublish {
   id          Int      @id @default(autoincrement())
   image       String
@@ -127,4 +67,25 @@ model category {
   id   Int           @id @default(autoincrement())
   name String
   news newsPublish[]
+}
+
+
+// admin section
+
+model role {
+    id            Int @id @default(autoincrement())
+    role          String
+    application   Boolean
+    suggestion    Boolean
+    logins        Boolean
+    admins        admin[]
+}
+
+model admin {
+    id          Int @id @default(autoincrement())
+    name        String
+    login       String
+    password    String
+    role        role @relation(fields: [roleID], references: [id])
+    roleID      Int
 }

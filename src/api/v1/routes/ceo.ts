@@ -1,9 +1,8 @@
 import { Router } from "express"
 import multer from "multer";
 import { v4 as uuid} from "uuid"
-import { application, attendance, ceologin, ceoSuggest, publish } from "../controller/ceo";
+import { application, ceologin, ceoSuggest, publish } from "../controller/ceo";
 const router = Router()
-import tokenValidation from "./../../../auth/token_validation"
 
 // image uploaders
 const storage = multer.diskStorage({destination: (req, file, cb) => {cb(null, './src/uploads/news')},filename: (req,file, cb) => {cb(null, uuid() + '.png')}})
@@ -21,10 +20,6 @@ router.get('/suggest', ceoSuggest.searchSuggest)
 router.get('/suggestion/:id', ceoSuggest.getSuggestById)
 router.delete('/suggestion/:id', ceoSuggest.deleteSuggestById)
 router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
-
-// attendance routes
-router.post('/attendance/date', attendance.attendanceDate)
-router.post('/attendance/pupil', attendance.attendancePupil)
 
 // login routes
 router.post('/set/login', ceologin.setLogin)
