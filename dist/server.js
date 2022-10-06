@@ -7,6 +7,7 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var router_1 = __importDefault(require("./api/v1/routes/router"));
 var tesUserRoute_1 = __importDefault(require("./tesUserRoute"));
+require('dotenv').config();
 var app = (0, express_1["default"])();
 // app.use(accessPortector)
 app.use((0, cors_1["default"])());
@@ -15,7 +16,7 @@ app.use(express_1["default"].urlencoded({ extended: true }));
 // Route
 app.use('/api/v1', router_1["default"]);
 app.use('/', tesUserRoute_1["default"]);
-app.listen(9090, function () {
+app.listen(process.env.PORT || 9090, function () {
     console.log('Server is running ...');
 });
 //# sourceMappingURL=server.js.map
