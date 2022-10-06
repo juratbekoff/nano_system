@@ -55,9 +55,9 @@ var AppController = /** @class */ (function () {
                         application = {
                             id: 0,
                             appname: req.body.appname,
+                            teachername: req.body.teachername,
                             message: req.body.message,
-                            system: req.body.system,
-                            userId: req.body.userId
+                            userID: req.body.userID
                         };
                         return [4 /*yield*/, appService.application(application)];
                     case 1:

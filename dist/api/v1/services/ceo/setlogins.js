@@ -115,7 +115,6 @@ var loginServices = /** @class */ (function () {
                             fullname: true,
                             applications: true,
                             suggestions: true,
-                            second_auth: true,
                             login: false,
                             password: false,
                             role: false,

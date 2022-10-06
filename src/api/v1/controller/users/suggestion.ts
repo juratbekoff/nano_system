@@ -14,7 +14,7 @@ class SuggestController {
                 Name: req.body.Name,
                 suggestName: req.body.suggestName,
                 message: req.body.message,
-                sent_date: new Date(Date.now()).toLocaleString("uz-Uz"),
+                sent_date: new Date(Date.now()).toUTCString(),
                 userId: req.body.userId
             }
                         
@@ -28,5 +28,6 @@ class SuggestController {
         }  
     }
 }
+
 
 export default SuggestController

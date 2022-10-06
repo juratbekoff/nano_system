@@ -71,6 +71,8 @@ var SecondAuthController = /** @class */ (function () {
             });
         });
     };
+    SecondAuthController.prototype.async = function (params) {
+    };
     return SecondAuthController;
 }());
 exports["default"] = SecondAuthController;

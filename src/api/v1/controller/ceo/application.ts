@@ -13,7 +13,7 @@ class AppCeoController {
             return res.status(500).send({ message: "Internal Server Error!", error})
         }    
     } 
-    
+       
     async deleteAppByID(req: Request, res: Response) {
         try {
             let oldID = await appCeoService.getAppById(+req.params.id)

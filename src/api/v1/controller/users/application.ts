@@ -13,9 +13,9 @@ class AppController {
             let application: application = {
                 id: 0,
                 appname: req.body.appname,
+                teachername: req.body.teachername,
                 message: req.body.message,
-                system: req.body.system,
-                userId: req.body.userId
+                userID: req.body.userID,
             }
 
             let app = await appService.application(application)

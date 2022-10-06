@@ -3,11 +3,19 @@ import { PrismaClient, application } from "@prisma/client";
 const client = new PrismaClient()
 
 class AppCeoService {
-    constructor() { }
-
+    
     // System
-    async getApplications(): Promise<application[] | null> {
-        return await client.application.findMany()
+    async getApplications() {
+      return await client.application.findMany({
+            select: {
+                id: true,
+                appname: true,
+                message: true,
+                teachername: false,
+                user: false,
+                userID: false
+            }
+        })       
     }
 
     async deleteAppById(incomingId: number): Promise<application> {

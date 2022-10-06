@@ -47,9 +47,9 @@ var AppService = /** @class */ (function () {
                 return [2 /*return*/, client.application.create({
                         data: {
                             appname: application.appname,
+                            teachername: application.teachername,
                             message: application.message,
-                            system: application.system,
-                            userId: application.userId
+                            userID: application.userID
                         }
                     })];
             });

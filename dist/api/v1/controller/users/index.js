@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 exports.suggestion = exports.application = void 0;
-//user imports
 var application_1 = __importDefault(require("./application"));
 var suggestion_1 = __importDefault(require("./suggestion"));
 //user exports

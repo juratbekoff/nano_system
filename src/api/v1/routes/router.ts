@@ -10,7 +10,7 @@ router.use(express.json())
 router.use(express.urlencoded( { extended: true }))
 
 router.use('/ceo',  ceoRoutes)
-router.use('/users',  usersRoutes)
+router.use('/user',  usersRoutes)
 
 export default router
 
