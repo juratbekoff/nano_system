@@ -4,7 +4,7 @@ const client = new PrismaClient()
 class AppService {
 
     async application(application:application): Promise<application> {
-        return client.application.create({
+        return await client.application.create({
             data: {
                 appname: application.appname, 
                 teachername: application.teachername,
@@ -14,6 +14,7 @@ class AppService {
         }
       )
     }
+
 }
 
 export default AppService

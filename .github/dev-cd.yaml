@@ -17,5 +17,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /home/node/ci-cd/
+            cd /home/nano_system/
             ./restart.sh
+            

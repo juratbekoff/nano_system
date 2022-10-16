@@ -86,12 +86,13 @@ var CeoLoginController = /** @class */ (function () {
     };
     CeoLoginController.prototype.ceoLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, login, password, logsin, jsontoken, error_2;
+            var _a, login, password, Ip, logsin, jsontoken, error_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
                         _a = req.body, login = _a.login, password = _a.password;
+                        Ip = req.ip;
                         return [4 /*yield*/, ceologins.findCeoLogin(login)];
                     case 1:
                         logsin = _b.sent();
@@ -103,6 +104,7 @@ var CeoLoginController = /** @class */ (function () {
                         }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
                         return [2 /*return*/, res.status(200).send({
+                                ip: Ip,
                                 message: "Xush kelibsiz CEO!",
                                 token: jsontoken
                             })];

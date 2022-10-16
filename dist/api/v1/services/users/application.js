@@ -44,14 +44,17 @@ var AppService = /** @class */ (function () {
     AppService.prototype.application = function (application) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, client.application.create({
-                        data: {
-                            appname: application.appname,
-                            teachername: application.teachername,
-                            message: application.message,
-                            userID: application.userID
-                        }
-                    })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.application.create({
+                            data: {
+                                appname: application.appname,
+                                teachername: application.teachername,
+                                message: application.message,
+                                userID: application.userID
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

@@ -19,7 +19,7 @@ class AppController {
             }
 
             let app = await appService.application(application)
-            return res.status(200).send({ message: 'Application has been sent!', application: app })
+                return res.status(200).send({ message: 'Application has been sent!', application: app })
         } catch (error) {
             console.log(error);
             return res.status(500).send({ message: "Internal Server Error!" })

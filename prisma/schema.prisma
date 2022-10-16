@@ -91,3 +91,28 @@ model permissions {
     name                  String
     users                 testUser[]
 }
+
+
+
+model testName {
+    id                    Int @id @default(autoincrement())
+    name                  String
+    login                 Int
+    password              String
+    testColumn            String
+    applications          applications[]
+}
+
+
+model applications {
+    id                    Int @id @default(autoincrement())
+    name                  String
+    testNameId            Int
+    testName              testName @relation(fields: [testNameId], references: [id], onDelete: Cascade)
+}
+
+
+model suggest {
+    id                    Int @id @default(autoincrement())
+    name                  String
+}

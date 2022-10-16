@@ -37,7 +37,9 @@ class CeoLoginController {
         async ceoLogin(req: Request, res: Response) {
             try {
                 let { login, password } = req.body
-                    let logsin = await ceologins.findCeoLogin(login)
+                let Ip = req.ip
+
+                let logsin = await ceologins.findCeoLogin(login)
                 
                 if (!logsin) {
                     return res.status(404).send({success: 0, data: "Incorrect login!"})}
@@ -47,6 +49,7 @@ class CeoLoginController {
 
                 const jsontoken = jwt.sign({ result: logsin}, 'qwert1', {expiresIn: "1y"})
                     return res.status(200).send({ 
+                        ip: Ip,
                         message: "Xush kelibsiz CEO!", 
                         token: jsontoken
                      });
