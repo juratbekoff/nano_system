@@ -25,10 +25,13 @@ router.delete('/suggestions', ceoSuggest.deleteAllSuggest)
 router.post('/news', upload.single('image'), publish.createPublish)
 router.get('/news', publish.getAllPublished),
 router.get('/news/:id', publish.getPublishedById)
+router.delete('/news/:id', publish.deletePublishedById)
 
 // category routes
-router.post('/category/news', publish.createCategory)
-router.get('/categories/news', publish.getAllCategories)
+router.post('/category', publish.createCategory)
+router.get('/categories/only', publish.getAllCategories)
+router.get('/categories', publish.getAllCategoryWithNews),
+router.delete('/category/:id', publish.deleteCategory)
 
 // ceoLogin routes
 router.post('/set/login', ceoLogin.setCeoLogin)

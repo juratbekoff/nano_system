@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
-var router_1 = __importDefault(require("./api/v1/routes/router"));
+var router_1 = __importDefault(require("./routes/router"));
 var tesUserRoute_1 = __importDefault(require("./tesUserRoute"));
 require('dotenv').config();
 var app = (0, express_1["default"])();

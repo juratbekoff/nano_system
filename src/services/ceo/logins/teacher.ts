@@ -38,23 +38,9 @@ class TeacherLoginServices {
             select: {
                 id: true,
                 name: true,
-                applications: {
-                    select: {
-                        id: true,
-                        appname: true,
-                        teachername: true,
-                        message: true,
-                        userID: false
-                    }
-                },
                 login: false,
                 password: false,
                 role: false,
-                _count: {
-                    select: {
-                        applications: true,
-                    }
-                },
             },
             where: {
                 id: incomingId

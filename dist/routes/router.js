@@ -12,6 +12,6 @@ router.use((0, cors_1["default"])());
 router.use(express_1["default"].json());
 router.use(express_1["default"].urlencoded({ extended: true }));
 router.use('/ceo', ceo_1["default"]);
-router.use('/users', users_1["default"]);
+router.use('/user', users_1["default"]);
 exports["default"] = router;
 //# sourceMappingURL=router.js.map

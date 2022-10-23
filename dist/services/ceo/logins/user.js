@@ -36,13 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.loginServices = void 0;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var loginServices = /** @class */ (function () {
-    function loginServices() {
+var UserLoginServices = /** @class */ (function () {
+    function UserLoginServices() {
     }
-    loginServices.prototype.login = function (login) {
+    UserLoginServices.prototype.createUserlogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -59,7 +58,7 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    loginServices.prototype.findAllLogin = function () {
+    UserLoginServices.prototype.findAllUserLogin = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -69,7 +68,7 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    loginServices.prototype.findLogin = function (login) {
+    UserLoginServices.prototype.findUserLogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -77,9 +76,14 @@ var loginServices = /** @class */ (function () {
                             where: {
                                 login: login
                             },
-                            include: {
+                            select: {
+                                id: true,
+                                fullname: true,
                                 applications: true,
-                                suggestions: true
+                                suggestions: true,
+                                password: true,
+                                role: true,
+                                _count: true
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -87,26 +91,14 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    loginServices.prototype.deleteAllLogins = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.user.deleteMany()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    loginServices.prototype.deleteLoginById = function (incomingId) {
+    UserLoginServices.prototype.deleteUserLoginByID = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, client.user["delete"]({ where: { id: incomingId } })];
             });
         });
     };
-    loginServices.prototype.findByUserId = function (incomingId) {
+    UserLoginServices.prototype.findByUserID = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, client.user.findUnique({
@@ -132,7 +124,7 @@ var loginServices = /** @class */ (function () {
             });
         });
     };
-    return loginServices;
+    return UserLoginServices;
 }());
-exports.loginServices = loginServices;
-//# sourceMappingURL=setlogins.js.map
+exports["default"] = UserLoginServices;
+//# sourceMappingURL=user.js.map

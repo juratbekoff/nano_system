@@ -46,7 +46,16 @@ var AppCeoService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.findMany()];
+                    case 0: return [4 /*yield*/, client.application.findMany({
+                            select: {
+                                id: true,
+                                appname: true,
+                                message: true,
+                                teachername: false,
+                                user: false,
+                                userID: false
+                            }
+                        })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

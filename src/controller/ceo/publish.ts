@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
 import NewsPublish from "../../services/ceo/publish";
-import multer from "multer";
-import { v4 as uuid } from "uuid"
 import { category, newsPublish } from "@prisma/client";
 
 const publishing = new NewsPublish()
     
 class NewsPublishController {
-    constructor() { }
 
     // news
     async createPublish(req: Request, res: Response) {
@@ -18,7 +15,7 @@ class NewsPublishController {
                 image: file.filename,
                 title: req.body.title,
                 message: req.body.message,
-                date: new Date().toLocaleString(),
+                date: new Date().toString(),
                 category_id: +req.body.category_id
             }
 
@@ -33,17 +30,45 @@ class NewsPublishController {
     async getAllPublished(req: Request, res: Response) {
         try {
             await publishing.getAllPublished()
-                .then(publish => res.send({ message: 'All publishes!', publish }))
+                .then(publish => res.send({ message: 'All news!', publish }))
         } catch (error) {
             console.log(error);
             return res.status(500).send({ message: "Internal Server Error!" })
         }
     }
 
+    async getAllCategoryWithNews (req: Request, res: Response) {
+        try {
+            await publishing.getAllNewsWithCategory()
+                .then(publish => res.send({ message: 'All category with news!', publish }))
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({ message: "Internal Server Error!" })
+        }
+    }
+    
     async getPublishedById(req: Request, res: Response) {
         try {
             await publishing.getPublishedById(+req.params.id)
-                .then(publish => res.send({ message: `This ${+req.params.id} deleted from newsPublish table!`, publish }))
+                .then(publish => res.send({ message: `This ${+req.params.id} news!`, publish }))
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({ message: "Internal Server Error!" })
+        }
+    }
+
+    async deletePublishedById(req: Request, res: Response) {
+        try {
+            let id = +req.params.id
+
+            let findNews = await publishing.getPublishedById(id)
+
+            if(!findNews) {
+                return res.status(400).send({ message: "News already deleted or not created!"})
+            }
+
+            await publishing.deletePublishedById(id)
+                .then(publish => res.send({ message: `Id ${+req.params.id} news deleted!`}))
         } catch (error) {
             console.log(error);
             return res.status(500).send({ message: "Internal Server Error!" })
@@ -65,14 +90,40 @@ class NewsPublishController {
             return res.status(500).send({ message: "Internal Server Error!", error})
         }
     }
-
     
     async getAllCategories(req: Request, res: Response) {
-        
+        try {
+
             let categories = await publishing.getAllcats()
+
             return res.status(200).json({ message: 'Retrieved all categries!', categories })
+
+        } catch (error) {
+            console.log(error);
+            return res.send("Internal Server Error!")
+        }        
     }
 
+    async deleteCategory(req: Request, res: Response) {
+       try {
+        
+            let id = +req.params.id
+            
+            let findCategory = await publishing.getCategoryById(id)
+            
+            if(!findCategory) {
+                return res.status(400).send({ message: "Category already deleted or not created!"})
+            }
+
+            await publishing.deleteCategory(id)
+
+            return res.status(200).json({ message: `Id ${+req.params.id} category deleted!` })
+
+       } catch (error) {
+            console.log(error);
+                return res.status(500).send("Internal Server Error!")
+       }
+    }
 }
 
 export default NewsPublishController

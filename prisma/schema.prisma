@@ -16,7 +16,7 @@ model newsPublish {
   title       String
   date        String
   message     String
-  category    category @relation(fields: [category_id], references: [id])
+  category    category @relation(fields: [category_id], references: [id], onDelete: Cascade)
   category_id Int
 }
 

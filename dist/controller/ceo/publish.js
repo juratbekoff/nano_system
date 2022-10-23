@@ -58,7 +58,7 @@ var NewsPublishController = /** @class */ (function () {
                             image: file.filename,
                             title: req.body.title,
                             message: req.body.message,
-                            date: new Date().toLocaleString(),
+                            date: new Date().toString(),
                             category_id: +req.body.category_id
                         };
                         return [4 /*yield*/, publishing.createPublish(publish)
@@ -83,7 +83,7 @@ var NewsPublishController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, publishing.getAllPublished()
-                                .then(function (publish) { return res.send({ message: 'All publishes!', publish: publish }); })];
+                                .then(function (publish) { return res.send({ message: 'All news!', publish: publish }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
@@ -96,15 +96,15 @@ var NewsPublishController = /** @class */ (function () {
             });
         });
     };
-    NewsPublishController.prototype.getPublishedById = function (req, res) {
+    NewsPublishController.prototype.getAllCategoryWithNews = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, publishing.getPublishedById(+req.params.id)
-                                .then(function (publish) { return res.send({ message: "This ".concat(+req.params.id, " deleted from newsPublish table!"), publish: publish }); })];
+                        return [4 /*yield*/, publishing.getAllNewsWithCategory()
+                                .then(function (publish) { return res.send({ message: 'All category with news!', publish: publish }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
@@ -117,10 +117,59 @@ var NewsPublishController = /** @class */ (function () {
             });
         });
     };
+    NewsPublishController.prototype.getPublishedById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, publishing.getPublishedById(+req.params.id)
+                                .then(function (publish) { return res.send({ message: "This ".concat(+req.params.id, " news!"), publish: publish }); })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    NewsPublishController.prototype.deletePublishedById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, findNews, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        id = +req.params.id;
+                        return [4 /*yield*/, publishing.getPublishedById(id)];
+                    case 1:
+                        findNews = _a.sent();
+                        if (!findNews) {
+                            return [2 /*return*/, res.status(400).send({ message: "News already deleted or not created!" })];
+                        }
+                        return [4 /*yield*/, publishing.deletePublishedById(id)
+                                .then(function (publish) { return res.send({ message: "Id ".concat(+req.params.id, " news deleted!") }); })];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_5 = _a.sent();
+                        console.log(error_5);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     //category
     NewsPublishController.prototype.createCategory = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var category, createdCategory, error_4;
+            var category, createdCategory, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -134,9 +183,9 @@ var NewsPublishController = /** @class */ (function () {
                         createdCategory = _a.sent();
                         return [2 /*return*/, res.status(200).json({ message: "Category successfully added!", createdCategory: createdCategory })];
                     case 2:
-                        error_4 = _a.sent();
-                        console.log(error_4);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_4 })];
+                        error_6 = _a.sent();
+                        console.log(error_6);
+                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!", error: error_6 })];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -144,13 +193,47 @@ var NewsPublishController = /** @class */ (function () {
     };
     NewsPublishController.prototype.getAllCategories = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var categories;
+            var categories, error_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, publishing.getAllcats()];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, publishing.getAllcats()];
                     case 1:
                         categories = _a.sent();
                         return [2 /*return*/, res.status(200).json({ message: 'Retrieved all categries!', categories: categories })];
+                    case 2:
+                        error_7 = _a.sent();
+                        console.log(error_7);
+                        return [2 /*return*/, res.send("Internal Server Error!")];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    NewsPublishController.prototype.deleteCategory = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, findCategory, error_8;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        id = +req.params.id;
+                        return [4 /*yield*/, publishing.getCategoryById(id)];
+                    case 1:
+                        findCategory = _a.sent();
+                        if (!findCategory) {
+                            return [2 /*return*/, res.status(400).send({ message: "Category already deleted or not created!" })];
+                        }
+                        return [4 /*yield*/, publishing.deleteCategory(id)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).json({ message: "Id ".concat(+req.params.id, " category deleted!") })];
+                    case 3:
+                        error_8 = _a.sent();
+                        console.log(error_8);
+                        return [2 /*return*/, res.status(500).send("Internal Server Error!")];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

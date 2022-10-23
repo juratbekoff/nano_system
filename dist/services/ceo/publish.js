@@ -71,6 +71,17 @@ var NewsPublish = /** @class */ (function () {
             });
         });
     };
+    NewsPublish.prototype.getAllNewsWithCategory = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.category.findMany({
+                        include: {
+                            news: true
+                        }
+                    })];
+            });
+        });
+    };
     NewsPublish.prototype.getPublishedById = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -125,9 +136,33 @@ var NewsPublish = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.category.findMany({
-                            include: {
-                                news: true
+                    case 0: return [4 /*yield*/, client.category.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    NewsPublish.prototype.getCategoryById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.category.findUnique({
+                            where: {
+                                id: id
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    NewsPublish.prototype.deleteCategory = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.category["delete"]({
+                            where: {
+                                id: id
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];

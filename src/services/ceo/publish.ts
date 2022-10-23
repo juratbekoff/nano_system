@@ -25,6 +25,14 @@ class NewsPublish {
     async getAllPublished() {
         return await client.newsPublish.findMany()
     }
+    
+    async getAllNewsWithCategory() {
+       return client.category.findMany({
+        include: {
+            news: true
+            }
+        })
+    }
 
     async getPublishedById(incomingId: number): Promise<newsPublish | null> {
         return await client.newsPublish.findUnique({
@@ -57,9 +65,21 @@ class NewsPublish {
     }
 
     async getAllcats() {
-        return await client.category.findMany({
-            include: {
-                news: true
+        return await client.category.findMany()
+    }
+    
+    async getCategoryById(id: number) {
+        return await client.category.findUnique({
+            where: {
+                id
+            }
+        })
+    }
+
+    async deleteCategory(id: number) {
+        return await client.category.delete({
+            where: {
+                id
             }
         })
     }

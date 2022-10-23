@@ -38,19 +38,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var AppService = /** @class */ (function () {
-    function AppService() {
+var TeacherLoginServices = /** @class */ (function () {
+    function TeacherLoginServices() {
     }
-    AppService.prototype.application = function (application) {
+    TeacherLoginServices.prototype.createTeacherlogin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.create({
+                    case 0: return [4 /*yield*/, client.teacher.create({
                             data: {
-                                appname: application.appname,
-                                teachername: application.teachername,
-                                message: application.message,
-                                userID: application.userID
+                                login: login.login,
+                                name: login.name,
+                                password: login.password,
+                                role: login.role
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -58,7 +58,57 @@ var AppService = /** @class */ (function () {
             });
         });
     };
-    return AppService;
+    TeacherLoginServices.prototype.findAllTeacherLogin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teacher.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    TeacherLoginServices.prototype.findTeacherLogin = function (login) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.teacher.findFirst({
+                            where: {
+                                login: login
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    TeacherLoginServices.prototype.deleteTeacherLoginByID = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.teacher["delete"]({ where: { id: incomingId } })];
+            });
+        });
+    };
+    // teacher inform by ID
+    TeacherLoginServices.prototype.findByteacherID = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.teacher.findUnique({
+                        select: {
+                            id: true,
+                            name: true,
+                            login: false,
+                            password: false,
+                            role: false
+                        },
+                        where: {
+                            id: incomingId
+                        }
+                    })];
+            });
+        });
+    };
+    return TeacherLoginServices;
 }());
-exports["default"] = AppService;
-//# sourceMappingURL=application.js.map
+exports["default"] = TeacherLoginServices;
+//# sourceMappingURL=teacher.js.map

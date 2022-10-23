@@ -39,22 +39,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.LoginController = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var setlogins_1 = require("../../services/ceo/setlogins");
-var ceologins = new setlogins_1.loginServices();
-var LoginController = /** @class */ (function () {
-    function LoginController() {
+var teacher_1 = __importDefault(require("../../../services/ceo/logins/teacher"));
+var teacherlogins = new teacher_1["default"]();
+var TeacherLoginController = /** @class */ (function () {
+    function TeacherLoginController() {
     }
-    LoginController.prototype.setLogin = function (req, res) {
+    TeacherLoginController.prototype.setTeacherLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var ceologs, findCeoLogin, login, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        ceologs = { id: 0, fullname: req.body.fullname, login: req.body.login, password: req.body.password, role: req.body.role };
-                        return [4 /*yield*/, ceologins.findLogin(ceologs.login)];
+                        ceologs = {
+                            id: 0,
+                            name: req.body.name,
+                            login: req.body.login,
+                            password: req.body.password,
+                            role: req.body.role
+                        };
+                        return [4 /*yield*/, teacherlogins.findTeacherLogin(ceologs.login)];
                     case 1:
                         findCeoLogin = _a.sent();
                         if (ceologs.login.length < 3) {
@@ -66,21 +71,20 @@ var LoginController = /** @class */ (function () {
                         if (findCeoLogin) {
                             return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
                         }
-                        return [4 /*yield*/, ceologins.login(ceologs)];
+                        return [4 /*yield*/, teacherlogins.createTeacherlogin(ceologs)];
                     case 2:
                         login = _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', user: login })];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
-                        res.status(500).json({ message: "Internal Server Error!" });
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, res.status(500).json({ message: "Internal Server Error!", error: error_1 })];
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    LoginController.prototype.login = function (req, res) {
+    TeacherLoginController.prototype.teacherLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, login, password, logsin, jsontoken, error_2;
             return __generator(this, function (_b) {
@@ -88,18 +92,22 @@ var LoginController = /** @class */ (function () {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
                         _a = req.body, login = _a.login, password = _a.password;
-                        return [4 /*yield*/, ceologins.findLogin(login)];
+                        return [4 /*yield*/, teacherlogins.findTeacherLogin(login)];
                     case 1:
                         logsin = _b.sent();
                         if (!logsin) {
                             return [2 /*return*/, res.status(404).send({ success: 0, data: "Incorrect login!" })];
                         }
-                        // const logsinPassword = bcrypt.compareSync(password, logsin.password)
                         if (logsin.password !== password) {
                             return [2 /*return*/, res.status(404).json({ message: 'Incorrect password!' })];
                         }
                         jsontoken = jsonwebtoken_1["default"].sign({ result: logsin }, 'qwert1', { expiresIn: "1y" });
-                        return [2 /*return*/, res.status(200).send({ message: "login successfully!", token: jsontoken, role: logsin.role, userInform: logsin })];
+                        return [2 /*return*/, res.status(200).send({
+                                message: "login successfully!",
+                                token: jsontoken,
+                                role: logsin.role,
+                                teacherInform: logsin
+                            })];
                     case 2:
                         error_2 = _b.sent();
                         console.log(error_2);
@@ -109,14 +117,14 @@ var LoginController = /** @class */ (function () {
             });
         });
     };
-    LoginController.prototype.findAllLogins = function (req, res) {
+    TeacherLoginController.prototype.findAllTeacherLogins = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologins.findAllLogin()
+                        return [4 /*yield*/, teacherlogins.findAllTeacherLogin()
                                 .then(function (logins) { return res.status(200).send({ message: 'All Logins get from the database!', logins: logins }); })];
                     case 1:
                         _a.sent();
@@ -130,17 +138,17 @@ var LoginController = /** @class */ (function () {
             });
         });
     };
-    LoginController.prototype.deleteLoginById = function (req, res) {
+    TeacherLoginController.prototype.deleteTeacherLoginById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologins.deleteLoginById(+req.params.id)];
+                        return [4 /*yield*/, teacherlogins.deleteTeacherLoginByID(+req.params.id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
+                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the teacherlogin's table") })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
@@ -150,48 +158,29 @@ var LoginController = /** @class */ (function () {
             });
         });
     };
-    LoginController.prototype.deleteAllLogins = function (req, res) {
+    // teacher inform by ID
+    TeacherLoginController.prototype.findByTeacherID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologins.deleteAllLogins()];
+                        return [4 /*yield*/, teacherlogins.findByteacherID(+req.params.id)
+                                .then(function (logins) { return res.status(200).send({ message: "This ".concat(+req.params.id, " get from the teacherlogin's table"), logins: logins }); })];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).json({ message: "All logins deleted!" })];
+                        return [3 /*break*/, 3];
                     case 2:
                         error_5 = _a.sent();
                         console.log(error_5);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
+                        return [2 /*return*/, res.status(500).send(error_5)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    LoginController.prototype.findByUserId = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var user, error_6;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, ceologins.findByUserId(+req.params.id)];
-                    case 1:
-                        user = _a.sent();
-                        console.log(user);
-                        return [2 /*return*/, res.status(200).json({ message: "User infrorm related to ID number ".concat(+req.params.id), user: user })];
-                    case 2:
-                        error_6 = _a.sent();
-                        console.log(error_6);
-                        return [2 /*return*/, res.status(500).send({ message: "Internal Server Error!" })];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return LoginController;
+    return TeacherLoginController;
 }());
-exports.LoginController = LoginController;
-//# sourceMappingURL=setlogins.js.map
+exports["default"] = TeacherLoginController;
+//# sourceMappingURL=teacher.js.map

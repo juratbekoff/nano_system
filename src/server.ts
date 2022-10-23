@@ -1,6 +1,6 @@
 import express from "express";
 import cors from 'cors'
-import router from "./api/v1/routes/router";
+import router from "./routes/router";
 import testuser from "./tesUserRoute"
 import accessPortector from "./middleware/access-protector";
 require('dotenv').config()

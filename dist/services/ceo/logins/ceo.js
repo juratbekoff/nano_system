@@ -38,19 +38,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
-var AppService = /** @class */ (function () {
-    function AppService() {
+var ceoLoginServices = /** @class */ (function () {
+    function ceoLoginServices() {
     }
-    AppService.prototype.application = function (application) {
+    ceoLoginServices.prototype.createCeologin = function (login) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, client.application.create({
+                    case 0: return [4 /*yield*/, client.ceo.create({
                             data: {
-                                appname: application.appname,
-                                teachername: application.teachername,
-                                message: application.message,
-                                userID: application.userID
+                                login: login.login,
+                                name: login.name,
+                                password: login.password,
+                                role: login.role
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -58,7 +58,57 @@ var AppService = /** @class */ (function () {
             });
         });
     };
-    return AppService;
+    ceoLoginServices.prototype.findAllCeoLogin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.ceo.findMany()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    ceoLoginServices.prototype.findCeoLogin = function (login) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.ceo.findFirst({
+                            where: {
+                                login: login
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    ceoLoginServices.prototype.deleteCeoLoginByID = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.ceo["delete"]({ where: { id: incomingId } })];
+            });
+        });
+    };
+    // archieve for next purposes!
+    ceoLoginServices.prototype.findByUserID = function (incomingId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, client.teacher.findUnique({
+                        select: {
+                            id: true,
+                            name: true,
+                            login: false,
+                            password: false,
+                            role: false
+                        },
+                        where: {
+                            id: incomingId
+                        }
+                    })];
+            });
+        });
+    };
+    return ceoLoginServices;
 }());
-exports["default"] = AppService;
-//# sourceMappingURL=application.js.map
+exports["default"] = ceoLoginServices;
+//# sourceMappingURL=ceo.js.map
