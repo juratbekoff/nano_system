@@ -17,7 +17,7 @@ app.use(express.urlencoded( { extended: true }))
 app.use('/api/v1', router)
 app.use('/', testuser)
 
-app.listen(process.env.PORT || 9090, () => {
+app.listen(process.env.PORT || 9085, () => {
     console.log('Server is running ...')
 })
 
