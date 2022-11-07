@@ -18,7 +18,7 @@ app.use('/api/v1', router)
 app.use('/', testuser)
 
 app.listen(process.env.PORT || 9085, () => {
-    console.log('Server is running ...')
+    console.log(`Server is running ... on ${process.env.PORT}`)
 })
 
 

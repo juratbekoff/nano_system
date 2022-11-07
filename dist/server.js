@@ -16,7 +16,7 @@ app.use(express_1["default"].urlencoded({ extended: true }));
 // Route
 app.use('/api/v1', router_1["default"]);
 app.use('/', tesUserRoute_1["default"]);
-app.listen(process.env.PORT || 9090, function () {
-    console.log('Server is running ...');
+app.listen(process.env.PORT || 9085, function () {
+    console.log("Server is running ... on ".concat(process.env.PORT));
 });
 //# sourceMappingURL=server.js.map
