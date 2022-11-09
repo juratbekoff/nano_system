@@ -20,3 +20,4 @@ jobs:
             cd /root/server/ut45.uz/backend/
             ./restart.sh
             
+            
