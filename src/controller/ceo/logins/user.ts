@@ -83,6 +83,26 @@ class UserLoginController {
             }
         }  
 
+        async updateUserLogin (req:Request, res: Response) {
+            try {
+
+                let id = +req.params.id
+                let password = req.body.password
+
+                await userlogins.updateUserLogin(id, password)
+                
+                return res.status(200).send({
+                    message: "password updated!",
+                })
+            
+            } catch (error) {
+                console.log(error);
+                  return res.status(500).send(error)
+            }
+        }  
+
+
+
         // user iform by ID
         async findByUserID (req: Request, res: Response) {
             try {
@@ -93,6 +113,33 @@ class UserLoginController {
                     return res.status(500).send({message: 'Internal Server Error!', error})
             }
         }
+
+        // filter user by query
+
+        async filterUserByQuery (req: Request, res: Response) {
+            try {
+                
+                let name = String(req.query.name)
+
+                let findUser = await userlogins.filterUserByQuery(name)
+                
+                if(findUser?.length === 0) {
+                    return res.status(404).send({
+                        message: 'user not found!'
+                    })
+                }
+
+                return res.status(200).send({
+                    message: "user is found!",
+                    user: findUser
+                })
+            
+            } catch (error) {
+                console.log(error);
+                    return res.status(500).send({message: 'Internal Server Error!', error})
+            }
+        }
+
 }
 
 

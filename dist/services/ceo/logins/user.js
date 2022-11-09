@@ -98,6 +98,23 @@ var UserLoginServices = /** @class */ (function () {
             });
         });
     };
+    UserLoginServices.prototype.updateUserLogin = function (id, password) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.user.update({
+                            where: {
+                                id: id
+                            },
+                            data: {
+                                password: password
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     UserLoginServices.prototype.findByUserID = function (incomingId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -121,6 +138,23 @@ var UserLoginServices = /** @class */ (function () {
                             id: incomingId
                         }
                     })];
+            });
+        });
+    };
+    UserLoginServices.prototype.filterUserByQuery = function (fullname) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.user.findMany({
+                            where: {
+                                fullname: {
+                                    contains: fullname,
+                                    mode: "insensitive"
+                                }
+                            }
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };

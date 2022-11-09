@@ -36,7 +36,7 @@ router.get('/categories', ceo_1.publish.getAllCategoryWithNews),
 router.post('/set/login', ceo_1.ceoLogin.setCeoLogin);
 router.post('/login', ceo_1.ceoLogin.ceoLogin);
 router.get('/login', ceo_1.ceoLogin.findAllLogins);
-router["delete"]('/login', ceo_1.ceoLogin.deleteLoginById);
+router["delete"]('/login/:id', ceo_1.ceoLogin.deleteLoginById);
 // teacherLogin routes
 router.post('/set/teacher/login', ceo_1.teacherLogin.setTeacherLogin);
 router.post('/teacher/login', ceo_1.teacherLogin.teacherLogin);
@@ -47,8 +47,11 @@ router.post('/set/user/login', ceo_1.userLogin.setUserLogin);
 router.post('/user/login', ceo_1.userLogin.userLogin);
 router.get('/user/login', ceo_1.userLogin.findAllUserLogins);
 router["delete"]('/user/login', ceo_1.userLogin.deleteUserLoginById);
+router.put('/user/:id', ceo_1.userLogin.updateUserLogin);
 // infrom routes for Profile
 router.get('/user/:id', ceo_1.userLogin.findByUserID);
 router.get('/teacher/:id', ceo_1.teacherLogin.findByTeacherID);
+// user filter routes
+router.get('/search/', ceo_1.userLogin.filterUserByQuery);
 exports["default"] = router;
 //# sourceMappingURL=ceo.js.map
