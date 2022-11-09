@@ -77,7 +77,7 @@ var UserLoginController = /** @class */ (function () {
                                     status: false
                                 })];
                         }
-                   return [4 /*yield*/, userlogins.createUserlogin(ceologs)];
+                   	 [4 /*yield*/, userlogins.createUserlogin(ceologs)];
                     case 2:
                         login = _a.sent();
                         return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', status: true, user: login })];
