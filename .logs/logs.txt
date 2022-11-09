@@ -495,3 +495,28 @@ Server is running ... on 9085
 Server is running ... on 9085
 Server is running ... on 9085
 Server is running ... on 9085
+Server is running ... on 9085
+Server is running ... on 9085
+Server is running ... on 9085
+SyntaxError: Unexpected token A in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at Object.parseSourceMapInput (/usr/lib/node_modules/pm2/node_modules/source-map/lib/util.js:433:15)
+    at new SourceMapConsumer (/usr/lib/node_modules/pm2/node_modules/source-map/lib/source-map-consumer.js:17:22)
+    at mapSourcePosition (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:200:14)
+    at wrapCallSite (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:377:20)
+    at Function.prepareStackTrace (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:426:39)
+    at maybeOverridePrepareStackTrace (node:internal/errors:141:29)
+    at prepareStackTrace (node:internal/errors:115:5)
+    at getCallSite (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:25853:22)
+    at Proxy.<anonymous> (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:28258:22)
+SyntaxError: Unexpected token A in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at Object.parseSourceMapInput (/usr/lib/node_modules/pm2/node_modules/source-map/lib/util.js:433:15)
+    at new SourceMapConsumer (/usr/lib/node_modules/pm2/node_modules/source-map/lib/source-map-consumer.js:17:22)
+    at mapSourcePosition (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:200:14)
+    at wrapCallSite (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:377:20)
+    at Function.prepareStackTrace (/usr/lib/node_modules/pm2/node_modules/source-map-support/source-map-support.js:426:39)
+    at maybeOverridePrepareStackTrace (node:internal/errors:141:29)
+    at prepareStackTrace (node:internal/errors:115:5)
+    at getCallSite (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:25853:22)
+    at Proxy.<anonymous> (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:28258:22)
