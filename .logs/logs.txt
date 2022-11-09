@@ -446,3 +446,49 @@ Note: Lines with + are required, lines with ? are optional.
     at /root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:28318:18 {
   clientVersion: '4.1.1'
 }
+Server is running ... on 9085
+PrismaClientValidationError: 
+Invalid `client.user.create()` invocation in
+/root/server/ut45.uz/backend/src/services/ceo/logins/user.ts:8:34
+
+   5 class UserLoginServices {
+   6 
+   7     async createUserlogin(login: user){
+→  8         return await client.user.create({
+               data: {
+                 login: 'maktab',
+             +   fullname: String,
+                 password: 'maktab',
+                 role: 'user',
+             ?   applications?: {
+             ?     create?: applicationCreateWithoutUserInput | applicationCreateWithoutUserInput | applicationUncheckedCreateWithoutUserInput | applicationUncheckedCreateWithoutUserInput,
+             ?     connectOrCreate?: applicationCreateOrConnectWithoutUserInput | applicationCreateOrConnectWithoutUserInput,
+             ?     createMany?: applicationCreateManyUserInputEnvelope,
+             ?     connect?: applicationWhereUniqueInput | applicationWhereUniqueInput
+             ?   },
+             ?   suggestions?: {
+             ?     create?: suggestionCreateWithoutUserInput | suggestionCreateWithoutUserInput | suggestionUncheckedCreateWithoutUserInput | suggestionUncheckedCreateWithoutUserInput,
+             ?     connectOrCreate?: suggestionCreateOrConnectWithoutUserInput | suggestionCreateOrConnectWithoutUserInput,
+             ?     createMany?: suggestionCreateManyUserInputEnvelope,
+             ?     connect?: suggestionWhereUniqueInput | suggestionWhereUniqueInput
+             ?   }
+               }
+             })
+
+Argument fullname for data.fullname is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at Document.validate (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:27181:20)
+    at PrismaClient._executeRequest (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29694:17)
+    at middleware (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29603:60)
+    at consumer (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29618:24)
+    at /root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29622:135
+    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)
+    at callback (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29622:113)
+    at PrismaClient._request (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:29639:22)
+    at requestFn (/root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:28302:65)
+    at /root/server/ut45.uz/backend/node_modules/@prisma/client/runtime/index.js:28318:18 {
+  clientVersion: '4.1.1'
+}
+Server is running ... on 9085
