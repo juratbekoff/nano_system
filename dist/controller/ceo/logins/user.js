@@ -1,5 +1,4 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+"use strict"; var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -68,13 +67,16 @@ var UserLoginController = /** @class */ (function () {
                         if (ceologs.password.length < 3) {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
-                        if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" })];
-                        }
-                        return [4 /*yield*/, userlogins.createUserlogin(ceologs)];
+                        if (findCeoLogin){
+                           return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" }]
+                            return [2 /*return*/, res.status(403).send({
+                                    message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!"),
+                                    status: false
+		               })];
+                   return [4 /*yield*/, userlogins.createUserlogin(ceologs)];
                     case 2:
                         login = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', user: login })];
+                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', status: true, user: login })];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);

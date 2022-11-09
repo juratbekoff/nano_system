@@ -25,10 +25,14 @@ class UserLoginController {
                     return res.status(400).send({message: 'password must be at least 5 symbols!'})}
                 
                 if(findCeoLogin) {
-                    return res.status(403).send({message: `Sorry! This '${ceologs.login}' login is already exicted! Please! Change login's value!`})}    
+                    return res.status(403).send({
+                        message: `Sorry! This '${ceologs.login}' login is already exicted! Please! Change login's value!`,
+                        status: false
+                    })
+                }    
 
                 let login =  await userlogins.createUserlogin(ceologs)
-                    return res.status(200).send({ message: 'User successfuly created!', user: login})
+                    return res.status(200).send({ message: 'User successfuly created!', status: true, user: login})
             } catch (error) {
                 console.log(error);
                     return res.status(500).json({message: "Internal Server Error!", error})
