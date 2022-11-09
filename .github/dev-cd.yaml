@@ -1,4 +1,4 @@
-name: Dev CD
+name: Production CD
 
 on:
   push:
@@ -17,6 +17,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /home/nano_system/
+            cd /root/server/ut45.uz/backend/
             ./restart.sh
             
