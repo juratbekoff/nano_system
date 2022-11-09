@@ -125,7 +125,7 @@ var NewsPublishController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, publishing.getPublishedById(+req.params.id)
-                                .then(function (publish) { return res.send({ message: "This " + +req.params.id + " news!", publish: publish }); })];
+                                .then(function (publish) { return res.send({ message: "This ".concat(+req.params.id, " news!"), publish: publish }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
@@ -153,7 +153,7 @@ var NewsPublishController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: "News already deleted or not created!" })];
                         }
                         return [4 /*yield*/, publishing.deletePublishedById(id)
-                                .then(function (publish) { return res.send({ message: "Id " + +req.params.id + " news deleted!" }); })];
+                                .then(function (publish) { return res.send({ message: "Id ".concat(+req.params.id, " news deleted!") }); })];
                     case 2:
                         _a.sent();
                         return [3 /*break*/, 4];
@@ -228,7 +228,7 @@ var NewsPublishController = /** @class */ (function () {
                         return [4 /*yield*/, publishing.deleteCategory(id)];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).json({ message: "Id " + +req.params.id + " category deleted!" })];
+                        return [2 /*return*/, res.status(200).json({ message: "Id ".concat(+req.params.id, " category deleted!") })];
                     case 3:
                         error_8 = _a.sent();
                         console.log(error_8);

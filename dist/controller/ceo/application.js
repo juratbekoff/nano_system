@@ -74,11 +74,11 @@ var AppCeoController = /** @class */ (function () {
                     case 1:
                         oldID = _a.sent();
                         if (!(oldID === null || oldID === void 0 ? void 0 : oldID.id))
-                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = " + +req.params.id + "! This ID is already deleted from the database!" })];
+                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = ".concat(+req.params.id, "! This ID is already deleted from the database!") })];
                         return [4 /*yield*/, appCeoService.deleteAppById(+req.params.id)];
                     case 2:
                         _a.sent();
-                        res.status(200).send({ message: "ID " + +req.params.id + " - deleted  from the database!" });
+                        res.status(200).send({ message: "ID ".concat(+req.params.id, " - deleted  from the database!") });
                         return [3 /*break*/, 4];
                     case 3:
                         error_2 = _a.sent();
@@ -119,7 +119,7 @@ var AppCeoController = /** @class */ (function () {
                         return [4 /*yield*/, appCeoService.applicationById(+req.params.id)];
                     case 1:
                         application = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "ID " + +req.params.id + " application!", application: application })];
+                        return [2 /*return*/, res.status(200).send({ message: "ID ".concat(+req.params.id, " application!"), application: application })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);

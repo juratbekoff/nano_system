@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.loginServices = void 0;
 var client_1 = require("@prisma/client");
 var client = new client_1.PrismaClient();
 var loginServices = /** @class */ (function () {
