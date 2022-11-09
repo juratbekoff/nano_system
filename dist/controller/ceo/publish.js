@@ -104,7 +104,7 @@ var NewsPublishController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, publishing.getAllNewsWithCategory()
-                                .then(function (publish) { return res.send({ message: 'All category with news!', publish: publish }); })];
+                                .then(function (publish) { return res.send({ message: 'next categorys!!!', publish: publish }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];

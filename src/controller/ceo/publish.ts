@@ -40,7 +40,7 @@ class NewsPublishController {
     async getAllCategoryWithNews (req: Request, res: Response) {
         try {
             await publishing.getAllNewsWithCategory()
-                .then(publish => res.send({ message: 'All category with news!', publish }))
+                .then(publish => res.send({ message: 'next categorys!!!', publish }))
         } catch (error) {
             console.log(error);
             return res.status(500).send({ message: "Internal Server Error!" })
