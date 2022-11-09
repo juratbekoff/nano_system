@@ -2,7 +2,7 @@ name: Test CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
 
 jobs:
   build:
@@ -23,6 +23,5 @@ jobs:
       - run: npm install
       - run: npm ci
       - run: npx prisma generate dev
-      - run: npx prisma migrate dev --name "next version"
       
       
