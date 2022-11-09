@@ -69,7 +69,7 @@ var UserLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({
+                            return [2 /*return*/, res.status(403).json({
                                     message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!"),
                                     status: false
                                 })];
