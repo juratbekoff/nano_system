@@ -163,10 +163,34 @@ var UserLoginController = /** @class */ (function () {
             });
         });
     };
+    UserLoginController.prototype.updateUserLogin = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, password, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = +req.params.id;
+                        password = req.body.password;
+                        return [4 /*yield*/, userlogins.updateUserLogin(id, password)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({
+                                message: "password updated!"
+                            })];
+                    case 2:
+                        error_5 = _a.sent();
+                        console.log(error_5);
+                        return [2 /*return*/, res.status(500).send(error_5)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     // user iform by ID
     UserLoginController.prototype.findByUserID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var error_5;
+            var error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -177,9 +201,39 @@ var UserLoginController = /** @class */ (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        error_5 = _a.sent();
-                        console.log(error_5);
-                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_5 })];
+                        error_6 = _a.sent();
+                        console.log(error_6);
+                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_6 })];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // filter user by query
+    UserLoginController.prototype.filterUserByQuery = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var name, findUser, error_7;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        name = String(req.query.name);
+                        return [4 /*yield*/, userlogins.filterUserByQuery(name)];
+                    case 1:
+                        findUser = _a.sent();
+                        if ((findUser === null || findUser === void 0 ? void 0 : findUser.length) === 0) {
+                            return [2 /*return*/, res.status(404).send({
+                                    message: 'user not found!'
+                                })];
+                        }
+                        return [2 /*return*/, res.status(200).send({
+                                message: "user is found!",
+                                user: findUser
+                            })];
+                    case 2:
+                        error_7 = _a.sent();
+                        console.log(error_7);
+                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_7 })];
                     case 3: return [2 /*return*/];
                 }
             });

@@ -41,6 +41,18 @@ class UserLoginServices {
         return client.user.delete({where: {id: incomingId}}
     )}
 
+    async updateUserLogin(id: number, password: string): Promise<user | null> {
+        return await client.user.update({
+            where: {
+                id
+            },
+            data: {
+                password
+            }
+        })
+    }
+
+
     async findByUserID(incomingId: number) {
         return client.user.findUnique({
             select: {
@@ -63,6 +75,22 @@ class UserLoginServices {
             }
         })
     }
+    
+    async filterUserByQuery(fullname: string): Promise<user[] | null> {
+        return await client.user.findMany({
+           where: {
+               fullname: {
+                    contains: fullname,
+                    mode: "insensitive"    
+               }
+           }
+        })
+    }
+
+
+    
+
+    
 }
 
 export default UserLoginServices

@@ -37,7 +37,7 @@ router.delete('/category/:id', publish.deleteCategory)
 router.post('/set/login', ceoLogin.setCeoLogin)
 router.post('/login', ceoLogin.ceoLogin)
 router.get('/login', ceoLogin.findAllLogins)
-router.delete('/login', ceoLogin.deleteLoginById)
+router.delete('/login/:id', ceoLogin.deleteLoginById)
 
 // teacherLogin routes
 router.post('/set/teacher/login', teacherLogin.setTeacherLogin)
@@ -50,10 +50,16 @@ router.post('/set/user/login', userLogin.setUserLogin)
 router.post('/user/login', userLogin.userLogin)
 router.get('/user/login', userLogin.findAllUserLogins)
 router.delete('/user/login', userLogin.deleteUserLoginById)
+router.put('/user/:id', userLogin.updateUserLogin)
 
 // infrom routes for Profile
 router.get('/user/:id', userLogin.findByUserID)
 router.get('/teacher/:id', teacherLogin.findByTeacherID)
+
+
+// user filter routes
+router.get('/search/', userLogin.filterUserByQuery)
+
 
 export default router
 
