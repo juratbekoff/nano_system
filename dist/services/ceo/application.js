@@ -51,7 +51,7 @@ var AppCeoService = /** @class */ (function () {
                                 id: true,
                                 appname: true,
                                 message: true,
-                                teachername: false,
+                                teachername: true,
                                 user: false,
                                 userID: false
                             }

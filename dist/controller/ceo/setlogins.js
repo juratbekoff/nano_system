@@ -39,7 +39,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.LoginController = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var setlogins_1 = require("../../services/ceo/setlogins");
 var ceologins = new setlogins_1.loginServices();
@@ -64,7 +63,7 @@ var LoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" })];
                         }
                         return [4 /*yield*/, ceologins.login(ceologs)];
                     case 2:
@@ -140,7 +139,7 @@ var LoginController = /** @class */ (function () {
                         return [4 /*yield*/, ceologins.deleteLoginById(+req.params.id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
+                        return [2 /*return*/, res.status(200).send({ message: "This " + +req.params.id + " successfully deleted from the ceologin's table" })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
@@ -181,7 +180,7 @@ var LoginController = /** @class */ (function () {
                     case 1:
                         user = _a.sent();
                         console.log(user);
-                        return [2 /*return*/, res.status(200).json({ message: "User infrorm related to ID number ".concat(+req.params.id), user: user })];
+                        return [2 /*return*/, res.status(200).json({ message: "User infrorm related to ID number " + +req.params.id, user: user })];
                     case 2:
                         error_6 = _a.sent();
                         console.log(error_6);

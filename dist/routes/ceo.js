@@ -7,10 +7,10 @@ var express_1 = require("express");
 var multer_1 = __importDefault(require("multer"));
 var uuid_1 = require("uuid");
 var ceo_1 = require("../controller/ceo");
-var router = (0, express_1.Router)();
+var router = express_1.Router();
 // image uploaders
-var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads/news'); }, filename: function (req, file, cb) { cb(null, (0, uuid_1.v4)() + '.png'); } });
-var upload = (0, multer_1["default"])({ storage: storage });
+var storage = multer_1["default"].diskStorage({ destination: function (req, file, cb) { cb(null, './src/uploads/news'); }, filename: function (req, file, cb) { cb(null, uuid_1.v4() + '.png'); } });
+var upload = multer_1["default"]({ storage: storage });
 //application routes
 router.get('/applications', ceo_1.application.getApplication);
 router.get('/application/:id', ceo_1.application.applicationById);

@@ -69,7 +69,7 @@ var CeoLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" })];
                         }
                         return [4 /*yield*/, ceologins.createCeologin(ceologs)];
                     case 2:
@@ -148,7 +148,7 @@ var CeoLoginController = /** @class */ (function () {
                         return [4 /*yield*/, ceologins.deleteCeoLoginByID(+req.params.id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
+                        return [2 /*return*/, res.status(200).send({ message: "This " + +req.params.id + " successfully deleted from the ceologin's table" })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);

@@ -69,7 +69,7 @@ var TeacherLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" })];
                         }
                         return [4 /*yield*/, teacherlogins.createTeacherlogin(ceologs)];
                     case 2:
@@ -148,7 +148,7 @@ var TeacherLoginController = /** @class */ (function () {
                         return [4 /*yield*/, teacherlogins.deleteTeacherLoginByID(+req.params.id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the teacherlogin's table") })];
+                        return [2 /*return*/, res.status(200).send({ message: "This " + +req.params.id + " successfully deleted from the teacherlogin's table" })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
@@ -167,7 +167,7 @@ var TeacherLoginController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, teacherlogins.findByteacherID(+req.params.id)
-                                .then(function (logins) { return res.status(200).send({ message: "This ".concat(+req.params.id, " get from the teacherlogin's table"), logins: logins }); })];
+                                .then(function (logins) { return res.status(200).send({ message: "This " + +req.params.id + " get from the teacherlogin's table", logins: logins }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];

@@ -6,7 +6,7 @@ exports.__esModule = true;
 var express_1 = require("express");
 var tesUser_1 = __importDefault(require("./tesUser"));
 var testuser = new tesUser_1["default"]();
-var router = (0, express_1.Router)();
+var router = express_1.Router();
 // users
 router.post('/user', testuser.createUser);
 router.get('/user', testuser.getAllUsers);

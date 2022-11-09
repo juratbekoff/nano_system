@@ -69,7 +69,7 @@ var UserLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '" + ceologs.login + "' login is already exicted! Please! Change login's value!" })];
                         }
                         return [4 /*yield*/, userlogins.createUserlogin(ceologs)];
                     case 2:
@@ -153,7 +153,7 @@ var UserLoginController = /** @class */ (function () {
                         return [4 /*yield*/, userlogins.deleteUserLoginByID(+req.params.id)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "This ".concat(+req.params.id, " successfully deleted from the ceologin's table") })];
+                        return [2 /*return*/, res.status(200).send({ message: "This " + +req.params.id + " successfully deleted from the ceologin's table" })];
                     case 2:
                         error_4 = _a.sent();
                         console.log(error_4);
@@ -196,7 +196,7 @@ var UserLoginController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, userlogins.findByUserID(+req.params.id)
-                                .then(function (userInfo) { return res.status(200).send({ message: "ID ".concat(+req.params.id, " pupil's inform!"), userInfo: userInfo }); })];
+                                .then(function (userInfo) { return res.status(200).send({ message: "ID " + +req.params.id + " pupil's inform!", userInfo: userInfo }); })];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];

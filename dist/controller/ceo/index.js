@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.publish = exports.ceoSuggest = exports.application = exports.userLogin = exports.teacherLogin = exports.ceoLogin = void 0;
 // imports
 var ceo_1 = __importDefault(require("./logins/ceo"));
 var teacher_1 = __importDefault(require("./logins/teacher"));

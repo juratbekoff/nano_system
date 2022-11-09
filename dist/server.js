@@ -8,15 +8,15 @@ var cors_1 = __importDefault(require("cors"));
 var router_1 = __importDefault(require("./routes/router"));
 var tesUserRoute_1 = __importDefault(require("./tesUserRoute"));
 require('dotenv').config();
-var app = (0, express_1["default"])();
+var app = express_1["default"]();
 // app.use(accessPortector)
-app.use((0, cors_1["default"])());
+app.use(cors_1["default"]());
 app.use(express_1["default"].json());
 app.use(express_1["default"].urlencoded({ extended: true }));
 // Route
 app.use('/api/v1', router_1["default"]);
 app.use('/', tesUserRoute_1["default"]);
 app.listen(process.env.PORT || 9085, function () {
-    console.log("Server is running ... on ".concat(process.env.PORT));
+    console.log("Server is running ... on " + process.env.PORT);
 });
 //# sourceMappingURL=server.js.map

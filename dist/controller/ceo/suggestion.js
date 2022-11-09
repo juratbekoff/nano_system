@@ -74,7 +74,7 @@ var CeoSuggestController = /** @class */ (function () {
                         return [4 /*yield*/, suggest.getSuggestById(+req.params.id)];
                     case 1:
                         suggestion = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "ID ".concat(+req.params.id, " retrieved!"), suggestion: suggestion })];
+                        return [2 /*return*/, res.status(200).send({ message: "ID " + +req.params.id + " retrieved!", suggestion: suggestion })];
                     case 2:
                         error_2 = _a.sent();
                         console.log(error_2);
@@ -95,11 +95,11 @@ var CeoSuggestController = /** @class */ (function () {
                     case 1:
                         oldSuggest = _a.sent();
                         if (!(oldSuggest === null || oldSuggest === void 0 ? void 0 : oldSuggest.id))
-                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = ".concat(+req.params.id, "! This ID is already deleted from the database!") })];
+                            return [2 /*return*/, res.status(404).send({ message: "Sorry! We cannot find id = " + +req.params.id + "! This ID is already deleted from the database!" })];
                         return [4 /*yield*/, suggest.deleteSuggestById(+req.params.id)];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: "ID ".concat(+req.params.id, " deleted from suggestion table!") })];
+                        return [2 /*return*/, res.status(200).send({ message: "ID " + +req.params.id + " deleted from suggestion table!" })];
                     case 3:
                         error_3 = _a.sent();
                         console.log(error_3);
