@@ -69,12 +69,15 @@ var UserLoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(400).send({ message: 'password must be at least 5 symbols!' })];
                         }
                         if (findCeoLogin) {
-                            return [2 /*return*/, res.status(403).send({ message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!") })];
+                            return [2 /*return*/, res.status(403).send({
+                                    message: "Sorry! This '".concat(ceologs.login, "' login is already exicted! Please! Change login's value!"),
+                                    status: false
+                                })];
                         }
                         return [4 /*yield*/, userlogins.createUserlogin(ceologs)];
                     case 2:
                         login = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', user: login })];
+                        return [2 /*return*/, res.status(200).send({ message: 'User successfuly created!', status: true, user: login })];
                     case 3:
                         error_1 = _a.sent();
                         console.log(error_1);
