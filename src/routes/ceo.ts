@@ -49,7 +49,8 @@ router.delete('/teacher/login', teacherLogin.deleteTeacherLoginById)
 router.post('/set/user/login', userLogin.setUserLogin)
 router.post('/user/login', userLogin.userLogin)
 router.get('/user/login', userLogin.findAllUserLogins)
-router.delete('/user/login', userLogin.deleteUserLoginById)
+router.delete('/user/:id', userLogin.deleteUserLoginById)
+router.delete('/users', userLogin.deleteAllUsers)
 router.put('/user/:id', userLogin.updateUserLogin)
 
 // infrom routes for Profile

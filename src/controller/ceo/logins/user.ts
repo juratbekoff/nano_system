@@ -86,6 +86,16 @@ class UserLoginController {
                   return res.status(500).send(error)
             }
         }  
+        
+        async deleteAllUsers (req:Request, res: Response) {
+            try {
+                await userlogins.deleteAllLogins()
+                  return res.status(200).send( { message: `All logins deleted!`})
+            } catch (error) {
+                console.log(error);
+                  return res.status(500).send(error)
+            }
+        }  
 
         async updateUserLogin (req:Request, res: Response) {
             try {

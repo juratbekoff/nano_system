@@ -41,6 +41,10 @@ class UserLoginServices {
         return client.user.delete({where: {id: incomingId}}
     )}
 
+    async deleteAllLogins () {
+        return await client.user.deleteMany()
+    }
+
     async updateUserLogin(id: number, password: string): Promise<user | null> {
         return await client.user.update({
             where: {
@@ -87,6 +91,7 @@ class UserLoginServices {
         })
     }
 
+    
 
     
 
