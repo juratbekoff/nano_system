@@ -46,7 +46,8 @@ router["delete"]('/teacher/login', ceo_1.teacherLogin.deleteTeacherLoginById);
 router.post('/set/user/login', ceo_1.userLogin.setUserLogin);
 router.post('/user/login', ceo_1.userLogin.userLogin);
 router.get('/user/login', ceo_1.userLogin.findAllUserLogins);
-router["delete"]('/user/login', ceo_1.userLogin.deleteUserLoginById);
+router["delete"]('/user/:id', ceo_1.userLogin.deleteUserLoginById);
+router["delete"]('/users', ceo_1.userLogin.deleteAllUsers);
 router.put('/user/:id', ceo_1.userLogin.updateUserLogin);
 // infrom routes for Profile
 router.get('/user/:id', ceo_1.userLogin.findByUserID);
