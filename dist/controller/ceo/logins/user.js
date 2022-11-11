@@ -166,9 +166,29 @@ var UserLoginController = /** @class */ (function () {
             });
         });
     };
+    UserLoginController.prototype.deleteAllUsers = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, userlogins.deleteAllLogins()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: "All logins deleted!" })];
+                    case 2:
+                        error_5 = _a.sent();
+                        console.log(error_5);
+                        return [2 /*return*/, res.status(500).send(error_5)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     UserLoginController.prototype.updateUserLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, password, error_5;
+            var id, password, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -182,9 +202,9 @@ var UserLoginController = /** @class */ (function () {
                                 message: "password updated!"
                             })];
                     case 2:
-                        error_5 = _a.sent();
-                        console.log(error_5);
-                        return [2 /*return*/, res.status(500).send(error_5)];
+                        error_6 = _a.sent();
+                        console.log(error_6);
+                        return [2 /*return*/, res.status(500).send(error_6)];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -193,7 +213,7 @@ var UserLoginController = /** @class */ (function () {
     // user iform by ID
     UserLoginController.prototype.findByUserID = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var error_6;
+            var error_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -204,9 +224,9 @@ var UserLoginController = /** @class */ (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        error_6 = _a.sent();
-                        console.log(error_6);
-                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_6 })];
+                        error_7 = _a.sent();
+                        console.log(error_7);
+                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_7 })];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -215,7 +235,7 @@ var UserLoginController = /** @class */ (function () {
     // filter user by query
     UserLoginController.prototype.filterUserByQuery = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var name, findUser, error_7;
+            var name, findUser, error_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -234,9 +254,9 @@ var UserLoginController = /** @class */ (function () {
                                 user: findUser
                             })];
                     case 2:
-                        error_7 = _a.sent();
-                        console.log(error_7);
-                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_7 })];
+                        error_8 = _a.sent();
+                        console.log(error_8);
+                        return [2 /*return*/, res.status(500).send({ message: 'Internal Server Error!', error: error_8 })];
                     case 3: return [2 /*return*/];
                 }
             });
